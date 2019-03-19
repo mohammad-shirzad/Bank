@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<entity-mappings xmlns="http://java.sun.com/xml/ns/persistence/orm"
+                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm
+                 http://java.sun.com/xml/ns/persistence/orm_2_0.xsd"
+                 version="2.0">
+    <package>entity</package>
+    <entity class="entity.Customer" name="customer">
+        <table name="CUSTOMER"/>
+        <attributes>
+            <id name="id">
+                <column name="ID"/>
+                <generated-value strategy="IDENTITY"/>
+            </id>
+            <basic name="fullName">
+                <column name="FULL_NAME" length="40"/>
+            </basic>
+            <basic name="nationalId">
+                <column name="NATIONAL_ID" length="10"/>
+            </basic>
+            <basic name="dateOfBirth">
+                <column name="DATE_OF_BIRTH"/>
+            </basic>
+            <one-to-many name="cards" mapped-by="customer" orphan-removal="true" fetch="LAZY">
+                <cascade>
+                    <cascade-persist/>
+                    <cascade-remove/>
+                </cascade>
+            </one-to-many>
+            <one-to-one name="address" orphan-removal="true" fetch="LAZY">
+                <join-column name="ADDRESS_ID"/>
+                <cascade>
+                    <cascade-persist/>
+                    <cascade-remove/>
+                </cascade>
+            </one-to-one>
+        </attributes>
+    </entity>
+</entity-mappings>

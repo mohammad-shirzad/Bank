@@ -1,0 +1,100 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:ws="http://jax-ws.dev.java.net/spring/core"
+       xmlns:wss="http://jax-ws.dev.java.net/spring/servlet"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+
+       http://jax-ws.dev.java.net/spring/core http://jax-ws.dev.java.net/spring/core.xsd
+        http://jax-ws.dev.java.net/spring/servlet http://jax-ws.dev.java.net/spring/servlet.xsd">
+    <tx:annotation-driven/>
+    <aop:aspectj-autoproxy/>
+    <bean class="config.aspectConfig.DatabaseLog" name="aspect"/>
+    <aop:config>
+        <aop:aspect ref="aspect">
+            <aop:pointcut id="diff"
+                          expression="execution(* serviceImpl.*.save*(..)) || execution(* serviceImpl.*.edit*(..)) || execution(* serviceImpl.*.delete*(..))"/>
+            <aop:after-returning method="diffLog" pointcut-ref="diff"/>
+        </aop:aspect>
+        <aop:aspect ref="aspect">
+            <aop:pointcut id="io" expression="execution(* serviceImpl..*.*(..))"/>
+            <aop:around method="ioLog" pointcut-ref="io"/>
+        </aop:aspect>
+    </aop:config>
+    <wss:binding url="/ws/customer">
+        <wss:service>
+            <ws:service bean="#customerController"/>
+        </wss:service>
+    </wss:binding>
+    <bean id="emf" name="emf" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="persistenceXmlLocation" value="classpath:persistence.xml"/>
+        <property name="jpaVendorAdapter">
+            <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"/>
+        </property>
+        <property name="persistenceUnitName" value="pun"/>
+        <property name="jpaProperties">
+            <props>
+                <prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>
+                <prop key="hibernate.hbm2ddl.auto">create</prop>
+            </props>
+        </property>
+    </bean>
+
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
+        <property name="url" value="jdbc:mysql://localhost:3306/TRAINING"/>
+        <property name="username" value="root"/>
+        <property name="password" value="1234"/>
+    </bean>
+    <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+        <property name="entityManagerFactory" ref="emf"/>
+    </bean>
+    <!--DAO-->
+    <bean name="abstractDao" class="daoImpl.AbstractJpaDao" abstract="true">
+        <property name="emf" ref="emf"/>
+    </bean>
+    <bean name="customerDao" class="daoImpl.CustomerDaoImpl" parent="abstractDao">
+        <!--<property name="entityManagerFactory" ref="emf"/>-->
+    </bean>
+    <bean name="cardDao" class="daoImpl.CardDaoImpl" parent="abstractDao">
+        <!--<property name="entityManagerFactory" ref="emf"/>-->
+    </bean>
+    <bean name="addressDao" class="daoImpl.AddressDaoImpl" parent="abstractDao">
+        <!--<property name="entityManagerFactory" ref="emf"/>-->
+    </bean>
+    <bean name="detailedReportDao" class="reportDaoImpl.DetailedReportDaoImpl">
+        <property name="entityManagerFactory" ref="emf"/>
+    </bean>
+    <bean name="generalReportDao" class="reportDaoImpl.GeneralReportDaoImpl">
+        <property name="entityManagerFactory" ref="emf"/>
+    </bean>
+    <!--Service-->
+    <bean name="customerService" class="serviceImpl.CustomerServiceImpl">
+        <property name="customerDao" ref="customerDao"/>
+        <property name="addressDao" ref="addressDao"/>
+    </bean>
+    <bean name="generalReportService" class="serviceImpl.GeneralReportServiceImpl">
+        <property name="generalReportDao" ref="generalReportDao"/>
+    </bean>
+    <bean name="detailedReportService" class="serviceImpl.DetailedReportServiceImpl">
+        <property name="detailedReportDao" ref="detailedReportDao"/>
+    </bean>
+
+    <bean class="serviceImpl.AddressServiceImpl" name="addressService">
+        <property name="addressDao" ref="addressDao"/>
+    </bean>
+    <bean class="serviceImpl.CardServiceImpl" name="cardService">
+        <property name="cardDao" ref="cardDao"/>
+    </bean>
+    <!--Endpoint-->
+    <bean class="controllerImpl.CustomerControllerImpl" name="customerController" id="customerController">
+        <property name="customerService" ref="customerService"/>
+    </bean>
+
+</beans>
