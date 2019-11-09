@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="BankExporter:war">
+    <output-path>$PROJECT_DIR$/BankExporter/target</output-path>
+    <root id="archive" name="BankExporter.war">
+      <element id="artifact" artifact-name="BankExporter:war exploded" />
+    </root>
+  </artifact>
+</component>

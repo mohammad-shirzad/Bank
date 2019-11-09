@@ -6,10 +6,23 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="Training" />
+        <module name="BankBusiness" />
+        <module name="BankDao" />
+        <module name="BankData" />
+        <module name="BankExporter" />
+        <module name="BankFacade" />
+        <module name="CommonUtils" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="BankBusiness" target="8" />
+      <module name="BankConfig" target="1.5" />
+      <module name="BankDao" target="8" />
+      <module name="BankData" target="8" />
+      <module name="BankExporter" target="8" />
+      <module name="BankFacade" target="8" />
+      <module name="CommonUtils" target="8" />
+      <module name="Test" target="8" />
       <module name="Training" target="8" />
     </bytecodeTargetLevel>
   </component>
