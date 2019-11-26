@@ -1,13 +1,7 @@
 package com.bank.dao.bean;
 
-import com.bank.data.entity.Customer;
-import org.springframework.data.repository.CrudRepository;
-import org.springframework.data.repository.CrudRepositoryExtensionsKt;
+import com.bank.data.entity.ECustomer;
 
-public interface CustomerDao extends CrudRepository<Customer, Long> {
-
-    public Customer findCustomerByCustomerNumber(String customerNo);
-
-    public Customer findCustomerByIdentityNumber(String identityNo);
-
+public interface CustomerDao extends BaseGenericDao<ECustomer> {
+    public ECustomer findCustomerByIdentityNo(String identityNo);
 }

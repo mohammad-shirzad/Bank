@@ -1,8 +1,6 @@
 package com.bank.dao.bean;
 
-import com.bank.data.entity.Address;
-import org.springframework.data.repository.CrudRepository;
-import org.springframework.data.repository.CrudRepositoryExtensionsKt;
+import com.bank.data.entity.EAddress;
 
-public interface AddressDao extends CrudRepository<Address, Long> {
+public interface AddressDao extends BaseGenericDao<EAddress> {
 }

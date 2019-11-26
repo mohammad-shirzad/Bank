@@ -13,12 +13,12 @@ public class CreateCustomerRequest {
 
     private String lastName;
 
-    private String IdentityNumber;
+    private String IdentityNo;
 
     private CustomerType customerType;
 
     private IdentityType identityType;
-    private String customerNumber;
+    private String customerNo;
     private Date dateOfBirth;
     private AddressDto address;
 
@@ -46,12 +46,12 @@ public class CreateCustomerRequest {
         this.lastName = lastName;
     }
 
-    public String getIdentityNumber() {
-        return IdentityNumber;
+    public String getIdentityNo() {
+        return IdentityNo;
     }
 
-    public void setIdentityNumber(String identityNumber) {
-        IdentityNumber = identityNumber;
+    public void setIdentityNo(String identityNo) {
+        IdentityNo = identityNo;
     }
 
     public CustomerType getCustomerType() {
@@ -70,12 +70,12 @@ public class CreateCustomerRequest {
         this.identityType = identityType;
     }
 
-    public String getCustomerNumber() {
-        return customerNumber;
+    public String getCustomerNo() {
+        return customerNo;
     }
 
-    public void setCustomerNumber(String customerNumber) {
-        this.customerNumber = customerNumber;
+    public void setCustomerNo(String customerNo) {
+        this.customerNo = customerNo;
     }
 
     public AddressDto getAddress() {

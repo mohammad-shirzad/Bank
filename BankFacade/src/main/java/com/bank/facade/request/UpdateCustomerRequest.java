@@ -1,8 +1,8 @@
-package com.bank.facade.response;
+package com.bank.facade.request;
 
 import com.bank.data.entity.ECustomer;
 
-public class CreateCustomerResponse {
+public class UpdateCustomerRequest {
     private ECustomer eCustomer;
 
     public ECustomer geteCustomer() {

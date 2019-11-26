@@ -1,10 +1,8 @@
 package com.bank.serviceImpl;
 
 import com.bank.dao.bean.AddressDao;
+import com.bank.data.entity.EAddress;
 import com.bank.service.AddressService;
-import com.bank.data.entity.Address;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 //@Service(value = "AddressService")
 public class AddressServiceImpl implements AddressService {
@@ -17,12 +15,12 @@ public class AddressServiceImpl implements AddressService {
     }
 
     @Override
-    public Address getAddressByCustomerId(int cid) {
+    public EAddress getAddressByCustomerId(int cid) {
         return null;
     }
 
     @Override
-    public Address saveAddress(Address address) {
+    public EAddress saveAddress(EAddress address) {
         addressDao.save(address);
         return address;
     }

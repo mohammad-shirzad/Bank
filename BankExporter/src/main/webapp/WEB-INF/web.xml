@@ -7,9 +7,6 @@
           http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
          version="4.0">
     <display-name>Archetype Created Web Application</display-name>
-    <!--<listener>-->
-    <!--<listener-class>com.sun.xml.ws.transport.http.servlet.WSServletContextListener</listener-class>-->
-    <!--</listener>-->
     <servlet>
         <servlet-name>soap</servlet-name>
         <servlet-class>com.sun.xml.ws.transport.http.servlet.WSSpringServlet</servlet-class>
@@ -34,7 +31,4 @@
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
-    <welcome-file-list>
-        <welcome-file>endpoint.jsp</welcome-file>
-    </welcome-file-list>
 </web-app>

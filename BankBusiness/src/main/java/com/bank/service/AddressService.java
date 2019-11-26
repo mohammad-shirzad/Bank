@@ -1,12 +1,12 @@
 package com.bank.service;
 
-import com.bank.data.entity.Address;
+import com.bank.data.entity.EAddress;
 
 @org.springframework.transaction.annotation.Transactional
 public interface AddressService {
 
-    Address saveAddress(Address address);
+    EAddress saveAddress(EAddress address);
 
     @org.springframework.transaction.annotation.Transactional(readOnly = true)
-    Address getAddressByCustomerId(int cid);
+    EAddress getAddressByCustomerId(int cid);
 }

@@ -3,12 +3,7 @@ package com.bank.dao.factory;
 import com.bank.dao.bean.AddressDao;
 import com.bank.dao.bean.CardDao;
 import com.bank.dao.bean.CustomerDao;
-import com.bank.data.entity.Address;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Scope;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Component;
 
 @Component

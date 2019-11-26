@@ -6,18 +6,25 @@ import com.bank.data.enums.IdentityType;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 
 @Table(name = "CUSTOMER")
 @Entity
+@NamedStoredProcedureQueries(value =
+@NamedStoredProcedureQuery(name = "findCustomers",
+        procedureName = "find_customers",
+        resultClasses = ECustomer.class,
+        parameters = {@StoredProcedureParameter(name = "customerNo", type = String.class),
+                @StoredProcedureParameter(name = "identityNo", type = String.class),
+                @StoredProcedureParameter(name = "customerTypeValue", type = Character.class),
+                @StoredProcedureParameter(name = "identityTypeValue", type = Character.class)}))
 @NamedQueries({
         @NamedQuery(name = "customer.findByIdentityNumber"
-                , query = "select c from Customer c where c.identityNumber = :identityNumber"),
+                , query = "select c from ECustomer c where c.identityNo = :identityNo"),
         @NamedQuery(name = "customer.findByCustomerNumber"
-                , query = "select c from Customer c where c.customerNumber = :customerNumber")})
+                , query = "select c from ECustomer c where c.customerNo = :customerNo")})
 @AttributeOverrides(value = {@AttributeOverride(name = "lastModificationDate", column = @Column(name = "LSTMDFDT")),
         @AttributeOverride(name = "modifiedBy", column = @Column(name = "MDFBY"))})
-public class Customer extends BaseEntity implements Serializable {
+public class ECustomer extends BaseEntity implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "cust_seq")
@@ -25,37 +32,34 @@ public class Customer extends BaseEntity implements Serializable {
     @Column(name = "ID")
     private long id;
 
-    @Column(name = "FRSTNAM", nullable = false)
+    @Column(name = "FRSTNAM")
     private String firstName;
 
-    @Column(name = "LSTNAM", nullable = false)
+    @Column(name = "LSTNAM")
     private String lastName;
 
-    @Column(name = "IDNTNO", nullable = false)
-    private String identityNumber;
+    @Column(name = "IDNTNO")
+    private String identityNo;
 
     @Transient
     private CustomerType customerType;
 
-    @Column(name = "CUSTNO", nullable = false)
-    private String customerNumber;
+    @Column(name = "CUSTNO")
+    private String customerNo;
 
     @Transient
     private IdentityType identityType;
 
 
-    @Column(name = "DOB", nullable = false)
+    @Column(name = "DOB")
     private Date dateOfBirth;
 
     @OneToOne(cascade = CascadeType.ALL, optional = false)
     @JoinColumn(name = "ADDRESS_ID", referencedColumnName = "ID")
-    private Address address;
+    private EAddress address;
 
 //    @OneToMany(mappedBy = "customer", orphanRemoval = true)
 //    private List<Card> cards;
-
-    public Customer() {
-    }
 
     public long getId() {
         return id;
@@ -81,21 +85,21 @@ public class Customer extends BaseEntity implements Serializable {
         this.lastName = lastName;
     }
 
-    public String getIdentityNumber() {
-        return identityNumber;
+    public String getIdentityNo() {
+        return identityNo;
     }
 
-    public void setIdentityNumber(String identityNumber) {
-        this.identityNumber = identityNumber;
+    public void setIdentityNo(String identityNo) {
+        this.identityNo = identityNo;
     }
 
     @Column(name = "CUSTTYPE")
     @Access(value = AccessType.PROPERTY)
-    public char getCustomerTypeValue() {
+    public Character getCustomerTypeValue() {
         return customerType.getValue();
     }
 
-    public void setCustomerTypeValue(char customerTypeValue) {
+    public void setCustomerTypeValue(Character customerTypeValue) {
         this.customerType = CustomerType.fromValue(customerTypeValue);
     }
 
@@ -107,12 +111,12 @@ public class Customer extends BaseEntity implements Serializable {
         this.customerType = customerType;
     }
 
-    public String getCustomerNumber() {
-        return customerNumber;
+    public String getCustomerNo() {
+        return customerNo;
     }
 
-    public void setCustomerNumber(String customerNumber) {
-        this.customerNumber = customerNumber;
+    public void setCustomerNo(String customerNo) {
+        this.customerNo = customerNo;
     }
 
     public IdentityType getIdentityType() {
@@ -125,11 +129,11 @@ public class Customer extends BaseEntity implements Serializable {
 
     @Column(name = "IDNTTYTYP")
     @Access(value = AccessType.PROPERTY)
-    public char getIdentityTypeValue() {
+    public Character getIdentityTypeValue() {
         return identityType.getValue();
     }
 
-    public void setIdentityTypeValue(char identityTypeValue) {
+    public void setIdentityTypeValue(Character identityTypeValue) {
         this.identityType = IdentityType.fromValue(identityTypeValue);
     }
 
@@ -141,11 +145,11 @@ public class Customer extends BaseEntity implements Serializable {
         this.dateOfBirth = dateOfBirth;
     }
 
-    public Address getAddress() {
+    public EAddress getAddress() {
         return address;
     }
 
-    public void setAddress(Address address) {
+    public void setAddress(EAddress address) {
         this.address = address;
     }
 

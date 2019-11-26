@@ -8,6 +8,8 @@ public class CustomerBusinessFactory {
 
     private RegisterCustomerBusiness registerCustomerBusiness;
     private DeleteCustomerBusiness deleteCustomerBusiness;
+    private UpdateCustomerBusiness updateCustomerBusiness;
+    private FindCustomersBusiness findCustomersBusiness;
 
     @Autowired
     public void setRegisterCustomerBusiness(RegisterCustomerBusiness registerCustomerBusiness) {
@@ -19,11 +21,29 @@ public class CustomerBusinessFactory {
         this.deleteCustomerBusiness = deleteCustomerBusiness;
     }
 
+    @Autowired
+    public void setFindCustomersBusiness(FindCustomersBusiness findCustomersBusiness) {
+        this.findCustomersBusiness = findCustomersBusiness;
+    }
+
+    @Autowired
+    public void setUpdateCustomerBusiness(UpdateCustomerBusiness updateCustomerBusiness) {
+        this.updateCustomerBusiness = updateCustomerBusiness;
+    }
+
     public RegisterCustomerBusiness getRegisterCustomerBusiness() {
         return registerCustomerBusiness;
     }
 
     public DeleteCustomerBusiness getDeleteCustomerBusiness() {
         return deleteCustomerBusiness;
+    }
+
+    public FindCustomersBusiness getFindCustomersBusiness() {
+        return findCustomersBusiness;
+    }
+
+    public UpdateCustomerBusiness getUpdateCustomerBusiness() {
+        return updateCustomerBusiness;
     }
 }

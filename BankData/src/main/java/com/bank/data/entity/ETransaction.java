@@ -9,7 +9,7 @@ import java.sql.Timestamp;
 
 @Table(name = "TRX")
 @Entity
-public class Transaction extends BaseEntity implements Serializable {
+public class ETransaction extends BaseEntity implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "trx_seq")
@@ -107,10 +107,6 @@ public class Transaction extends BaseEntity implements Serializable {
 
     public void setOccuranceTime(Timestamp occuranceTime) {
         this.occuranceTime = occuranceTime;
-    }
-
-    public Transaction(String peerTraceNumber) {
-        this.peerTraceNumber = peerTraceNumber;
     }
 
 }

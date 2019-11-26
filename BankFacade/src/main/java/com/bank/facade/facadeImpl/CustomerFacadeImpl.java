@@ -1,16 +1,24 @@
 package com.bank.facade.facadeImpl;
 
+import com.bank.data.entity.ECustomer;
 import com.bank.data.exception.CustomerAlreadyExistsException;
-import com.bank.service.CustomerService;
-import com.bank.data.entity.Customer;
+import com.bank.data.exception.CustomerNotExistsException;
+import com.bank.data.filter.EfCustomer;
 import com.bank.facade.facade.CustomerFacade;
 import com.bank.facade.request.CreateCustomerRequest;
-import com.bank.facade.request.DeleteCustomerByIdRequest;
+import com.bank.facade.request.DeleteCustomerByIdentityRequest;
+import com.bank.facade.request.FindCustomerRequest;
+import com.bank.facade.request.UpdateCustomerRequest;
 import com.bank.facade.response.CreateCustomerResponse;
 import com.bank.facade.response.DeleteCustomerByIdResponse;
+import com.bank.facade.response.FindCustomerResponse;
+import com.bank.facade.response.UpdateCustomerResponse;
+import com.bank.service.CustomerService;
 import com.common.utils.singleton.DozerMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 @Component(value = "CustomerFacade")
 public class CustomerFacadeImpl implements CustomerFacade {
@@ -26,19 +34,34 @@ public class CustomerFacadeImpl implements CustomerFacade {
     public CreateCustomerResponse createNewCustomer(CreateCustomerRequest request) throws CustomerAlreadyExistsException {
         if (request == null)
             return null;
-        Customer customer = DozerMapper.getDozerBeanMapper().map(request, Customer.class);
+        ECustomer customer = DozerMapper.getDozerBeanMapper().map(request, ECustomer.class);
         customer = customerService.saveCustomer(customer);
-        CreateCustomerResponse response = DozerMapper.getDozerBeanMapper().map(customer, CreateCustomerResponse.class);
+        CreateCustomerResponse response = new CreateCustomerResponse();
+        response.seteCustomer(customer);
         return response;
 
     }
 
     @Override
-    public DeleteCustomerByIdResponse deleteCustomerById(DeleteCustomerByIdRequest request) {
+    public DeleteCustomerByIdResponse deleteCustomerById(DeleteCustomerByIdentityRequest request) throws CustomerNotExistsException {
         if (request == null)
             return null;
-        Customer customer = DozerMapper.getDozerBeanMapper().map(request, Customer.class);
-        customerService.deleteCustomerById(customer.getId());
+        customerService.deleteCustomerById(request.getIdentityNo());
         return new DeleteCustomerByIdResponse();
+    }
+
+    @Override
+    public UpdateCustomerResponse updateCustomer(UpdateCustomerRequest request) throws CustomerNotExistsException {
+
+        customerService.updateCustomer(request.geteCustomer());
+        return new UpdateCustomerResponse();
+    }
+
+    @Override
+    public FindCustomerResponse findCustomer(FindCustomerRequest request) {
+        List<ECustomer> result = customerService.findCustomer(request.getEfCustomer());
+        FindCustomerResponse response = new FindCustomerResponse();
+        response.seteCustomer(result);
+        return response;
     }
 }

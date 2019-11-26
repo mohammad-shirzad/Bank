@@ -8,8 +8,8 @@ import java.math.BigDecimal;
 
 @Table(name = "CARDS")
 @Entity
-@NamedQuery(name = "card.findByCustomerNo", query = "select c from Card c where c.holderId = :customerNumber")
-public class Card extends BaseEntity implements Serializable {
+@NamedQuery(name = "card.findByCustomerNo", query = "select c from ECard c where c.holderId = :customerNumber")
+public class ECard extends BaseEntity implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "card_seq")
@@ -45,7 +45,7 @@ public class Card extends BaseEntity implements Serializable {
     private BigDecimal remaining;
 
     @Transient
-    private Customer customer;
+    private ECustomer customer;
 
     public String getOwnerCustomerNo() {
         return ownerCustomerNo;
@@ -55,11 +55,11 @@ public class Card extends BaseEntity implements Serializable {
         this.ownerCustomerNo = ownerCustomerNo;
     }
 
-    public Customer getCustomer() {
+    public ECustomer getCustomer() {
         return customer;
     }
 
-    public void setCustomer(Customer customer) {
+    public void setCustomer(ECustomer customer) {
         this.customer = customer;
     }
 
@@ -69,9 +69,6 @@ public class Card extends BaseEntity implements Serializable {
 
     public void setRemaining(BigDecimal remaining) {
         this.remaining = remaining;
-    }
-
-    public Card() {
     }
 
     public long getId() {
