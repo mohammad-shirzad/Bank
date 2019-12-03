@@ -1,15 +1,16 @@
 package com.bank.facade.request;
 
 import com.bank.data.filter.*;
+import com.bank.facade.dto.CustomerFilterDto;
 
 public class FindCustomerRequest {
-    private EfCustomer efCustomer;
+    private CustomerFilterDto customerFilterDto;
 
-    public EfCustomer getEfCustomer() {
-        return efCustomer;
+    public CustomerFilterDto getCustomerFilterDto() {
+        return customerFilterDto;
     }
 
-    public void setEfCustomer(EfCustomer efCustomer) {
-        this.efCustomer = efCustomer;
+    public void setCustomerFilterDto(CustomerFilterDto customerFilterDto) {
+        this.customerFilterDto = customerFilterDto;
     }
 }

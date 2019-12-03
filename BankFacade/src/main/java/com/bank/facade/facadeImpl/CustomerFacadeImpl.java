@@ -4,7 +4,9 @@ import com.bank.data.entity.ECustomer;
 import com.bank.data.exception.CustomerAlreadyExistsException;
 import com.bank.data.exception.CustomerNotExistsException;
 import com.bank.data.filter.EfCustomer;
+import com.bank.facade.dto.CustomerFilterDto;
 import com.bank.facade.facade.CustomerFacade;
+import com.bank.facade.mapper.EntityMapper;
 import com.bank.facade.request.CreateCustomerRequest;
 import com.bank.facade.request.DeleteCustomerByIdentityRequest;
 import com.bank.facade.request.FindCustomerRequest;
@@ -59,7 +61,8 @@ public class CustomerFacadeImpl implements CustomerFacade {
 
     @Override
     public FindCustomerResponse findCustomer(FindCustomerRequest request) {
-        List<ECustomer> result = customerService.findCustomer(request.getEfCustomer());
+
+        List<ECustomer> result = customerService.findCustomer(EntityMapper.toEfCustomer(request.getCustomerFilterDto()));
         FindCustomerResponse response = new FindCustomerResponse();
         response.seteCustomer(result);
         return response;

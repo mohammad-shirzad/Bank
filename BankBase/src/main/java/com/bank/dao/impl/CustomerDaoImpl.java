@@ -5,7 +5,6 @@ import com.bank.data.entity.ECustomer;
 import com.bank.data.filter.EfCustomer;
 import org.springframework.stereotype.Repository;
 
-import javax.persistence.EntityNotFoundException;
 import javax.persistence.StoredProcedureQuery;
 import java.util.List;
 
@@ -17,8 +16,10 @@ public class CustomerDaoImpl extends BaseGenericDaoImpl<ECustomer> implements Cu
         StoredProcedureQuery storedProcedureQuery = em.createNamedStoredProcedureQuery("findCustomers");
         storedProcedureQuery.setParameter("customerNo", efCustomer.getCustomerNo());
         storedProcedureQuery.setParameter("identityNo", efCustomer.getIdentityNo());
-        storedProcedureQuery.setParameter("identityTypeValue", efCustomer.getIdentityType().getValue());
-        storedProcedureQuery.setParameter("customerTypeValue", efCustomer.getCustomerType().getValue());
+        if (efCustomer.getIdentityType() != null)
+            storedProcedureQuery.setParameter("identityTypeValue", efCustomer.getIdentityType().getValue());
+        if (efCustomer.getCustomerType() != null)
+            storedProcedureQuery.setParameter("customerTypeValue", efCustomer.getCustomerType().getValue());
 
         return ((List<ECustomer>) storedProcedureQuery.getResultList());
     }
