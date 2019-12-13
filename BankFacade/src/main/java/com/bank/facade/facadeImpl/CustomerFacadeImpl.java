@@ -54,8 +54,8 @@ public class CustomerFacadeImpl implements CustomerFacade {
 
     @Override
     public UpdateCustomerResponse updateCustomer(UpdateCustomerRequest request) throws CustomerNotExistsException {
-
-        customerService.updateCustomer(request.geteCustomer());
+        ECustomer customer = EntityMapper.toECustomer(request);
+        customerService.updateCustomer(customer);
         return new UpdateCustomerResponse();
     }
 

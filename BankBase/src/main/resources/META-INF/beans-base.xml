@@ -34,8 +34,8 @@
         <property name="jpaProperties">
             <props>
                 <prop key="hibernate.dialect">${hibernate.dialect}</prop>
-                <!--<prop key="hibernate.hbm2ddl.auto">create</prop>-->
-                <prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
+                <prop key="hibernate.hbm2ddl.auto">create</prop>
+                <!--<prop key="hibernate.show_sql">${hibernate.show_sql}</prop>-->
                 <prop key="hibernate.format_sql">${hibernate.format_sql}</prop>
                 <prop key="hibernate.physical_naming_strategy">com.bank.data.naming.TablePropertiesNaming</prop>
                 <prop key="hibernate.proc.param_null_passing">${hibernate.proc.param_null_passing}</prop>

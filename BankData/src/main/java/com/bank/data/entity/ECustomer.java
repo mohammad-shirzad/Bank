@@ -26,18 +26,13 @@ import java.util.Date;
         @AttributeOverride(name = "modifiedBy", column = @Column(name = "MDFBY"))})
 public class ECustomer extends BaseEntity implements Serializable {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "cust_seq")
-    @SequenceGenerator(name = "cust_seq", sequenceName = "CUSTOMER_SEQ", allocationSize = 1000)
-    @Column(name = "ID")
-    private long id;
-
     @Column(name = "FRSTNAM")
     private String firstName;
 
     @Column(name = "LSTNAM")
     private String lastName;
 
+    @Id
     @Column(name = "IDNTNO")
     private String identityNo;
 
@@ -47,6 +42,7 @@ public class ECustomer extends BaseEntity implements Serializable {
     @Column(name = "CUSTNO")
     private String customerNo;
 
+    @Id
     @Transient
     private IdentityType identityType;
 
@@ -54,20 +50,12 @@ public class ECustomer extends BaseEntity implements Serializable {
     @Column(name = "DOB")
     private Date dateOfBirth;
 
-    @OneToOne(cascade = CascadeType.ALL, optional = false)
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "ADDRESS_ID", referencedColumnName = "ID")
     private EAddress address;
 
 //    @OneToMany(mappedBy = "customer", orphanRemoval = true)
 //    private List<Card> cards;
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
 
     public String getFirstName() {
         return firstName;

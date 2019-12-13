@@ -1,13 +1,12 @@
 package com.bank.business.customer;
 
 import com.bank.dao.bean.CustomerDao;
+import com.common.utils.date.CurrentDateTime;
 import com.bank.dao.factory.DaoFactory;
 import com.bank.data.entity.ECustomer;
-import com.bank.data.filter.EfCustomer;
-import com.bank.data.map.*;
 import com.bank.data.exception.CustomerAlreadyExistsException;
 import com.bank.data.exception.RequiredArgumentException;
-import org.hibernate.jpa.spi.ParameterRegistration;
+import com.bank.data.filter.EfCustomer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -29,7 +28,7 @@ public class RegisterCustomerBusiness {
             throw new RequiredArgumentException("Identity number & CustomerNo can not be null");
         EfCustomer efCustomer = new EfCustomer();
         efCustomer.setIdentityNo(customer.getIdentityNo());
-        efCustomer.setCustomerNo(customer.getCustomerNo());
+        efCustomer.setIdentityType(customer.getIdentityType());
         List<ECustomer> dbCustomer = customerDao.find(efCustomer);
         if (!dbCustomer.isEmpty())
             throw new CustomerAlreadyExistsException("customer with identity number " + customer.getIdentityNo() +
@@ -37,6 +36,7 @@ public class RegisterCustomerBusiness {
     }
 
     public ECustomer doBusiness(ECustomer customer) {
+        customer.setLastModificationDate(CurrentDateTime.getCurrentDateTime());
         return customerDao.save(customer);
     }
 

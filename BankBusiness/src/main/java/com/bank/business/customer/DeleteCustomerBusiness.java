@@ -4,7 +4,6 @@ import com.bank.dao.bean.CustomerDao;
 import com.bank.dao.factory.DaoFactory;
 import com.bank.data.entity.ECustomer;
 import com.bank.data.exception.CustomerNotExistsException;
-import com.bank.data.filter.EfCustomer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

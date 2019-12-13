@@ -4,6 +4,7 @@ import com.bank.dao.bean.CustomerDao;
 import com.bank.data.entity.*;
 import com.bank.dao.factory.DaoFactory;
 import com.bank.data.filter.EfCustomer;
+import com.common.utils.date.CurrentDateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import com.bank.data.exception.*;
@@ -34,6 +35,7 @@ public class UpdateCustomerBusiness {
     }
 
     private void doBusiness(ECustomer customer) {
+        customer.setLastModificationDate(CurrentDateTime.getCurrentDateTime());
         customerDao.update(customer);
     }
 }
