@@ -10,6 +10,7 @@ import com.bank.data.filter.EfCustomer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.Calendar;
 import java.util.List;
 
 @Component
@@ -36,7 +37,7 @@ public class RegisterCustomerBusiness {
     }
 
     public ECustomer doBusiness(ECustomer customer) {
-        customer.setLastModificationDate(CurrentDateTime.getCurrentDateTime());
+        customer.setLastModificationDate(Calendar.getInstance().getTime());
         return customerDao.save(customer);
     }
 

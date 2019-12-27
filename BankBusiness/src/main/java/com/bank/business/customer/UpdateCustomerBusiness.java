@@ -5,12 +5,18 @@ import com.bank.data.entity.*;
 import com.bank.dao.factory.DaoFactory;
 import com.bank.data.filter.EfCustomer;
 import com.common.utils.date.CurrentDateTime;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import com.bank.data.exception.*;
 
+import javax.persistence.EntityNotFoundException;
+import java.util.Calendar;
+
 @Component
 public class UpdateCustomerBusiness {
+    private final Logger LOGGER = LoggerFactory.getLogger(getClass());
     private CustomerDao customerDao;
     private ECustomer dbCustomer;
     private EfCustomer efCustomer;
@@ -35,7 +41,15 @@ public class UpdateCustomerBusiness {
     }
 
     private void doBusiness(ECustomer customer) {
-        customer.setLastModificationDate(CurrentDateTime.getCurrentDateTime());
+        customer.setLastModificationDate(Calendar.getInstance().getTime());
+        ECustomer dbCustomer = customerDao.getReference(customer.getIdentityNo());
+        try {
+            customer.getAddress().setId(dbCustomer.getAddress().getId());
+        } catch (EntityNotFoundException exp) {
+            LOGGER.info("Customer with ID NO " + customer.getIdentityNo() + " Not found");
+            customerDao.save(customer);
+            return;
+        }
         customerDao.update(customer);
     }
 }

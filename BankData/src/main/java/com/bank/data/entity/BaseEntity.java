@@ -2,26 +2,28 @@ package com.bank.data.entity;
 
 import javax.persistence.MappedSuperclass;
 import java.sql.Timestamp;
+import java.util.Calendar;
+import java.util.Date;
 
 @MappedSuperclass
 public class BaseEntity {
-    private Timestamp lastModificationDate;
+    private Date lastModificationDate;
 
-    private Timestamp modifiedBy;
+    private Date modifiedBy;
 
-    public Timestamp getLastModificationDate() {
+    public Date getLastModificationDate() {
         return lastModificationDate;
     }
 
-    public void setLastModificationDate(Timestamp lastModificationDate) {
+    public void setLastModificationDate(Date lastModificationDate) {
         this.lastModificationDate = lastModificationDate;
     }
 
-    public Timestamp getModifiedBy() {
+    public Date getModifiedBy() {
         return modifiedBy;
     }
 
-    public void setModifiedBy(Timestamp modifiedBy) {
+    public void setModifiedBy(Date modifiedBy) {
         this.modifiedBy = modifiedBy;
     }
 }
