@@ -12,11 +12,6 @@ import java.math.BigDecimal;
 public class ECard extends BaseEntity implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "card_seq")
-    @SequenceGenerator(name = "card_seq", sequenceName = "CARD_SEQ")
-    @Column(name = "ID")
-    private long id;
-
     @Column(name = "PAN", nullable = false, length = 16)
     private String pan;
 
@@ -27,6 +22,7 @@ public class ECard extends BaseEntity implements Serializable {
     private PaymentApplicationType paymentApplicationType;
 
     @Column(name = "HLDRID")
+    @JoinColumn()
     private String holderId;
 
     @Column(name = "OWNCUSTNO", nullable = false)
@@ -44,8 +40,10 @@ public class ECard extends BaseEntity implements Serializable {
     @Column(name = "RMNING", nullable = false)
     private BigDecimal remaining;
 
-    @Transient
-    private ECustomer customer;
+//    @ManyToOne
+//    @JoinColumns(value = {@JoinColumn(name = "HLDRID", referencedColumnName = "IDNTNO", insertable = false, updatable = false)
+//            ,@JoinColumn(name = "OWNCUSTNO",referencedColumnName = "CUSTNO", insertable = false, updatable = false)})
+//    private ECustomer customer;
 
     public String getOwnerCustomerNo() {
         return ownerCustomerNo;
@@ -55,13 +53,13 @@ public class ECard extends BaseEntity implements Serializable {
         this.ownerCustomerNo = ownerCustomerNo;
     }
 
-    public ECustomer getCustomer() {
-        return customer;
-    }
-
-    public void setCustomer(ECustomer customer) {
-        this.customer = customer;
-    }
+//    public ECustomer getCustomer() {
+//        return customer;
+//    }
+//
+//    public void setCustomer(ECustomer customer) {
+//        this.customer = customer;
+//    }
 
     public BigDecimal getRemaining() {
         return remaining;
@@ -69,10 +67,6 @@ public class ECard extends BaseEntity implements Serializable {
 
     public void setRemaining(BigDecimal remaining) {
         this.remaining = remaining;
-    }
-
-    public long getId() {
-        return id;
     }
 
     public String getPan() {

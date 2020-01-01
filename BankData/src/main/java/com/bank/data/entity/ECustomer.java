@@ -6,6 +6,7 @@ import com.bank.data.enums.IdentityType;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 @Table(name = "CUSTOMER")
 @Entity
@@ -54,8 +55,16 @@ public class ECustomer extends BaseEntity implements Serializable {
     @JoinColumn(name = "ADDRESS_ID", referencedColumnName = "ID")
     private EAddress address;
 
-//    @OneToMany(mappedBy = "customer", orphanRemoval = true)
-//    private List<Card> cards;
+//    @OneToMany(mappedBy = "customer", orphanRemoval = true, cascade = CascadeType.REMOVE)
+//    private List<ECard> cards;
+
+//    public List<ECard> getCards() {
+//        return cards;
+//    }
+//
+//    public void setCards(List<ECard> cards) {
+//        this.cards = cards;
+//    }
 
     public String getFirstName() {
         return firstName;
@@ -140,14 +149,6 @@ public class ECustomer extends BaseEntity implements Serializable {
     public void setAddress(EAddress address) {
         this.address = address;
     }
-
-//    public List<Card> getCards() {
-//        return cards;
-//    }
-//
-//    public void setCards(List<Card> cards) {
-//        this.cards = cards;
-//    }
 
 
 }

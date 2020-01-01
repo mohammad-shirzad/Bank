@@ -42,14 +42,13 @@ public class UpdateCustomerBusiness {
 
     private void doBusiness(ECustomer customer) {
         customer.setLastModificationDate(Calendar.getInstance().getTime());
-        ECustomer dbCustomer = customerDao.getReference(customer.getIdentityNo());
-        try {
+        ECustomer dbCustomer = customerDao.findCustomerByIdentityNo(customer.getIdentityNo());
+        if (dbCustomer != null) {
             customer.getAddress().setId(dbCustomer.getAddress().getId());
-        } catch (EntityNotFoundException exp) {
-            LOGGER.info("Customer with ID NO " + customer.getIdentityNo() + " Not found");
+            customerDao.update(customer);
+        } else {
             customerDao.save(customer);
-            return;
         }
-        customerDao.update(customer);
+
     }
 }
