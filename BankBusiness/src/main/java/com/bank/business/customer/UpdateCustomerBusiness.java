@@ -47,7 +47,7 @@ public class UpdateCustomerBusiness {
             customer.getAddress().setId(dbCustomer.getAddress().getId());
             customerDao.update(customer);
         } else {
-            customerDao.save(customer);
+            throw new EntityNotFoundException("Customer with identityNo " + customer.getIdentityNo() + " does not exist");
         }
 
     }
