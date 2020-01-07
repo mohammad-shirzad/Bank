@@ -2,7 +2,7 @@ package com.bank.serviceImpl;
 
 import com.bank.business.customer.*;
 import com.bank.data.entity.ECustomer;
-import com.bank.data.exception.CustomerAlreadyExistsException;
+import com.bank.data.exception.EntityAlreadyExistsException;
 import com.bank.data.exception.CustomerNotExistsException;
 import com.bank.data.filter.EfCustomer;
 import com.bank.service.CustomerService;
@@ -29,7 +29,7 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public ECustomer saveCustomer(ECustomer customer) throws CustomerAlreadyExistsException {
+    public ECustomer saveCustomer(ECustomer customer) throws EntityAlreadyExistsException {
 
         return registerCustomerBusiness.execute(customer);
     }

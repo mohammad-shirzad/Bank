@@ -55,16 +55,16 @@ public class ECustomer extends BaseEntity implements Serializable {
     @JoinColumn(name = "ADDRESS_ID", referencedColumnName = "ID")
     private EAddress address;
 
-//    @OneToMany(mappedBy = "customer", orphanRemoval = true, cascade = CascadeType.REMOVE)
-//    private List<ECard> cards;
+    @OneToMany(mappedBy = "customer", orphanRemoval = true, cascade = CascadeType.REMOVE)
+    private List<ECard> cards;
 
-//    public List<ECard> getCards() {
-//        return cards;
-//    }
-//
-//    public void setCards(List<ECard> cards) {
-//        this.cards = cards;
-//    }
+    public List<ECard> getCards() {
+        return cards;
+    }
+
+    public void setCards(List<ECard> cards) {
+        this.cards = cards;
+    }
 
     public String getFirstName() {
         return firstName;

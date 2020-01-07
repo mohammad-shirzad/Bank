@@ -9,10 +9,11 @@ import java.util.List;
 
 @Table(name = "GNRLRPRT")
 @javax.persistence.Entity
-public class GeneralReport {
+public class EGeneralReport {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "generalReport_seq")
+    @SequenceGenerator(name = "generalReport_seq", sequenceName = "GENERALREPORT_SEQ", allocationSize = 1000)
     @Column(name = "ID")
     private long id;
 
@@ -27,10 +28,13 @@ public class GeneralReport {
     private Date changeTime;
 
     @Transient
-    private List<DetailedReport> detailedReports;
+    private List<EDetailedReport> EDetailedReports;
 
     @Column(name = "LSTCHNGTIM", nullable = false)
     private Timestamp lastChangeTime;
+
+    public EGeneralReport() {
+    }
 
     public long getId() {
         return id;
@@ -60,12 +64,12 @@ public class GeneralReport {
         this.changeTime = changeTime;
     }
 
-    public List<DetailedReport> getDetailedReports() {
-        return detailedReports;
+    public List<EDetailedReport> getEDetailedReports() {
+        return EDetailedReports;
     }
 
-    public void setDetailedReports(List<DetailedReport> detailedReports) {
-        this.detailedReports = detailedReports;
+    public void setEDetailedReports(List<EDetailedReport> EDetailedReports) {
+        this.EDetailedReports = EDetailedReports;
     }
 
     public Timestamp getLastChangeTime() {
@@ -76,15 +80,15 @@ public class GeneralReport {
         this.lastChangeTime = lastChangeTime;
     }
 
-    public GeneralReport(String agent_IP) {
+    public EGeneralReport(String agent_IP) {
         this.agent_IP = agent_IP;
     }
 
-    public GeneralReport(String agent_IP, Entity entity, Date changeTime, List<DetailedReport> detailedReports, Timestamp lastChangeTime) {
+    public EGeneralReport(String agent_IP, Entity entity, Date changeTime, List<EDetailedReport> EDetailedReports, Timestamp lastChangeTime) {
         this.agent_IP = agent_IP;
         this.entity = entity;
         this.changeTime = changeTime;
-        this.detailedReports = detailedReports;
+        this.EDetailedReports = EDetailedReports;
         this.lastChangeTime = lastChangeTime;
     }
 }

@@ -1,10 +1,8 @@
 package com.bank.facade.facadeImpl;
 
 import com.bank.data.entity.ECustomer;
-import com.bank.data.exception.CustomerAlreadyExistsException;
+import com.bank.data.exception.EntityAlreadyExistsException;
 import com.bank.data.exception.CustomerNotExistsException;
-import com.bank.data.filter.EfCustomer;
-import com.bank.facade.dto.CustomerFilterDto;
 import com.bank.facade.facade.CustomerFacade;
 import com.bank.facade.mapper.EntityMapper;
 import com.bank.facade.request.CreateCustomerRequest;
@@ -33,7 +31,7 @@ public class CustomerFacadeImpl implements CustomerFacade {
     }
 
     @Override
-    public CreateCustomerResponse createNewCustomer(CreateCustomerRequest request) throws CustomerAlreadyExistsException {
+    public CreateCustomerResponse createNewCustomer(CreateCustomerRequest request) throws EntityAlreadyExistsException {
         if (request == null)
             return null;
         ECustomer customer = DozerMapper.getDozerBeanMapper().map(request, ECustomer.class);

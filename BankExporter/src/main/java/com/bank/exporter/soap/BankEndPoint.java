@@ -1,6 +1,6 @@
 package com.bank.exporter.soap;
 
-import com.bank.data.exception.CustomerAlreadyExistsException;
+import com.bank.data.exception.EntityAlreadyExistsException;
 import com.bank.data.exception.CustomerNotExistsException;
 import com.bank.facade.request.*;
 import com.bank.facade.response.*;
@@ -15,7 +15,7 @@ import javax.jws.soap.SOAPBinding;
 public interface BankEndPoint {
 
     @WebMethod(operationName = "createCustomer")
-    CreateCustomerResponse createCustomer(@WebParam(name = "createCustomerRequest") CreateCustomerRequest customer) throws CustomerAlreadyExistsException;
+    CreateCustomerResponse createCustomer(@WebParam(name = "createCustomerRequest") CreateCustomerRequest customer) throws EntityAlreadyExistsException;
 
     @WebMethod(operationName = "deleteCustomer")
     DeleteCustomerByIdResponse deleteCustomer(@WebParam(name = "deleteCustomer") DeleteCustomerByIdentityRequest request) throws CustomerNotExistsException;

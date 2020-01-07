@@ -5,6 +5,6 @@ this project is for learning and mainly mastering java technologies and related 
 ## Technologies used:
 - Spring framework 5
 - Hibernate ORM 5
-- MySQL connector 8
+- Oracle Database 12c release 2
 - Maven 4</br>  
-This project is going to be more and more extended.
+This project is going to be extended.

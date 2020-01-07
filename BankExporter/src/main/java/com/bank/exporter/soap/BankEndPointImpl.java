@@ -1,6 +1,6 @@
 package com.bank.exporter.soap;
 
-import com.bank.data.exception.CustomerAlreadyExistsException;
+import com.bank.data.exception.EntityAlreadyExistsException;
 import com.bank.data.exception.CustomerNotExistsException;
 import com.bank.facade.facade.CustomerFacade;
 import com.bank.facade.request.CreateCustomerRequest;
@@ -31,7 +31,7 @@ public class BankEndPointImpl implements BankEndPoint {
     }
 
     @Override
-    public CreateCustomerResponse createCustomer(CreateCustomerRequest request) throws CustomerAlreadyExistsException {
+    public CreateCustomerResponse createCustomer(CreateCustomerRequest request) throws EntityAlreadyExistsException {
         return customerFacade.createNewCustomer(request);
     }
 

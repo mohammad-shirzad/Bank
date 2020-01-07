@@ -40,10 +40,10 @@ public class ECard extends BaseEntity implements Serializable {
     @Column(name = "RMNING", nullable = false)
     private BigDecimal remaining;
 
-//    @ManyToOne
-//    @JoinColumns(value = {@JoinColumn(name = "HLDRID", referencedColumnName = "IDNTNO", insertable = false, updatable = false)
-//            ,@JoinColumn(name = "OWNCUSTNO",referencedColumnName = "CUSTNO", insertable = false, updatable = false)})
-//    private ECustomer customer;
+    @ManyToOne
+    @JoinColumns(value = {@JoinColumn(name = "HLDRID", referencedColumnName = "IDNTNO", insertable = false, updatable = false)
+            , @JoinColumn(name = "OWNCUSTNO", referencedColumnName = "CUSTNO", insertable = false, updatable = false)})
+    private ECustomer customer;
 
     public String getOwnerCustomerNo() {
         return ownerCustomerNo;
@@ -53,13 +53,13 @@ public class ECard extends BaseEntity implements Serializable {
         this.ownerCustomerNo = ownerCustomerNo;
     }
 
-//    public ECustomer getCustomer() {
-//        return customer;
-//    }
-//
-//    public void setCustomer(ECustomer customer) {
-//        this.customer = customer;
-//    }
+    public ECustomer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(ECustomer customer) {
+        this.customer = customer;
+    }
 
     public BigDecimal getRemaining() {
         return remaining;
