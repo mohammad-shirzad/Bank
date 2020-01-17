@@ -1,6 +1,8 @@
-package com.bank.data.enums;
+package com.bank.facade.dto;
 
-public enum PaymentApplicationType {
+import com.bank.data.enums.PaymentApplicationType;
+
+public enum PaymentApplicationTypeDto {
     Debit(1),
     Credit(2),
     Loan(3),
@@ -15,14 +17,14 @@ public enum PaymentApplicationType {
         return value;
     }
 
-    PaymentApplicationType(Integer value) {
+    PaymentApplicationTypeDto(Integer value) {
         this.value = value;
     }
 
-    public static PaymentApplicationType fromValue(Integer c) {
+    public static PaymentApplicationTypeDto fromValue(Integer c) {
         if (c == null)
             return null;
-        for (PaymentApplicationType ct : PaymentApplicationType.values()) {
+        for (PaymentApplicationTypeDto ct : PaymentApplicationTypeDto.values()) {
             if (c.equals(ct.getValue()))
                 return ct;
         }

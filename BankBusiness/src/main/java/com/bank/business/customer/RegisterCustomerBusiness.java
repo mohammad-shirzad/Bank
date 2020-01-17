@@ -9,6 +9,7 @@ import com.bank.data.filter.EfCustomer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.sql.SQLException;
 import java.util.Calendar;
 import java.util.List;
 
@@ -23,12 +24,12 @@ public class RegisterCustomerBusiness {
         this.customerDao = daoFactory.getCustomerDao();
     }
 
-    public void validate(ECustomer customer) throws EntityAlreadyExistsException {
+    public void validate(ECustomer customer) throws EntityAlreadyExistsException, SQLException {
         if (customer.getIdentityNo() == null && customer.getIdentityNo() == null)
             throw new RequiredArgumentException("Identity number & CustomerNo can not be null");
         EfCustomer efCustomer = new EfCustomer();
         efCustomer.setIdentityNo(customer.getIdentityNo());
-        efCustomer.setIdentityType(customer.getIdentityType());
+        efCustomer.setCustomerNo(customer.getCustomerNo());
         List<ECustomer> dbCustomer = customerDao.find(efCustomer);
         if (!dbCustomer.isEmpty())
             throw new EntityAlreadyExistsException("customer with identity number " + customer.getIdentityNo() +
@@ -40,7 +41,7 @@ public class RegisterCustomerBusiness {
         return customerDao.save(customer);
     }
 
-    public ECustomer execute(ECustomer customer) throws EntityAlreadyExistsException {
+    public ECustomer execute(ECustomer customer) throws EntityAlreadyExistsException, SQLException {
         validate(customer);
         return doBusiness(customer);
     }

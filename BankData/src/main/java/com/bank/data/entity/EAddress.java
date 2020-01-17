@@ -7,7 +7,7 @@ import java.io.Serializable;
 
 @Table(name = "ADDRESS")
 @Entity
-public class EAddress extends BaseEntity implements Serializable {
+public class EAddress extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "address_seq")

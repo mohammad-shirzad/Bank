@@ -9,7 +9,7 @@ import java.sql.Timestamp;
 
 @Table(name = "TRX")
 @Entity
-public class ETransaction extends BaseEntity implements Serializable {
+public class ETransaction extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "trx_seq")

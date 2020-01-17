@@ -5,11 +5,12 @@ import com.bank.data.enums.PaymentApplicationType;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.Date;
 
 @Table(name = "CARDS")
 @Entity
 @NamedQuery(name = "card.findByCustomerNo", query = "select c from ECard c where c.holderId = :customerNumber")
-public class ECard extends BaseEntity implements Serializable {
+public class ECard extends BaseEntity {
 
     @Id
     @Column(name = "PAN", nullable = false, length = 16)
@@ -18,14 +19,13 @@ public class ECard extends BaseEntity implements Serializable {
     @Column(name = "PMNTAPPNO", nullable = false)
     private String paymentApplicationNumber;
 
-    @Column(name = "PMNTAPPTYP", nullable = false)
+    @Transient
     private PaymentApplicationType paymentApplicationType;
 
     @Column(name = "HLDRID")
-    @JoinColumn()
     private String holderId;
 
-    @Column(name = "OWNCUSTNO", nullable = false)
+    @Column(name = "OWNCUSTNO", insertable = false, updatable = false)
     private String ownerCustomerNo;
 
     @Column(nullable = false)
@@ -37,13 +37,34 @@ public class ECard extends BaseEntity implements Serializable {
     @Column(name = "PIN2")
     private String pin2;
 
-    @Column(name = "RMNING", nullable = false)
+    @Column(name = "RMNING")
     private BigDecimal remaining;
 
+    @Column(name = "ISUDT", nullable = false)
+    private Date issueDate;
+
+    @Column(name = "EXPDT", nullable = false)
+    private Date expireDate;
+
     @ManyToOne
-    @JoinColumns(value = {@JoinColumn(name = "HLDRID", referencedColumnName = "IDNTNO", insertable = false, updatable = false)
-            , @JoinColumn(name = "OWNCUSTNO", referencedColumnName = "CUSTNO", insertable = false, updatable = false)})
+    @JoinColumn(name = "OWNCUSTNO", referencedColumnName = "CUSTNO", insertable = false, updatable = false)
     private ECustomer customer;
+
+    public Date getIssueDate() {
+        return issueDate;
+    }
+
+    public void setIssueDate(Date issueDate) {
+        this.issueDate = issueDate;
+    }
+
+    public Date getExpireDate() {
+        return expireDate;
+    }
+
+    public void setExpireDate(Date expireDate) {
+        this.expireDate = expireDate;
+    }
 
     public String getOwnerCustomerNo() {
         return ownerCustomerNo;
@@ -91,6 +112,16 @@ public class ECard extends BaseEntity implements Serializable {
 
     public void setPaymentApplicationType(PaymentApplicationType paymentApplicationType) {
         this.paymentApplicationType = paymentApplicationType;
+    }
+
+    @Column(name = "PMNTAPPTYP", nullable = false)
+    @Access(value = AccessType.PROPERTY)
+    public int getPaymentApplicationTypeValue() {
+        return paymentApplicationType.getValue();
+    }
+
+    public void setPaymentApplicationTypeValue(Integer paymentApplicationType) {
+        this.paymentApplicationType = PaymentApplicationType.fromValue(paymentApplicationType);
     }
 
     public String getHolderId() {

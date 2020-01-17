@@ -18,6 +18,8 @@
             <artifactId>javax.persistence-api</artifactId>
             <version>${javax.persistence}</version>
         </dependency>
+
+
         <!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-core -->
         <dependency>
             <groupId>org.hibernate</groupId>

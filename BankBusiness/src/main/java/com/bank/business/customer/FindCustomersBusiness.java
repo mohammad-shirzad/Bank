@@ -8,6 +8,7 @@ import com.bank.data.filter.EfCustomer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.sql.SQLException;
 import java.util.List;
 
 @Component
@@ -20,7 +21,7 @@ public class FindCustomersBusiness {
         this.customerDao = daoFactory.getCustomerDao();
     }
 
-    public List<ECustomer> execute(EfCustomer efCustomer) {
+    public List<ECustomer> execute(EfCustomer efCustomer) throws SQLException {
         return doBusiness(efCustomer);
     }
 
@@ -32,7 +33,7 @@ public class FindCustomersBusiness {
 
     }
 
-    private List<ECustomer> doBusiness(EfCustomer efCustomer) {
+    private List<ECustomer> doBusiness(EfCustomer efCustomer) throws SQLException {
         return customerDao.find(efCustomer);
     }
 }

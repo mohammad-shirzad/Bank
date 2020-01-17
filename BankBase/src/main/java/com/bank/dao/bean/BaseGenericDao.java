@@ -1,5 +1,6 @@
 package com.bank.dao.bean;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public interface BaseGenericDao<T> {
@@ -9,7 +10,7 @@ public interface BaseGenericDao<T> {
 
     public List<T> findAll();
 
-    public List<T> find(Object filter);
+    public List<T> find(Object filter) throws SQLException;
 
     public void update(T t);
 

@@ -3,33 +3,34 @@ package com.bank.dao.impl;
 import com.bank.dao.bean.CustomerDao;
 import com.bank.data.entity.ECustomer;
 import com.bank.data.filter.EfCustomer;
+import oracle.jdbc.OracleCallableStatement;
+import oracle.jdbc.OracleType;
+import oracle.jdbc.OracleTypes;
+import org.hibernate.Session;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
+import javax.persistence.ParameterMode;
+import javax.persistence.Query;
 import javax.persistence.StoredProcedureQuery;
+import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 @Repository(value = "CustomerDao")
 public class CustomerDaoImpl extends BaseGenericDaoImpl<ECustomer> implements CustomerDao {
+    private static final Logger LOGGER = LoggerFactory.getLogger(CustomerDaoImpl.class);
+
     @Override
-    public List<ECustomer> find(Object filter) {
+    public List<ECustomer> find(Object filter) throws SQLException {
         EfCustomer efCustomer = (EfCustomer) filter;
-        StoredProcedureQuery storedProcedureQuery = em.createNamedStoredProcedureQuery("findCustomers");
-        storedProcedureQuery.setParameter("customerNo", efCustomer.getCustomerNo());
-        storedProcedureQuery.setParameter("identityNo", efCustomer.getIdentityNo());
-        if (efCustomer.getIdentityType() != null)
-            storedProcedureQuery.setParameter("identityTypeValue", efCustomer.getIdentityType().getValue());
-        if (efCustomer.getCustomerType() != null)
-            storedProcedureQuery.setParameter("customerTypeValue", efCustomer.getCustomerType().getValue());
+        Query query = em.createNamedQuery("customer.findCustomer");
+        query.setParameter("customerNo", efCustomer.getCustomerNo());
+        query.setParameter("identityNo", efCustomer.getIdentityNo());
 
-        return ((List<ECustomer>) storedProcedureQuery.getResultList());
-    }
-
-    @Override
-    public ECustomer findCustomerByIdentityNo(String identityNo) {
-        List<ECustomer> customers = ((List<ECustomer>) em.createNamedQuery("customer.findByIdentityNumber")
-                .setParameter("identityNo", identityNo).getResultList());
-        return customers.isEmpty() ? null : customers.get(0);
-
-
+        return query.getResultList();
     }
 }

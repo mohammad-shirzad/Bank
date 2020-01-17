@@ -17,8 +17,7 @@ public class UpdateCustomerRequest {
     private CustomerType customerType;
 
     private IdentityType identityType;
-    private String customerNo;
-    private Date dateOfBirth;
+
     private AddressDto address;
 
     public String getFirstName() {
@@ -59,22 +58,6 @@ public class UpdateCustomerRequest {
 
     public void setIdentityType(IdentityType identityType) {
         this.identityType = identityType;
-    }
-
-    public String getCustomerNo() {
-        return customerNo;
-    }
-
-    public void setCustomerNo(String customerNo) {
-        this.customerNo = customerNo;
-    }
-
-    public Date getDateOfBirth() {
-        return dateOfBirth;
-    }
-
-    public void setDateOfBirth(Date dateOfBirth) {
-        this.dateOfBirth = dateOfBirth;
     }
 
     public AddressDto getAddress() {

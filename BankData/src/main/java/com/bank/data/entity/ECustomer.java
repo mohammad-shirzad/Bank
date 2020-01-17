@@ -2,30 +2,23 @@ package com.bank.data.entity;
 
 import com.bank.data.enums.CustomerType;
 import com.bank.data.enums.IdentityType;
+import org.hibernate.annotations.NaturalId;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.sql.ResultSet;
 import java.util.Date;
 import java.util.List;
 
 @Table(name = "CUSTOMER")
 @Entity
-@NamedStoredProcedureQueries(value =
-@NamedStoredProcedureQuery(name = "findCustomers",
-        procedureName = "find_customers",
-        resultClasses = ECustomer.class,
-        parameters = {@StoredProcedureParameter(name = "customerNo", type = String.class),
-                @StoredProcedureParameter(name = "identityNo", type = String.class),
-                @StoredProcedureParameter(name = "customerTypeValue", type = Character.class),
-                @StoredProcedureParameter(name = "identityTypeValue", type = Character.class)}))
 @NamedQueries({
-        @NamedQuery(name = "customer.findByIdentityNumber"
-                , query = "select c from ECustomer c where c.identityNo = :identityNo"),
-        @NamedQuery(name = "customer.findByCustomerNumber"
-                , query = "select c from ECustomer c where c.customerNo = :customerNo")})
+        @NamedQuery(name = "customer.findCustomer",
+                query = "select c from ECustomer c where (:identityNo is null or c.identityNo = :identityNo) and " +
+                        "(:customerNo is null or c.customerNo = :customerNo)")})
 @AttributeOverrides(value = {@AttributeOverride(name = "lastModificationDate", column = @Column(name = "LSTMDFDT")),
         @AttributeOverride(name = "modifiedBy", column = @Column(name = "MDFBY"))})
-public class ECustomer extends BaseEntity implements Serializable {
+public class ECustomer extends BaseEntity {
 
     @Column(name = "FRSTNAM")
     private String firstName;
@@ -33,20 +26,18 @@ public class ECustomer extends BaseEntity implements Serializable {
     @Column(name = "LSTNAM")
     private String lastName;
 
-    @Id
-    @Column(name = "IDNTNO")
+    @Column(name = "IDNTNO", unique = true)
     private String identityNo;
 
     @Transient
     private CustomerType customerType;
 
+    @Id
     @Column(name = "CUSTNO")
     private String customerNo;
 
-    @Id
     @Transient
     private IdentityType identityType;
-
 
     @Column(name = "DOB")
     private Date dateOfBirth;
@@ -90,7 +81,7 @@ public class ECustomer extends BaseEntity implements Serializable {
         this.identityNo = identityNo;
     }
 
-    @Column(name = "CUSTTYPE")
+    @Column(name = "CUSTTYP")
     @Access(value = AccessType.PROPERTY)
     public Character getCustomerTypeValue() {
         return customerType.getValue();
@@ -108,6 +99,7 @@ public class ECustomer extends BaseEntity implements Serializable {
         this.customerType = customerType;
     }
 
+
     public String getCustomerNo() {
         return customerNo;
     }
@@ -124,7 +116,7 @@ public class ECustomer extends BaseEntity implements Serializable {
         this.identityType = identityType;
     }
 
-    @Column(name = "IDNTTYTYP")
+    @Column(name = "IDNTYP")
     @Access(value = AccessType.PROPERTY)
     public Character getIdentityTypeValue() {
         return identityType.getValue();
@@ -141,6 +133,7 @@ public class ECustomer extends BaseEntity implements Serializable {
     public void setDateOfBirth(Date dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
+
 
     public EAddress getAddress() {
         return address;

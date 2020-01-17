@@ -11,10 +11,6 @@ public class EntityToFilterMapping {
         EfCustomer efCustomer = new EfCustomer();
         efCustomer.setCustomerNo(eCustomer.getCustomerNo());
         efCustomer.setIdentityNo(eCustomer.getIdentityNo());
-        efCustomer.setCustomerType(eCustomer.getCustomerType());
-        efCustomer.setCustomerTypeValue(eCustomer.getCustomerTypeValue());
-        efCustomer.setIdentityType(eCustomer.getIdentityType());
-        efCustomer.setIdentityTypeValue(eCustomer.getIdentityTypeValue());
 
         return efCustomer;
     }
