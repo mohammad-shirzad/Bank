@@ -32,15 +32,16 @@ public class IssueCardBusiness {
     }
 
     public void validate(ECard card) throws EntityAlreadyExistsException, EntityNotExistsException, HolderException, SQLException {
-        ECard dbCard = cardDao.find(card).get(0);
-        if (dbCard != null)
-            throw new EntityAlreadyExistsException("There already a card with the same cardNo exists");
+        List<ECard> cards = cardDao.find(card);
+        if (!cards.isEmpty())
+            throw new EntityAlreadyExistsException("card no " + cards.get(0).getPan() + " on account " +
+                    cards.get(0).getPaymentApplicationNumber() + " has issued before");
         EfCustomer efCustomer = new EfCustomer();
         efCustomer.setCustomerNo(card.getOwnerCustomerNo());
         List<ECustomer> dbCustomers = customerDao.find(efCustomer);
         if (dbCustomers.isEmpty())
             throw new EntityNotExistsException("there is no customer with customerNo " + card.getOwnerCustomerNo());
-
+        customer = dbCustomers.get(0);
         if ((card.getPaymentApplicationType() == PaymentApplicationType.Bonus ||
                 card.getPaymentApplicationType() == PaymentApplicationType.Gift) &&
                 card.getHolderId() != null) {

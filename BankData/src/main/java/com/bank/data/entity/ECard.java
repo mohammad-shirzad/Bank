@@ -25,7 +25,7 @@ public class ECard extends BaseEntity {
     @Column(name = "HLDRID")
     private String holderId;
 
-    @Column(name = "OWNCUSTNO", insertable = false, updatable = false)
+    @Column(name = "OWNCUSTNO")
     private String ownerCustomerNo;
 
     @Column(nullable = false)
@@ -46,7 +46,7 @@ public class ECard extends BaseEntity {
     @Column(name = "EXPDT", nullable = false)
     private Date expireDate;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "OWNCUSTNO", referencedColumnName = "CUSTNO", insertable = false, updatable = false)
     private ECustomer customer;
 

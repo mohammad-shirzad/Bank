@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 public class ServiceAspects {
     private Logger logger = LoggerFactory.getLogger(ServiceAspects.class);
 
-    @Around("execution(public * com.bank.serviceImpl.CustomerServiceImpl.*(..))")
+    @Around("execution(public * com.bank.serviceImpl.*.* (*))")
     public Object insertAroundLog(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
         logger.debug("**********--invoking service: " + proceedingJoinPoint.getSignature().toString());
         logger.debug(proceedingJoinPoint.getArgs()[0].toString());
