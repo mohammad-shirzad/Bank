@@ -1,22 +1,22 @@
 package com.bank.facade.dto;
 
 public class CustomerFilterDto {
-    private String IdentityNo;
-    private String CustomerNo;
+    private String identityNo;
+    private String customerNo;
 
     public String getIdentityNo() {
-        return IdentityNo;
+        return identityNo;
     }
 
     public void setIdentityNo(String identityNo) {
-        IdentityNo = identityNo;
+        this.identityNo = identityNo;
     }
 
     public String getCustomerNo() {
-        return CustomerNo;
+        return customerNo;
     }
 
     public void setCustomerNo(String customerNo) {
-        CustomerNo = customerNo;
+        this.customerNo = customerNo;
     }
 }

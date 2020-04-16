@@ -3,6 +3,8 @@ package com.bank.facade.request;
 import com.bank.data.filter.*;
 import com.bank.facade.dto.CustomerFilterDto;
 
+import java.io.Serializable;
+
 public class FindCustomerRequest {
     private CustomerFilterDto customerFilterDto;
 
