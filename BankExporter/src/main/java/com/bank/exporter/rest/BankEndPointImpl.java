@@ -21,31 +21,26 @@ public class BankEndPointImpl {
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/createCustomer")
-    @ResponseBody
     public CreateCustomerResponse createCustomer(@RequestBody CreateCustomerRequest request) throws EntityAlreadyExistsException, SQLException {
         return bankFacade.createNewCustomer(request);
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/deleteCustomer")
-    @ResponseBody
     public DeleteCustomerByIdResponse deleteCustomer(@RequestBody DeleteCustomerByIdentityRequest request) throws EntityNotExistsException, SQLException {
         return bankFacade.deleteCustomerById(request);
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/findCustomers")
-    @ResponseBody
     public FindCustomerResponse findCustomers(@RequestBody FindCustomerRequest request) throws SQLException {
         return bankFacade.findCustomer(request);
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/updateCustomer")
-    @ResponseBody
     public UpdateCustomerResponse updateCustomer(@RequestBody UpdateCustomerRequest request) throws EntityNotExistsException, SQLException {
         return bankFacade.updateCustomer(request);
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/issueCard")
-    @ResponseBody
     public IssueCardResponse issueCard(@RequestBody IssueCardRequest request) throws EntityNotExistsException, EntityAlreadyExistsException, HolderException, SQLException {
         return bankFacade.issueCard(request);
     }
