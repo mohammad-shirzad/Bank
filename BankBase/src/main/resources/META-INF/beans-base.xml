@@ -22,13 +22,13 @@
         <property name="driverClassName" value="${db.driverClassName}"/>
     </bean>
 
-    <bean id="vendorAdaper" class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"/>
+    <bean id="vendorAdapter" class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"/>
 
     <bean id="persistenceProvider" class="org.hibernate.jpa.HibernatePersistenceProvider"/>
 
     <bean id="emf" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
         <property name="dataSource" ref="datasource"/>
-        <property name="jpaVendorAdapter" ref="vendorAdaper"/>
+        <property name="jpaVendorAdapter" ref="vendorAdapter"/>
         <property name="packagesToScan" value="com.bank.data"/>
         <property name="persistenceProvider" ref="persistenceProvider"/>
         <property name="jpaProperties">
