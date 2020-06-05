@@ -10,7 +10,7 @@
             <totalSizeCap>20GB</totalSizeCap>
         </rollingPolicy>
         <encoder>
-            <pattern>%msg%n</pattern>
+            <pattern>%d [%t] %-5level %logger{36} - %msg%n</pattern>
         </encoder>
     </appender>
     <appender name="console-log" class="ch.qos.logback.core.ConsoleAppender">
@@ -24,6 +24,12 @@
         <appender-ref ref="file-log"/>
     </Logger>
     <Logger name="org.hibernate.type" level="trace" additivity="false">
+        <appender-ref ref="file-log"/>
+    </Logger>
+    <Logger name="org.hibernate" level="debug" additivity="false">
+        <appender-ref ref="file-log"/>
+    </Logger>
+    <Logger name="org.hibernate.type.descriptor.sql" level="debug" additivity="false">
         <appender-ref ref="file-log"/>
     </Logger>
     <root level="debug">
