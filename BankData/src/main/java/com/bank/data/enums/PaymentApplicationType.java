@@ -1,13 +1,13 @@
 package com.bank.data.enums;
 
 public enum PaymentApplicationType {
-    Debit(1),
-    Credit(2),
-    Loan(3),
-    Corporation(4),
-    Deposit(5),
-    Gift(6),
-    Bonus(7);
+    DEBIT(1),
+    CREDIT(2),
+    LOAN(3),
+    CORPORATION(4),
+    DEPOSIT(5),
+    GIFT(6),
+    BONUS(7);
 
     private Integer value;
 

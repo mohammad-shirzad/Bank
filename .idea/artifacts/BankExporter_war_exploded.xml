@@ -36,6 +36,7 @@
           <element id="archive" name="CommonUtils-1.0-SNAPSHOT.jar">
             <element id="module-output" name="CommonUtils" />
           </element>
+          <element id="library" level="project" name="Maven: org.liquibase:liquibase-core:4.2.0" />
           <element id="library" level="project" name="Maven: net.sf.dozer:dozer:5.5.1" />
           <element id="library" level="project" name="Maven: commons-beanutils:commons-beanutils:1.9.1" />
           <element id="library" level="project" name="Maven: commons-collections:commons-collections:3.2.1" />

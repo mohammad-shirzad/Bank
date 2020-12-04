@@ -1,11 +1,8 @@
 package com.bank.facade.request;
 
-import com.bank.data.entity.ECustomer;
 import com.bank.data.enums.CustomerType;
 import com.bank.data.enums.IdentityType;
 import com.bank.facade.dto.AddressDto;
-
-import java.util.Date;
 
 public class UpdateCustomerRequest {
     private String firstName;

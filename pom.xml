@@ -36,6 +36,7 @@
         <module>BankFacade</module>
         <module>BankExporter</module>
         <module>CommonUtils</module>
+        <module>BankPackage</module>
     </modules>
     <name>Bank</name>
     <url>http://maven.apache.org</url>

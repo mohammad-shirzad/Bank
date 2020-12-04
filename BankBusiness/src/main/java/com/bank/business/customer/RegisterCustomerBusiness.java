@@ -1,15 +1,14 @@
 package com.bank.business.customer;
 
-import com.bank.dao.bean.CustomerDao;
+import com.bank.dao.bean.ContactDao;
 import com.bank.dao.factory.DaoFactory;
-import com.bank.data.entity.ECustomer;
+import com.bank.data.entity.EContact;
 import com.bank.data.exception.EntityAlreadyExistsException;
 import com.bank.data.exception.RequiredArgumentException;
-import com.bank.data.filter.EfCustomer;
+import com.bank.data.filter.EfContact;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.sql.SQLException;
 import java.util.Calendar;
 import java.util.List;
 
@@ -17,31 +16,31 @@ import java.util.List;
 public class RegisterCustomerBusiness {
 
 
-    private CustomerDao customerDao;
+    private ContactDao contactDao;
 
     @Autowired
     RegisterCustomerBusiness(DaoFactory daoFactory) {
-        this.customerDao = daoFactory.getCustomerDao();
+        this.contactDao = daoFactory.getContactDao();
     }
 
-    public void validate(ECustomer customer) throws EntityAlreadyExistsException, SQLException {
+    public void validate(EContact customer) throws EntityAlreadyExistsException {
         if (customer.getIdentityNo() == null && customer.getIdentityNo() == null)
             throw new RequiredArgumentException("Identity number & CustomerNo can not be null");
-        EfCustomer efCustomer = new EfCustomer();
-        efCustomer.setIdentityNo(customer.getIdentityNo());
-        efCustomer.setCustomerNo(customer.getCustomerNo());
-        List<ECustomer> dbCustomer = customerDao.find(efCustomer);
+        EfContact efContact = new EfContact();
+        efContact.setIdentityNo(customer.getIdentityNo());
+        efContact.setCustomerNo(customer.getCustomerNo());
+        List<EContact> dbCustomer = contactDao.find(efContact);
         if (!dbCustomer.isEmpty())
             throw new EntityAlreadyExistsException("customer with identity number " + customer.getIdentityNo() +
                     " was registered before");
     }
 
-    public ECustomer doBusiness(ECustomer customer) {
+    public EContact doBusiness(EContact customer) {
         customer.setLastModificationDate(Calendar.getInstance().getTime());
-        return customerDao.save(customer);
+        return contactDao.save(customer);
     }
 
-    public ECustomer execute(ECustomer customer) throws EntityAlreadyExistsException, SQLException {
+    public EContact execute(EContact customer) throws EntityAlreadyExistsException {
         validate(customer);
         return doBusiness(customer);
     }

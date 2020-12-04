@@ -12,6 +12,13 @@
     <artifactId>CommonUtils</artifactId>
 
     <dependencies>
+        <!-- https://mvnrepository.com/artifact/org.liquibase/liquibase-core -->
+        <dependency>
+            <groupId>org.liquibase</groupId>
+            <artifactId>liquibase-core</artifactId>
+            <version>4.2.0</version>
+        </dependency>
+
         <!-- https://mvnrepository.com/artifact/net.sf.dozer/dozer -->
         <dependency>
             <groupId>net.sf.dozer</groupId>

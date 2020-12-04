@@ -3,6 +3,7 @@ package com.bank.exporter.rest;
 import com.bank.data.exception.EntityAlreadyExistsException;
 import com.bank.data.exception.EntityNotExistsException;
 import com.bank.data.exception.HolderException;
+import com.bank.data.exception.PaymentApplicationTypeNotSupportCardWithoutHolderException;
 import com.bank.facade.facade.BankFacade;
 import com.bank.facade.request.*;
 import com.bank.facade.response.*;
@@ -44,7 +45,7 @@ public class BankEndPointImpl {
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/issueCard")
-    public IssueCardResponse issueCard(@RequestBody IssueCardRequest request) throws EntityNotExistsException, EntityAlreadyExistsException, HolderException, SQLException {
+    public IssueCardResponse issueCard(@RequestBody IssueCardRequest request) throws EntityNotExistsException, PaymentApplicationTypeNotSupportCardWithoutHolderException, EntityAlreadyExistsException {
         return bankFacade.issueCard(request);
     }
 }

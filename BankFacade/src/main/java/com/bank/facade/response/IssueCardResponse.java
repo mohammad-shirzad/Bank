@@ -5,10 +5,10 @@ import com.bank.facade.dto.PaymentApplicationTypeDto;
 import java.util.Date;
 
 public class IssueCardResponse {
+    private String holderId;
     private String paymentApplicationNo;
     private String ownerCustomerNo;
     private PaymentApplicationTypeDto paymentApplicationTypeDto;
-    private String holderIdentityNo;
     private String carNo;
     private String pin1;
     private String pin2;
@@ -58,12 +58,12 @@ public class IssueCardResponse {
         this.paymentApplicationTypeDto = paymentApplicationTypeDto;
     }
 
-    public String getHolderIdentityNo() {
-        return holderIdentityNo;
+    public String getHolderId() {
+        return holderId;
     }
 
-    public void setHolderIdentityNo(String holderIdentityNo) {
-        this.holderIdentityNo = holderIdentityNo;
+    public void setHolderId(String holderId) {
+        this.holderId = holderId;
     }
 
     public String getCarNo() {

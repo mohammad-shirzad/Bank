@@ -1,23 +1,22 @@
 package com.bank.service;
 
-import com.bank.data.entity.ECustomer;
+import com.bank.data.entity.EContact;
 import com.bank.data.exception.EntityAlreadyExistsException;
 import com.bank.data.exception.EntityNotExistsException;
-import com.bank.data.filter.EfCustomer;
+import com.bank.data.filter.EfContact;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.sql.SQLException;
 import java.util.List;
 
 
 @Transactional
 public interface CustomerService {
 
-    public ECustomer saveCustomer(ECustomer customer) throws EntityAlreadyExistsException, SQLException;
+    public EContact saveCustomer(EContact customer) throws EntityAlreadyExistsException;
 
-    public void deleteCustomerById(String identityNo) throws EntityNotExistsException, SQLException;
+    public void deleteCustomerById(String identityNo) throws EntityNotExistsException;
 
-    public void updateCustomer(ECustomer customer) throws EntityNotExistsException, SQLException;
+    public void updateCustomer(EContact customer) throws EntityNotExistsException;
 
-    public List<ECustomer> findCustomer(EfCustomer efCustomer) throws SQLException;
+    public List<EContact> findCustomer(EfContact efContact);
 }

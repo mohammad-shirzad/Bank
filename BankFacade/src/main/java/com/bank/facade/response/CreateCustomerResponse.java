@@ -1,15 +1,15 @@
 package com.bank.facade.response;
 
-import com.bank.data.entity.ECustomer;
+import com.bank.data.entity.EContact;
 
 public class CreateCustomerResponse {
-    private ECustomer eCustomer;
+    private EContact eContact;
 
-    public ECustomer geteCustomer() {
-        return eCustomer;
+    public EContact geteContact() {
+        return eContact;
     }
 
-    public void seteCustomer(ECustomer eCustomer) {
-        this.eCustomer = eCustomer;
+    public void seteContact(EContact eContact) {
+        this.eContact = eContact;
     }
 }

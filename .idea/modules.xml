@@ -7,6 +7,7 @@
       <module fileurl="file://$PROJECT_DIR$/BankData/BankData.iml" filepath="$PROJECT_DIR$/BankData/BankData.iml" />
       <module fileurl="file://$PROJECT_DIR$/BankExporter/BankExporter.iml" filepath="$PROJECT_DIR$/BankExporter/BankExporter.iml" />
       <module fileurl="file://$PROJECT_DIR$/BankFacade/BankFacade.iml" filepath="$PROJECT_DIR$/BankFacade/BankFacade.iml" />
+      <module fileurl="file://$PROJECT_DIR$/BankPackage/BankPackage.iml" filepath="$PROJECT_DIR$/BankPackage/BankPackage.iml" />
       <module fileurl="file://$PROJECT_DIR$/CommonUtils/CommonUtils.iml" filepath="$PROJECT_DIR$/CommonUtils/CommonUtils.iml" />
       <module fileurl="file://$PROJECT_DIR$/Training.iml" filepath="$PROJECT_DIR$/Training.iml" />
     </modules>

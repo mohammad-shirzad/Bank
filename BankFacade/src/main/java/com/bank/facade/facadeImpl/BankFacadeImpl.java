@@ -1,13 +1,13 @@
 package com.bank.facade.facadeImpl;
 
 import com.bank.data.entity.ECard;
-import com.bank.data.entity.ECustomer;
+import com.bank.data.entity.EContact;
 import com.bank.data.exception.EntityAlreadyExistsException;
 import com.bank.data.exception.EntityNotExistsException;
 import com.bank.data.exception.HolderException;
+import com.bank.data.exception.PaymentApplicationTypeNotSupportCardWithoutHolderException;
 import com.bank.facade.facade.BankFacade;
 import com.bank.facade.mapper.EntityMapper;
-import com.bank.facade.mapper.EnumMapper;
 import com.bank.facade.request.*;
 import com.bank.facade.response.*;
 import com.bank.service.CardService;
@@ -16,7 +16,6 @@ import com.common.utils.singleton.DozerMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.sql.SQLException;
 import java.util.List;
 
 @Component(value = "CustomerFacade")
@@ -36,19 +35,19 @@ public class BankFacadeImpl implements BankFacade {
     }
 
     @Override
-    public CreateCustomerResponse createNewCustomer(CreateCustomerRequest request) throws EntityAlreadyExistsException, SQLException {
+    public CreateCustomerResponse createNewCustomer(CreateCustomerRequest request) throws EntityAlreadyExistsException {
         if (request == null)
             return null;
-        ECustomer customer = DozerMapper.getDozerBeanMapper().map(request, ECustomer.class);
+        EContact customer = DozerMapper.getDozerBeanMapper().map(request, EContact.class);
         customer = customerService.saveCustomer(customer);
         CreateCustomerResponse response = new CreateCustomerResponse();
-        response.seteCustomer(customer);
+        response.seteContact(customer);
         return response;
 
     }
 
     @Override
-    public DeleteCustomerByIdResponse deleteCustomerById(DeleteCustomerByIdentityRequest request) throws EntityNotExistsException, SQLException {
+    public DeleteCustomerByIdResponse deleteCustomerById(DeleteCustomerByIdentityRequest request) throws EntityNotExistsException {
         if (request == null)
             return null;
         customerService.deleteCustomerById(request.getIdentityNo());
@@ -56,23 +55,23 @@ public class BankFacadeImpl implements BankFacade {
     }
 
     @Override
-    public UpdateCustomerResponse updateCustomer(UpdateCustomerRequest request) throws EntityNotExistsException, SQLException {
-        ECustomer customer = EntityMapper.toECustomer(request);
+    public UpdateCustomerResponse updateCustomer(UpdateCustomerRequest request) throws EntityNotExistsException {
+        EContact customer = EntityMapper.toECustomer(request);
         customerService.updateCustomer(customer);
         return new UpdateCustomerResponse();
     }
 
     @Override
-    public FindCustomerResponse findCustomer(FindCustomerRequest request) throws SQLException {
+    public FindCustomerResponse findCustomer(FindCustomerRequest request) {
 
-        List<ECustomer> result = customerService.findCustomer(EntityMapper.toEfCustomer(request.getCustomerFilterDto()));
+        List<EContact> result = customerService.findCustomer(EntityMapper.toEfCustomer(request.getCustomerFilterDto()));
         FindCustomerResponse response = new FindCustomerResponse();
         response.setEvCustomer(EntityMapper.toEvCustomer(result));
         return response;
     }
 
     @Override
-    public IssueCardResponse issueCard(IssueCardRequest request) throws EntityNotExistsException, EntityAlreadyExistsException, HolderException, SQLException {
+    public IssueCardResponse issueCard(IssueCardRequest request) throws EntityNotExistsException, PaymentApplicationTypeNotSupportCardWithoutHolderException {
         ECard card = EntityMapper.toECard(request);
         card = cardService.saveCard(card);
         return EntityMapper.toIssueCardResponse(card);

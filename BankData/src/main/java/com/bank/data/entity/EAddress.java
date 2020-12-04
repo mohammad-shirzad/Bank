@@ -7,32 +7,44 @@ import java.io.Serializable;
 
 @Table(name = "ADDRESS")
 @Entity
+@AttributeOverrides(value = {@AttributeOverride(name = "lastModificationDate", column = @Column(name = "LSTCHNGDT")),
+        @AttributeOverride(name = "modifiedBy", column = @Column(name = "MDFBY"))})
 public class EAddress extends BaseEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "address_seq")
-    @SequenceGenerator(name = "address_seq", sequenceName = "ADDRESS_SEQ", allocationSize = 1000)
-    @Column(name = "ID")
     private long id;
 
-    @Column(name = "CNTRY")
+
     private String country;
 
-    @Column(name = "PRVNC", nullable = false)
+
     private String province;
 
-    @Column(name = "CTY", nullable = false)
+
     private String city;
 
-    @Column(name = "STRT", nullable = false)
+
     private String street;
 
-    @Column(name = "ALLEY")
+
     private String alley;
 
-    @Column(name = "NO", nullable = false)
+
     private int number;
 
+    private String postalCode;
+
+    @Column(name = "POSTCOD")
+    public String getPostalCode() {
+        return postalCode;
+    }
+
+    public void setPostalCode(String postalCode) {
+        this.postalCode = postalCode;
+    }
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_address")
+    @SequenceGenerator(name = "seq_address", sequenceName = "seq_address", allocationSize = 1)
     public long getId() {
         return id;
     }
@@ -41,6 +53,7 @@ public class EAddress extends BaseEntity {
         this.id = id;
     }
 
+    @Column(name = "CNTRY")
     public String getCountry() {
         return country;
     }
@@ -49,6 +62,7 @@ public class EAddress extends BaseEntity {
         this.country = country;
     }
 
+    @Column(name = "PRVNC", nullable = false)
     public String getProvince() {
         return province;
     }
@@ -57,6 +71,7 @@ public class EAddress extends BaseEntity {
         this.province = province;
     }
 
+    @Column(name = "CTY", nullable = false)
     public String getCity() {
         return city;
     }
@@ -65,6 +80,7 @@ public class EAddress extends BaseEntity {
         this.city = city;
     }
 
+    @Column(name = "STRT", nullable = false)
     public String getStreet() {
         return street;
     }
@@ -73,6 +89,7 @@ public class EAddress extends BaseEntity {
         this.street = street;
     }
 
+    @Column(name = "ALLEY", nullable = false)
     public String getAlley() {
         return alley;
     }
@@ -81,6 +98,7 @@ public class EAddress extends BaseEntity {
         this.alley = alley;
     }
 
+    @Column(name = "NO", nullable = false)
     public int getNumber() {
         return number;
     }

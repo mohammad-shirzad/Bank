@@ -1,9 +1,9 @@
 package com.bank.business.customer;
 
-import com.bank.dao.bean.CustomerDao;
+import com.bank.dao.bean.ContactDao;
 import com.bank.data.entity.*;
 import com.bank.dao.factory.DaoFactory;
-import com.bank.data.filter.EfCustomer;
+import com.bank.data.filter.EfContact;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +11,6 @@ import org.springframework.stereotype.Component;
 import com.bank.data.exception.*;
 
 import javax.persistence.EntityNotFoundException;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -19,14 +18,14 @@ import java.util.List;
 @Component
 public class UpdateCustomerBusiness {
     private final Logger LOGGER = LoggerFactory.getLogger(getClass());
-    private CustomerDao customerDao;
+    private ContactDao contactDao;
 
     @Autowired
-    public void setCustomerDao(DaoFactory daoFactory) {
-        this.customerDao = daoFactory.getCustomerDao();
+    public void setContactDao(DaoFactory daoFactory) {
+        this.contactDao = daoFactory.getContactDao();
     }
 
-    public void execute(ECustomer customer) throws EntityNotExistsException, SQLException {
+    public void execute(EContact customer) throws EntityNotExistsException {
         init();
         validate(customer);
         doBusiness(customer);
@@ -36,25 +35,25 @@ public class UpdateCustomerBusiness {
 
     }
 
-    private void validate(ECustomer customer) throws EntityNotExistsException {
+    private void validate(EContact customer) throws EntityNotExistsException {
 
     }
 
-    private void doBusiness(ECustomer customer) throws SQLException {
+    private void doBusiness(EContact customer) {
         customer.setLastModificationDate(Calendar.getInstance().getTime());
-        EfCustomer efCustomer = new EfCustomer();
-        efCustomer.setIdentityNo(customer.getIdentityNo());
-        List<ECustomer> dbCustomers = customerDao.find(efCustomer);
+        EfContact efContact = new EfContact();
+        efContact.setIdentityNo(customer.getIdentityNo());
+        List<EContact> dbCustomers = contactDao.find(efContact);
         if (!dbCustomers.isEmpty()) {
-            ECustomer eCustomer = dbCustomers.get(0);
-            customer.setDateOfBirth(eCustomer.getDateOfBirth());
-            customer.setCustomerNo(eCustomer.getCustomerNo());
+            EContact eContact = dbCustomers.get(0);
+            customer.setDateOfBirth(eContact.getDateOfBirth());
+            customer.setCustomerNo(eContact.getCustomerNo());
             customer.getAddress().setId(dbCustomers.get(0).getAddress().getId());
             if (customer.getCards() == null)
                 customer.setCards(new ArrayList<>());
             else
-                customer.setCards(eCustomer.getCards());
-            customerDao.update(customer);
+                customer.setCards(eContact.getCards());
+            contactDao.update(customer);
         } else {
             throw new EntityNotFoundException("Customer with identityNo " + customer.getIdentityNo() + " does not exist");
         }

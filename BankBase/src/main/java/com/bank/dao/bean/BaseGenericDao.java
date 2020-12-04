@@ -10,7 +10,7 @@ public interface BaseGenericDao<T> {
 
     public List<T> findAll();
 
-    public List<T> find(Object filter) throws SQLException;
+    public List<T> find(Object filter);
 
     public void update(T t);
 

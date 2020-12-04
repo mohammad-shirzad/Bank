@@ -1,39 +1,37 @@
 package com.bank.business.customer;
 
-import com.bank.dao.bean.CustomerDao;
+import com.bank.dao.bean.ContactDao;
 import com.bank.dao.factory.DaoFactory;
-import com.bank.data.entity.ECustomer;
-import com.bank.data.exception.RequiredArgumentException;
-import com.bank.data.filter.EfCustomer;
+import com.bank.data.entity.EContact;
+import com.bank.data.filter.EfContact;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.sql.SQLException;
 import java.util.List;
 
 @Component
 public class FindCustomersBusiness {
-    private CustomerDao customerDao;
-    private ECustomer customer;
+    private ContactDao contactDao;
+    private EContact customer;
 
     @Autowired
-    public void setCustomerDao(DaoFactory daoFactory) {
-        this.customerDao = daoFactory.getCustomerDao();
+    public void setContactDao(DaoFactory daoFactory) {
+        this.contactDao = daoFactory.getContactDao();
     }
 
-    public List<ECustomer> execute(EfCustomer efCustomer) throws SQLException {
-        return doBusiness(efCustomer);
+    public List<EContact> execute(EfContact efContact) {
+        return doBusiness(efContact);
     }
 
     private void init() {
 
     }
 
-    private void validate(EfCustomer efCustomer) {
+    private void validate(EfContact efContact) {
 
     }
 
-    private List<ECustomer> doBusiness(EfCustomer efCustomer) throws SQLException {
-        return customerDao.find(efCustomer);
+    private List<EContact> doBusiness(EfContact efContact) {
+        return contactDao.find(efContact);
     }
 }

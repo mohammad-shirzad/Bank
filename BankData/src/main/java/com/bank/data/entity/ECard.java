@@ -3,53 +3,52 @@ package com.bank.data.entity;
 import com.bank.data.enums.PaymentApplicationType;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
-@Table(name = "CARDS")
+@Table(name = "CARD")
 @Entity
 @NamedQuery(name = "card.findByCustomerNo", query = "select c from ECard c where c.holderId = :customerNumber")
+@AttributeOverrides(value = {@AttributeOverride(name = "lastModificationDate", column = @Column(name = "LSTCHNGDT")),
+        @AttributeOverride(name = "modifiedBy", column = @Column(name = "MDFBY"))})
 public class ECard extends BaseEntity {
 
-    @Id
-    @Column(name = "PAN", nullable = false, length = 16)
+
     private String pan;
 
-    @Column(name = "PMNTAPPNO", nullable = false)
+
     private String paymentApplicationNumber;
 
-    @Transient
+
     private PaymentApplicationType paymentApplicationType;
 
-    @Column(name = "HLDRID")
-    private String holderId;
 
-    @Column(name = "OWNCUSTNO")
+    private Long holderId;
+
+
     private String ownerCustomerNo;
 
-    @Column(nullable = false)
+
     private String CVV2;
 
-    @Column(name = "PIN1", nullable = false)
+
     private String pin1;
 
-    @Column(name = "PIN2")
     private String pin2;
 
-    @Column(name = "RMNING")
+
     private BigDecimal remaining;
 
-    @Column(name = "ISUDT", nullable = false)
+
     private Date issueDate;
 
-    @Column(name = "EXPDT", nullable = false)
+
     private Date expireDate;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "OWNCUSTNO", referencedColumnName = "CUSTNO", insertable = false, updatable = false)
-    private ECustomer customer;
 
+    private EContact customer;
+
+    @Column(name = "ISUDT", nullable = false)
     public Date getIssueDate() {
         return issueDate;
     }
@@ -58,6 +57,7 @@ public class ECard extends BaseEntity {
         this.issueDate = issueDate;
     }
 
+    @Column(name = "EXPDT", nullable = false)
     public Date getExpireDate() {
         return expireDate;
     }
@@ -66,6 +66,7 @@ public class ECard extends BaseEntity {
         this.expireDate = expireDate;
     }
 
+    @Column(name = "OWNCUSTNO")
     public String getOwnerCustomerNo() {
         return ownerCustomerNo;
     }
@@ -74,22 +75,22 @@ public class ECard extends BaseEntity {
         this.ownerCustomerNo = ownerCustomerNo;
     }
 
-    public ECustomer getCustomer() {
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "OWNCUSTNO", referencedColumnName = "CUSTNO", insertable = false, updatable = false)
+    public EContact getCustomer() {
         return customer;
     }
 
-    public void setCustomer(ECustomer customer) {
+    public void setCustomer(EContact customer) {
         this.customer = customer;
-    }
-
-    public BigDecimal getRemaining() {
-        return remaining;
     }
 
     public void setRemaining(BigDecimal remaining) {
         this.remaining = remaining;
     }
 
+    @Id
+    @Column(name = "PAN", nullable = false, length = 16)
     public String getPan() {
         return pan;
     }
@@ -98,6 +99,7 @@ public class ECard extends BaseEntity {
         this.pan = pan;
     }
 
+    @Column(name = "PMNTAPPNO", nullable = false)
     public String getPaymentApplicationNumber() {
         return paymentApplicationNumber;
     }
@@ -106,6 +108,7 @@ public class ECard extends BaseEntity {
         this.paymentApplicationNumber = paymentApplicationNumber;
     }
 
+    @Transient
     public PaymentApplicationType getPaymentApplicationType() {
         return paymentApplicationType;
     }
@@ -124,14 +127,16 @@ public class ECard extends BaseEntity {
         this.paymentApplicationType = PaymentApplicationType.fromValue(paymentApplicationType);
     }
 
-    public String getHolderId() {
+    @Column(name = "HLDRID")
+    public Long getHolderId() {
         return holderId;
     }
 
-    public void setHolderId(String customerNumber) {
-        this.holderId = customerNumber;
+    public void setHolderId(Long holderId) {
+        this.holderId = holderId;
     }
 
+    @Column(nullable = false)
     public String getCVV2() {
         return CVV2;
     }
@@ -140,6 +145,7 @@ public class ECard extends BaseEntity {
         this.CVV2 = CVV2;
     }
 
+    @Column(name = "PIN1", nullable = false)
     public String getPin1() {
         return pin1;
     }
@@ -148,6 +154,7 @@ public class ECard extends BaseEntity {
         this.pin1 = pin1;
     }
 
+    @Column(name = "PIN2")
     public String getPin2() {
         return pin2;
     }

@@ -1,31 +1,30 @@
 package com.bank.business.customer;
 
-import com.bank.dao.bean.CustomerDao;
+import com.bank.dao.bean.ContactDao;
 import com.bank.dao.factory.DaoFactory;
-import com.bank.data.entity.ECustomer;
+import com.bank.data.entity.EContact;
 import com.bank.data.exception.EntityNotExistsException;
-import com.bank.data.filter.EfCustomer;
+import com.bank.data.filter.EfContact;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.sql.SQLException;
 import java.util.List;
 
 @Component
 public class DeleteCustomerBusiness {
 
-    private CustomerDao customerDao;
-    private ECustomer dbCustomer;
+    private ContactDao contactDao;
+    private EContact dbCustomer;
 
     @Autowired
     DeleteCustomerBusiness(DaoFactory daoFactory) {
-        this.customerDao = daoFactory.getCustomerDao();
+        this.contactDao = daoFactory.getContactDao();
     }
 
-    public void init(String identityNo) throws SQLException {
-        EfCustomer efCustomer = new EfCustomer();
-        efCustomer.setIdentityNo(identityNo);
-        List<ECustomer> dbCustomers = customerDao.find(efCustomer);
+    public void init(String identityNo) {
+        EfContact efContact = new EfContact();
+        efContact.setIdentityNo(identityNo);
+        List<EContact> dbCustomers = contactDao.find(efContact);
         dbCustomer = dbCustomers.isEmpty() ? null : dbCustomers.get(0);
     }
 
@@ -35,10 +34,10 @@ public class DeleteCustomerBusiness {
     }
 
     public void doBusiness() {
-        customerDao.delete(dbCustomer);
+        contactDao.delete(dbCustomer);
     }
 
-    public void execute(String identityNo) throws EntityNotExistsException, SQLException {
+    public void execute(String identityNo) throws EntityNotExistsException {
         init(identityNo);
         validate(identityNo);
         doBusiness();

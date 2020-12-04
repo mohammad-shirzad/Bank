@@ -77,20 +77,20 @@ public class EnumMapper {
             return null;
 
         switch (paymentApplicationTypeDto) {
-            case Debit:
-                return PaymentApplicationType.Debit;
-            case Credit:
-                return PaymentApplicationType.Credit;
-            case Corporation:
-                return PaymentApplicationType.Corporation;
-            case Bonus:
-                return PaymentApplicationType.Bonus;
-            case Gift:
-                return PaymentApplicationType.Gift;
-            case Loan:
-                return PaymentApplicationType.Loan;
-            case Deposit:
-                return PaymentApplicationType.Deposit;
+            case DEBIT:
+                return PaymentApplicationType.DEBIT;
+            case CREDIT:
+                return PaymentApplicationType.CREDIT;
+            case CORPORATION:
+                return PaymentApplicationType.CORPORATION;
+            case BONUS:
+                return PaymentApplicationType.BONUS;
+            case GIFT:
+                return PaymentApplicationType.GIFT;
+            case LOAN:
+                return PaymentApplicationType.LOAN;
+            case DEPOSIT:
+                return PaymentApplicationType.DEPOSIT;
             default:
                 throw new IllegalArgumentException();
         }
@@ -101,20 +101,20 @@ public class EnumMapper {
             return null;
 
         switch (paymentApplicationType) {
-            case Debit:
-                return PaymentApplicationTypeDto.Debit;
-            case Credit:
-                return PaymentApplicationTypeDto.Credit;
-            case Corporation:
-                return PaymentApplicationTypeDto.Corporation;
-            case Bonus:
-                return PaymentApplicationTypeDto.Bonus;
-            case Gift:
-                return PaymentApplicationTypeDto.Gift;
-            case Loan:
-                return PaymentApplicationTypeDto.Loan;
-            case Deposit:
-                return PaymentApplicationTypeDto.Deposit;
+            case DEBIT:
+                return PaymentApplicationTypeDto.DEBIT;
+            case CREDIT:
+                return PaymentApplicationTypeDto.CREDIT;
+            case CORPORATION:
+                return PaymentApplicationTypeDto.CORPORATION;
+            case BONUS:
+                return PaymentApplicationTypeDto.BONUS;
+            case GIFT:
+                return PaymentApplicationTypeDto.GIFT;
+            case LOAN:
+                return PaymentApplicationTypeDto.LOAN;
+            case DEPOSIT:
+                return PaymentApplicationTypeDto.DEPOSIT;
             default:
                 throw new IllegalArgumentException();
         }

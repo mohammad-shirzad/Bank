@@ -13,28 +13,14 @@
             <pattern>%-5level %d [%t] %logger{36} %X{diagKey} %n %msg%n</pattern>
         </encoder>
     </appender>
-    <appender name="console-log" class="ch.qos.logback.core.ConsoleAppender">
-        <layout class="ch.qos.logback.classic.PatternLayout">
-            <Pattern>
-                %-5level %d [%t] %logger{36} %X{diagKey} %n %msg%n
-            </Pattern>
-        </layout>
-    </appender>
+    <root level="info">
+        <appender-ref ref="file-log"/>
+    </root>
     <Logger name="org.hibernate" level="debug" additivity="false">
         <appender-ref ref="file-log"/>
     </Logger>
     <Logger name="org.hibernate.type" level="trace" additivity="false">
         <appender-ref ref="file-log"/>
     </Logger>
-    <Logger name="org.hibernate" level="debug" additivity="false">
-        <appender-ref ref="file-log"/>
-    </Logger>
-    <Logger name="org.hibernate.type.descriptor.sql" level="debug" additivity="false">
-        <appender-ref ref="file-log"/>
-    </Logger>
-    <root level="debug">
-        <appender-ref ref="file-log"/>
-        <appender-ref ref="console-log"/>
-    </root>
 
 </configuration>

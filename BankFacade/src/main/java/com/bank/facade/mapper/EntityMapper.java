@@ -2,34 +2,35 @@ package com.bank.facade.mapper;
 
 import com.bank.data.entity.EAddress;
 import com.bank.data.entity.ECard;
-import com.bank.data.entity.ECustomer;
-import com.bank.data.filter.EfCustomer;
+import com.bank.data.entity.EContact;
+import com.bank.data.filter.EfContact;
 import com.bank.data.view.EVCustomer;
 import com.bank.facade.dto.AddressDto;
 import com.bank.facade.dto.CustomerFilterDto;
 import com.bank.facade.request.IssueCardRequest;
 import com.bank.facade.request.UpdateCustomerRequest;
 import com.bank.facade.response.IssueCardResponse;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class EntityMapper {
-    public static EfCustomer toEfCustomer(CustomerFilterDto customerFilterDto) {
+    public static EfContact toEfCustomer(CustomerFilterDto customerFilterDto) {
         if (customerFilterDto == null)
             return null;
-        EfCustomer efCustomer = new EfCustomer();
-        efCustomer.setCustomerNo(customerFilterDto.getCustomerNo());
-        efCustomer.setIdentityNo(customerFilterDto.getIdentityNo());
+        EfContact efContact = new EfContact();
+        efContact.setCustomerNo(customerFilterDto.getCustomerNo());
+        efContact.setIdentityNo(customerFilterDto.getIdentityNo());
 
-        return efCustomer;
+        return efContact;
     }
 
-    public static ECustomer toECustomer(UpdateCustomerRequest request) {
+    public static EContact toECustomer(UpdateCustomerRequest request) {
         if (request == null)
             return null;
 
-        ECustomer customer = new ECustomer();
+        EContact customer = new EContact();
         customer.setIdentityNo(request.getIdentityNo());
         customer.setIdentityType(request.getIdentityType());
         customer.setAddress(toEAddress(request.getAddress()));
@@ -59,7 +60,7 @@ public class EntityMapper {
             return null;
 
         ECard card = new ECard();
-        card.setHolderId(request.getHolderIdentityNo());
+        card.setHolderId(Long.parseLong(request.getHolderId()));
         card.setPaymentApplicationNumber(request.getPaymentApplicationNo());
         card.setPaymentApplicationType(EnumMapper.toPaymentApplicationType(request.getPaymentApplicationTypeDto()));
         card.setOwnerCustomerNo(request.getOwnerCustomerNo());
@@ -77,7 +78,7 @@ public class EntityMapper {
         response.setExpireDate(card.getExpireDate());
         response.setIssueDate(card.getIssueDate());
         response.setOwnerCustomerNo(card.getOwnerCustomerNo());
-        response.setHolderIdentityNo(card.getHolderId());
+        response.setHolderId(String.valueOf(card.getHolderId()));
         response.setPin1(card.getPin1());
         response.setPin2(card.getPin2());
         response.setPaymentApplicationNo(card.getPaymentApplicationNumber());
@@ -88,14 +89,15 @@ public class EntityMapper {
         return response;
     }
 
-    public static List<EVCustomer> toEvCustomer(List<ECustomer> customers) {
+    public static List<EVCustomer> toEvCustomer(List<EContact> customers) {
         if (customers.isEmpty())
             return new ArrayList<>();
 
         List<EVCustomer> evCustomers = new ArrayList<>();
 
-        for (ECustomer customer : customers) {
+        for (EContact customer : customers) {
             EVCustomer evCustomer = new EVCustomer();
+            evCustomer.setHolderId(customer.getId());
             evCustomer.setAddress(customer.getAddress());
             evCustomer.setFirstName(customer.getFirstName());
             evCustomer.setLastName(customer.getLastName());

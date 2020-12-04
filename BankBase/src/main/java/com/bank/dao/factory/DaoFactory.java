@@ -2,20 +2,20 @@ package com.bank.dao.factory;
 
 import com.bank.dao.bean.AddressDao;
 import com.bank.dao.bean.CardDao;
-import com.bank.dao.bean.CustomerDao;
+import com.bank.dao.bean.ContactDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
 public class DaoFactory {
 
-    private CustomerDao customerDao;
+    private ContactDao contactDao;
     private AddressDao addressDao;
     private CardDao cardDao;
 
     @Autowired
-    private void setCustomerDao(CustomerDao customerDao) {
-        this.customerDao = customerDao;
+    private void setContactDao(ContactDao contactDao) {
+        this.contactDao = contactDao;
     }
 
     @Autowired
@@ -28,8 +28,8 @@ public class DaoFactory {
         this.cardDao = cardDao;
     }
 
-    public CustomerDao getCustomerDao() {
-        return customerDao;
+    public ContactDao getContactDao() {
+        return contactDao;
     }
 
     public AddressDao getAddressDao() {

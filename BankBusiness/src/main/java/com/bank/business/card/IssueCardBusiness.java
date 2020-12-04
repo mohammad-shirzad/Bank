@@ -2,19 +2,20 @@ package com.bank.business.card;
 
 import com.bank.business.utility.GeneratorUtil;
 import com.bank.dao.bean.CardDao;
-import com.bank.dao.bean.CustomerDao;
+import com.bank.dao.bean.ContactDao;
 import com.bank.dao.factory.DaoFactory;
 import com.bank.data.entity.ECard;
-import com.bank.data.entity.ECustomer;
+import com.bank.data.entity.EContact;
 import com.bank.data.enums.PaymentApplicationType;
 import com.bank.data.exception.EntityAlreadyExistsException;
 import com.bank.data.exception.EntityNotExistsException;
 import com.bank.data.exception.HolderException;
-import com.bank.data.filter.EfCustomer;
+import com.bank.data.exception.PaymentApplicationTypeNotSupportCardWithoutHolderException;
+import com.bank.data.filter.EfContact;
+import com.common.utils.parser.BankConfigProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.sql.SQLException;
 import java.util.Calendar;
 import java.util.List;
 
@@ -22,38 +23,25 @@ import java.util.List;
 public class IssueCardBusiness {
 
     private CardDao cardDao;
-    private CustomerDao customerDao;
-    private ECustomer customer;
+    private ContactDao contactDao;
+    private EContact customer;
 
     @Autowired
     IssueCardBusiness(DaoFactory daoFactory) {
         this.cardDao = daoFactory.getCardDao();
-        this.customerDao = daoFactory.getCustomerDao();
+        this.contactDao = daoFactory.getContactDao();
     }
 
-    public void validate(ECard card) throws EntityAlreadyExistsException, EntityNotExistsException, HolderException, SQLException {
-        List<ECard> cards = cardDao.find(card);
-        if (!cards.isEmpty())
-            throw new EntityAlreadyExistsException("card no " + cards.get(0).getPan() + " on account " +
-                    cards.get(0).getPaymentApplicationNumber() + " has issued before");
-        EfCustomer efCustomer = new EfCustomer();
-        efCustomer.setCustomerNo(card.getOwnerCustomerNo());
-        List<ECustomer> dbCustomers = customerDao.find(efCustomer);
+    public void validate(ECard card) throws EntityNotExistsException, PaymentApplicationTypeNotSupportCardWithoutHolderException {
+        EfContact efContact = new EfContact();
+        efContact.setCustomerNo(card.getOwnerCustomerNo());
+        efContact.setHolderId(card.getHolderId());
+        List<EContact> dbCustomers = contactDao.find(efContact);
         if (dbCustomers.isEmpty())
-            throw new EntityNotExistsException("there is no customer with customerNo " + card.getOwnerCustomerNo());
+            throw new EntityNotExistsException("There is no customer with provided identity");
         customer = dbCustomers.get(0);
-        if ((card.getPaymentApplicationType() == PaymentApplicationType.Bonus ||
-                card.getPaymentApplicationType() == PaymentApplicationType.Gift) &&
-                card.getHolderId() != null) {
-            throw new HolderException("For special cards, holder must be null");
-        }
-        if ((card.getPaymentApplicationType() == PaymentApplicationType.Debit ||
-                card.getPaymentApplicationType() == PaymentApplicationType.Deposit ||
-                card.getPaymentApplicationType() == PaymentApplicationType.Loan ||
-                card.getPaymentApplicationType() == PaymentApplicationType.Corporation ||
-                card.getPaymentApplicationType() == PaymentApplicationType.Credit) &&
-                (card.getHolderId() == null)) {
-            throw new HolderException("Holder can not be null");
+        if (!CardBusiness.supportNoName(card.getPaymentApplicationType()) && card.getHolderId() == null) {
+            throw new PaymentApplicationTypeNotSupportCardWithoutHolderException("Only bonus and gift cards can be issued without holder");
         }
 
     }
@@ -61,9 +49,9 @@ public class IssueCardBusiness {
     public ECard doBusiness(ECard card) {
         card.setLastModificationDate(Calendar.getInstance().getTime());
         card.setCustomer(customer);
-        card.setPan(GeneratorUtil.generateCardNo());
+        card.setPan(GeneratorUtil.generateCardNo(BankConfigProvider.getInstance().getBankName()));
         card.setCVV2(GeneratorUtil.generateCVV2());
-        card.setPin1("1234");
+        card.setPin1(GeneratorUtil.generatePin1());
         card.setIssueDate(Calendar.getInstance().getTime());
         Calendar currentDateTime = Calendar.getInstance();
         currentDateTime.add(Calendar.MONTH, 6);
@@ -71,7 +59,7 @@ public class IssueCardBusiness {
         return cardDao.save(card);
     }
 
-    public ECard execute(ECard card) throws EntityAlreadyExistsException, EntityNotExistsException, HolderException, SQLException {
+    public ECard execute(ECard card) throws EntityNotExistsException, PaymentApplicationTypeNotSupportCardWithoutHolderException {
         validate(card);
         return doBusiness(card);
     }

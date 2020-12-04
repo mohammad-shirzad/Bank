@@ -10,6 +10,8 @@ import java.util.Date;
 import java.util.List;
 
 public class EVCustomer {
+    private Long holderId;
+
     private String firstName;
 
     private String lastName;
@@ -27,6 +29,14 @@ public class EVCustomer {
     private Date lastModificationDate;
     private String modifiedBy;
     private EAddress address;
+
+    public Long getHolderId() {
+        return holderId;
+    }
+
+    public void setHolderId(Long holderId) {
+        this.holderId = holderId;
+    }
 
     public Date getLastModificationDate() {
         return lastModificationDate;

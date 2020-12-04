@@ -6,7 +6,7 @@ public class IssueCardRequest {
     private String paymentApplicationNo;
     private String ownerCustomerNo;
     private PaymentApplicationTypeDto paymentApplicationTypeDto;
-    private String holderIdentityNo;
+    private String holderId;
 
     public String getPaymentApplicationNo() {
         return paymentApplicationNo;
@@ -32,11 +32,11 @@ public class IssueCardRequest {
         this.paymentApplicationTypeDto = paymentApplicationTypeDto;
     }
 
-    public String getHolderIdentityNo() {
-        return holderIdentityNo;
+    public String getHolderId() {
+        return holderId;
     }
 
-    public void setHolderIdentityNo(String holderIdentityNo) {
-        this.holderIdentityNo = holderIdentityNo;
+    public void setHolderId(String holderId) {
+        this.holderId = holderId;
     }
 }
