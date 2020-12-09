@@ -1,6 +1,7 @@
 package com.bank.data.entity;
 
 import com.bank.data.enums.PaymentApplicationType;
+import com.common.utils.AesEncrDecrUtil;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -136,13 +137,13 @@ public class ECard extends BaseEntity {
         this.holderId = holderId;
     }
 
-    @Column(nullable = false)
+    @Column(name = "CVV", nullable = false)
     public String getCVV2() {
         return CVV2;
     }
 
     public void setCVV2(String CVV2) {
-        this.CVV2 = CVV2;
+        this.CVV2 = AesEncrDecrUtil.encrypt(CVV2);
     }
 
     @Column(name = "PIN1", nullable = false)
@@ -151,7 +152,7 @@ public class ECard extends BaseEntity {
     }
 
     public void setPin1(String pin1) {
-        this.pin1 = pin1;
+        this.pin1 = AesEncrDecrUtil.encrypt(pin1);
     }
 
     @Column(name = "PIN2")

@@ -19,7 +19,6 @@ public class ContactDaoImpl extends BaseGenericDaoImpl<EContact> implements Cont
         EfContact efContact = (EfContact) filter;
         Query query = em.createNamedQuery("customer.findCustomer");
         query.setParameter("customerNo", efContact.getCustomerNo());
-        query.setParameter("identityNo", efContact.getIdentityNo());
         query.setParameter("holderId", efContact.getHolderId());
 
         return query.getResultList();

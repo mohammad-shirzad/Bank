@@ -49,7 +49,7 @@ create table BANK.bnk_card
     expdt      date           not null,
     cvv        nvarchar2(100) not null,
     pin1       nvarchar2(100) not null,
-    pin2       nvarchar2(10),
+    pin2       nvarchar2(100),
     hldrid     number,
     owncustno  nvarchar2(100) not null,
     lstchngdt  date,

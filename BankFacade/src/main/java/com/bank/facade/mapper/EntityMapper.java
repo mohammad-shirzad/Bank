@@ -10,6 +10,7 @@ import com.bank.facade.dto.CustomerFilterDto;
 import com.bank.facade.request.IssueCardRequest;
 import com.bank.facade.request.UpdateCustomerRequest;
 import com.bank.facade.response.IssueCardResponse;
+import com.common.utils.BaseUtil;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;
@@ -60,7 +61,7 @@ public class EntityMapper {
             return null;
 
         ECard card = new ECard();
-        card.setHolderId(Long.parseLong(request.getHolderId()));
+        card.setHolderId(BaseUtil.getNullableLong(request.getHolderId()));
         card.setPaymentApplicationNumber(request.getPaymentApplicationNo());
         card.setPaymentApplicationType(EnumMapper.toPaymentApplicationType(request.getPaymentApplicationTypeDto()));
         card.setOwnerCustomerNo(request.getOwnerCustomerNo());

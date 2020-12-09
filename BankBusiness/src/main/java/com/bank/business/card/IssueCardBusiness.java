@@ -38,7 +38,7 @@ public class IssueCardBusiness {
         efContact.setHolderId(card.getHolderId());
         List<EContact> dbCustomers = contactDao.find(efContact);
         if (dbCustomers.isEmpty())
-            throw new EntityNotExistsException("There is no customer with provided identity");
+            throw new EntityNotExistsException("There is no contact with provided identity");
         customer = dbCustomers.get(0);
         if (!CardBusiness.supportNoName(card.getPaymentApplicationType()) && card.getHolderId() == null) {
             throw new PaymentApplicationTypeNotSupportCardWithoutHolderException("Only bonus and gift cards can be issued without holder");

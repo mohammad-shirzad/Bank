@@ -14,7 +14,7 @@ import java.util.List;
 @Entity
 @NamedQueries({
         @NamedQuery(name = "customer.findCustomer",
-                query = "select c from EContact c where (:identityNo is null or c.identityNo = :identityNo) and " +
+                query = "select c from EContact c where " +
                         "(:customerNo is null or c.customerNo = :customerNo) and " +
                         "(:holderId is null or c.id = :holderId)")})
 @AttributeOverrides(value = {@AttributeOverride(name = "lastModificationDate", column = @Column(name = "LSTCHNGDT")),

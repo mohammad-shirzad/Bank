@@ -1,8 +1,8 @@
 package com.bank.business.utility;
 
 public class GeneratorUtil {
-    private static final long MIN_PAN_VAL = 1000000000L;
-    private static final long MAX_PAN_VAL = 9999999999L;
+    private static final long MIN_PAN_VAL = 10000000L;
+    private static final long MAX_PAN_VAL = 99999999L;
     private static final long MIN_CVV_VAL = 1000L;
     private static final long MAX_CVV_VAL = 9999L;
 
