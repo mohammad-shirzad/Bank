@@ -19,4 +19,6 @@ public interface BankFacade {
     FindCustomerResponse findCustomer(FindCustomerRequest request);
 
     IssueCardResponse issueCard(IssueCardRequest request) throws EntityNotExistsException, PaymentApplicationTypeNotSupportCardWithoutHolderException;
+
+    GetCardFullDetailsResponse getCardFullDetails(GetCardFullDetailsRequest request);
 }

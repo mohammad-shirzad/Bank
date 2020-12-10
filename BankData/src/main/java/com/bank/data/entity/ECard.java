@@ -76,8 +76,9 @@ public class ECard extends BaseEntity {
         this.ownerCustomerNo = ownerCustomerNo;
     }
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "OWNCUSTNO", referencedColumnName = "CUSTNO", insertable = false, updatable = false)
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumns({@JoinColumn(name = "OWNCUSTNO", referencedColumnName = "CUSTNO", insertable = false, updatable = false),
+            @JoinColumn(name = "HLDRID", referencedColumnName = "ID", insertable = false, updatable = false)})
     public EContact getCustomer() {
         return customer;
     }

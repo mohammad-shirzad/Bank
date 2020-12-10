@@ -48,4 +48,9 @@ public class BankEndPointImpl {
     public IssueCardResponse issueCard(@RequestBody IssueCardRequest request) throws EntityNotExistsException, PaymentApplicationTypeNotSupportCardWithoutHolderException, EntityAlreadyExistsException {
         return bankFacade.issueCard(request);
     }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/getCardFullDetails")
+    public GetCardFullDetailsResponse getCardFullDetails(@RequestBody GetCardFullDetailsRequest request) {
+        return bankFacade.getCardFullDetails(request);
+    }
 }

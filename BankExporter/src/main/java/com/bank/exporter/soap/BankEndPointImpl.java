@@ -51,4 +51,9 @@ public class BankEndPointImpl implements BankEndPoint {
     public IssueCardResponse issueCard(IssueCardRequest request) throws EntityNotExistsException, PaymentApplicationTypeNotSupportCardWithoutHolderException {
         return bankFacade.issueCard(request);
     }
+
+    @Override
+    public GetCardFullDetailsResponse getCardFullDetails(GetCardFullDetailsRequest request) {
+        return bankFacade.getCardFullDetails(request);
+    }
 }

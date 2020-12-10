@@ -6,6 +6,8 @@ import com.bank.data.exception.EntityAlreadyExistsException;
 import com.bank.data.exception.EntityNotExistsException;
 import com.bank.data.exception.HolderException;
 import com.bank.data.exception.PaymentApplicationTypeNotSupportCardWithoutHolderException;
+import com.bank.data.filter.EfCard;
+import com.bank.data.view.EvCard;
 import com.bank.facade.facade.BankFacade;
 import com.bank.facade.mapper.EntityMapper;
 import com.bank.facade.request.*;
@@ -75,5 +77,13 @@ public class BankFacadeImpl implements BankFacade {
         ECard card = EntityMapper.toECard(request);
         card = cardService.saveCard(card);
         return EntityMapper.toIssueCardResponse(card);
+    }
+
+    @Override
+    public GetCardFullDetailsResponse getCardFullDetails(GetCardFullDetailsRequest request) {
+        EvCard evCard = cardService.getCardFullDetails(request.getPan());
+        GetCardFullDetailsResponse response = new GetCardFullDetailsResponse();
+        response.setEvCard(evCard);
+        return response;
     }
 }

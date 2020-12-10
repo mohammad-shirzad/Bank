@@ -31,4 +31,7 @@ public interface BankEndPoint {
 
     @WebMethod(operationName = "issueCard")
     IssueCardResponse issueCard(@WebParam(name = "issueCard") IssueCardRequest request) throws EntityNotExistsException, EntityAlreadyExistsException, HolderException, PaymentApplicationTypeNotSupportCardWithoutHolderException;
+
+    @WebMethod(operationName = "getCardFullDetails")
+    GetCardFullDetailsResponse getCardFullDetails(@WebParam(name = "getCardFullDetails") GetCardFullDetailsRequest request);
 }
