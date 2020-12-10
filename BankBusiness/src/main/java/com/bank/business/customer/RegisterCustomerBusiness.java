@@ -36,7 +36,6 @@ public class RegisterCustomerBusiness {
     }
 
     public EContact doBusiness(EContact customer) {
-        customer.setLastModificationDate(Calendar.getInstance().getTime());
         return contactDao.save(customer);
     }
 

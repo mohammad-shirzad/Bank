@@ -30,7 +30,7 @@ create table BANK.bnk_address
 (
     id        number primary key,
     cntry     nvarchar2(100) not null,
-    prvnc     nvarchar2(100) unique,
+    prvnc     nvarchar2(100) not null,
     cty       nvarchar2(100) not null,
     strt      nvarchar2(100) not null,
     alley     nvarchar2(100) not null,
@@ -57,3 +57,26 @@ create table BANK.bnk_card
     foreign key (hldrid) references BANK.bnk_cntc (id),
     foreign key (owncustno) references BANK.bnk_cntc (custno)
 );
+
+----------------triggers-------------
+create or replace trigger trig_cntc
+    before insert or update
+    on bnk_cntc
+    for each row
+begin
+    :new.LSTCHNGDT := sysdate;
+end;
+create or replace trigger trig_address
+    before insert or update
+    on bnk_address
+    for each row
+begin
+    :new.LSTCHNGDT := sysdate;
+end;
+create or replace trigger trig_card
+    before insert or update
+    on bnk_card
+    for each row
+begin
+    :new.LSTCHNGDT := sysdate;
+end;
