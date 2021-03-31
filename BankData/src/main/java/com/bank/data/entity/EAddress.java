@@ -1,15 +1,11 @@
 package com.bank.data.entity;
 
-import sun.security.pkcs11.wrapper.Constants;
-
 import javax.persistence.*;
 import java.io.Serializable;
 
 @Table(name = "ADDRESS")
 @Entity
-@AttributeOverrides(value = {@AttributeOverride(name = "lastModificationDate", column = @Column(name = "LSTCHNGDT")),
-        @AttributeOverride(name = "modifiedBy", column = @Column(name = "MDFBY"))})
-public class EAddress extends BaseEntity {
+public class EAddress implements Serializable {
 
     private long id;
 

@@ -10,7 +10,7 @@ import javax.persistence.Query;
 import java.util.List;
 
 @Repository(value = "CardDao")
-public class CardDaoImpl extends BaseGenericDaoImpl<ECard> implements CardDao {
+public class CardDaoImpl extends BaseGenericDaoImpl<ECard, String> implements CardDao {
     @Override
     public List<ECard> find(Object filter) {
         Query query = em.createQuery("select c from ECard c where c.paymentApplicationNumber = :paymentApplicationNumber");

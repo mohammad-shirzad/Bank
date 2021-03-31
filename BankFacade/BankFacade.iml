@@ -31,9 +31,6 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="BankBusiness" />
-    <orderEntry type="module" module-name="BankData" />
-    <orderEntry type="module" module-name="CommonUtils" />
-    <orderEntry type="module" module-name="BankBusiness" />
     <orderEntry type="module" module-name="BankDao" />
     <orderEntry type="module" module-name="BankData" />
     <orderEntry type="library" name="Maven: javax.persistence:javax.persistence-api:2.2" level="project" />
@@ -90,6 +87,8 @@
     <orderEntry type="library" name="Maven: org.springframework.data:spring-data-jpa:2.2.0.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.data:spring-data-commons:2.2.0.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.aspectj:aspectjrt:1.9.4" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework.security:spring-security-crypto:5.1.9.RELEASE" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework.security:spring-security-core:5.1.9.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.slf4j:slf4j-api:1.7.15" level="project" />
   </component>
 </module>

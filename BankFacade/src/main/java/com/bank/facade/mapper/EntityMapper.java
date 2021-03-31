@@ -1,8 +1,6 @@
 package com.bank.facade.mapper;
 
-import com.bank.data.entity.EAddress;
-import com.bank.data.entity.ECard;
-import com.bank.data.entity.EContact;
+import com.bank.data.entity.*;
 import com.bank.data.filter.EfContact;
 import com.bank.data.view.EVCustomer;
 import com.bank.facade.dto.AddressDto;
@@ -11,7 +9,6 @@ import com.bank.facade.request.IssueCardRequest;
 import com.bank.facade.request.UpdateCustomerRequest;
 import com.bank.facade.response.IssueCardResponse;
 import com.common.utils.BaseUtil;
-import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -107,8 +104,6 @@ public class EntityMapper {
             evCustomer.setCustomerType(customer.getCustomerType());
             evCustomer.setIdentityType(customer.getIdentityType());
             evCustomer.setDateOfBirth(customer.getDateOfBirth());
-            evCustomer.setLastModificationDate(customer.getLastModificationDate());
-            evCustomer.setModifiedBy(customer.getModifiedBy());
 
             evCustomers.add(evCustomer);
         }

@@ -1,7 +1,7 @@
 package com.bank.data.map;
 
-import com.bank.data.filter.*;
-import com.bank.data.entity.*;
+import com.bank.data.entity.EContact;
+import com.bank.data.filter.EfContact;
 
 public class EntityToFilterMapping {
     public static EfContact mapToEfCustomer(EContact eContact) {

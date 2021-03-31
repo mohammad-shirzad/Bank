@@ -5,11 +5,12 @@ import org.springframework.data.repository.NoRepositoryBean;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
 
 @NoRepositoryBean
-public abstract class BaseGenericDaoImpl<T> implements BaseGenericDao<T> {
+public abstract class BaseGenericDaoImpl<T extends Serializable, ID extends Serializable> implements BaseGenericDao<T, ID> {
 
     @PersistenceContext
     protected EntityManager em;
@@ -44,5 +45,15 @@ public abstract class BaseGenericDaoImpl<T> implements BaseGenericDao<T> {
     @Override
     public T getReference(Object filter) {
         return em.getReference(clazz, filter);
+    }
+
+    @Override
+    public List<T> find(Object filter) {
+        return null;
+    }
+
+    @Override
+    public T findById(ID id) {
+        return em.find(clazz, id);
     }
 }

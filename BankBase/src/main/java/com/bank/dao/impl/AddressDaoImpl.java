@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository(value = "AddressDao")
-public class AddressDaoImpl extends BaseGenericDaoImpl<EAddress> implements AddressDao {
+public class AddressDaoImpl extends BaseGenericDaoImpl<EAddress, Long> implements AddressDao {
     @Override
     public List<EAddress> find(Object filter) {
         return null;

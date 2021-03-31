@@ -14,12 +14,14 @@ import com.bank.data.exception.PaymentApplicationTypeNotSupportCardWithoutHolder
 import com.bank.data.filter.EfContact;
 import com.common.utils.parser.BankConfigProvider;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import java.util.Calendar;
 import java.util.List;
 
 @Component
+@Scope(value = "prototype")
 public class IssueCardBusiness {
 
     private CardDao cardDao;
@@ -47,7 +49,6 @@ public class IssueCardBusiness {
     }
 
     public ECard doBusiness(ECard card) {
-        card.setLastModificationDate(Calendar.getInstance().getTime());
         card.setCustomer(customer);
         card.setPan(GeneratorUtil.generateCardNo(BankConfigProvider.getInstance().getBankName()));
         card.setCVV2(GeneratorUtil.generateCVV2());

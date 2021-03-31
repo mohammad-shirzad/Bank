@@ -11,7 +11,7 @@ import javax.persistence.Query;
 import java.util.List;
 
 @Repository(value = "CustomerDao")
-public class ContactDaoImpl extends BaseGenericDaoImpl<EContact> implements ContactDao {
+public class ContactDaoImpl extends BaseGenericDaoImpl<EContact, String> implements ContactDao {
     private static final Logger LOGGER = LoggerFactory.getLogger(ContactDaoImpl.class);
 
     @Override

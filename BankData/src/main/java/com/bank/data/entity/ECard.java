@@ -4,15 +4,14 @@ import com.bank.data.enums.PaymentApplicationType;
 import com.common.utils.AesEncrDecrUtil;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
 @Table(name = "CARD")
 @Entity
 @NamedQuery(name = "card.findByCustomerNo", query = "select c from ECard c where c.holderId = :customerNumber")
-@AttributeOverrides(value = {@AttributeOverride(name = "lastModificationDate", column = @Column(name = "LSTCHNGDT")),
-        @AttributeOverride(name = "modifiedBy", column = @Column(name = "MDFBY"))})
-public class ECard extends BaseEntity {
+public class ECard implements Serializable {
 
 
     private String pan;

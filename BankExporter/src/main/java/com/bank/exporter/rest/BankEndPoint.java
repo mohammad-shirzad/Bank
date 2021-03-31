@@ -3,6 +3,7 @@ package com.bank.exporter.rest;
 import com.bank.data.exception.EntityAlreadyExistsException;
 import com.bank.data.exception.EntityNotExistsException;
 import com.bank.data.exception.HolderException;
+import com.bank.data.exception.PaymentApplicationTypeNotSupportCardWithoutHolderException;
 import com.bank.facade.request.*;
 import com.bank.facade.response.*;
 import org.springframework.web.bind.annotation.*;
@@ -25,5 +26,5 @@ public interface BankEndPoint {
     UpdateCustomerResponse updateCustomer(@RequestParam(name = "request") UpdateCustomerRequest request) throws EntityNotExistsException, SQLException;
 
     @RequestMapping(method = RequestMethod.POST, value = "/issueCard")
-    IssueCardResponse issueCard(@RequestParam(name = "request") IssueCardRequest request) throws EntityNotExistsException, EntityAlreadyExistsException, HolderException, SQLException;
+    IssueCardResponse issueCard(@RequestParam(name = "request") IssueCardRequest request) throws EntityNotExistsException, EntityAlreadyExistsException, HolderException, SQLException, PaymentApplicationTypeNotSupportCardWithoutHolderException;
 }

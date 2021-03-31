@@ -42,11 +42,7 @@
     <context-param>
         <param-name>contextConfigLocation</param-name>
         <param-value>
-            classpath:META-INF/beans-base.xml
-            classpath:META-INF/beans-business.xml
-            classpath:META-INF/beans-facade.xml
             classpath:META-INF/beans-exporter.xml
-            classpath:META-INF/beans-service.xml
         </param-value>
     </context-param>
     <listener>

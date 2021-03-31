@@ -7,12 +7,14 @@ import com.bank.data.exception.EntityAlreadyExistsException;
 import com.bank.data.exception.RequiredArgumentException;
 import com.bank.data.filter.EfContact;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import java.util.Calendar;
 import java.util.List;
 
 @Component
+@Scope(value = "prototype")
 public class RegisterCustomerBusiness {
 
 

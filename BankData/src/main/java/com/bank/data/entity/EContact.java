@@ -2,11 +2,9 @@ package com.bank.data.entity;
 
 import com.bank.data.enums.CustomerType;
 import com.bank.data.enums.IdentityType;
-import org.hibernate.annotations.NaturalId;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.sql.ResultSet;
 import java.util.Date;
 import java.util.List;
 
@@ -17,9 +15,7 @@ import java.util.List;
                 query = "select c from EContact c where " +
                         "(:customerNo is null or c.customerNo = :customerNo) and " +
                         "(:holderId is null or c.id = :holderId)")})
-@AttributeOverrides(value = {@AttributeOverride(name = "lastModificationDate", column = @Column(name = "LSTCHNGDT")),
-        @AttributeOverride(name = "modifiedBy", column = @Column(name = "MDFBY"))})
-public class EContact extends BaseEntity {
+public class EContact implements Serializable {
 
     private long id;
 

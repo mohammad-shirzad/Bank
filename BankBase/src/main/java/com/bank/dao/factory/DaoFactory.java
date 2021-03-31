@@ -9,9 +9,9 @@ import org.springframework.stereotype.Component;
 @Component
 public class DaoFactory {
 
-    private ContactDao contactDao;
-    private AddressDao addressDao;
-    private CardDao cardDao;
+    private static ContactDao contactDao;
+    private static AddressDao addressDao;
+    private static CardDao cardDao;
 
     @Autowired
     private void setContactDao(ContactDao contactDao) {
@@ -28,15 +28,15 @@ public class DaoFactory {
         this.cardDao = cardDao;
     }
 
-    public ContactDao getContactDao() {
+    public static ContactDao getContactDao() {
         return contactDao;
     }
 
-    public AddressDao getAddressDao() {
+    public static AddressDao getAddressDao() {
         return addressDao;
     }
 
-    public CardDao getCardDao() {
+    public static CardDao getCardDao() {
         return cardDao;
     }
 }

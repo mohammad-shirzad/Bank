@@ -6,7 +6,7 @@ import com.bank.data.view.EvCard;
 
 import java.util.List;
 
-public interface CardDao extends BaseGenericDao<ECard> {
+public interface CardDao extends BaseGenericDao<ECard, String> {
     public List<EvCard> findCardsByFilter(EfCard efCard);
 
     EvCard getCardFullDetails(String pan);

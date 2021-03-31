@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.sql.SQLException;
 
 @RestController
-public class BankEndPointImpl {
+public class BankEndPointImpl implements BankEndPoint {
     private BankFacade bankFacade;
 
     @Autowired
@@ -45,7 +45,7 @@ public class BankEndPointImpl {
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/issueCard")
-    public IssueCardResponse issueCard(@RequestBody IssueCardRequest request) throws EntityNotExistsException, PaymentApplicationTypeNotSupportCardWithoutHolderException, EntityAlreadyExistsException {
+    public IssueCardResponse issueCard(@RequestBody IssueCardRequest request) throws EntityNotExistsException, PaymentApplicationTypeNotSupportCardWithoutHolderException {
         return bankFacade.issueCard(request);
     }
 

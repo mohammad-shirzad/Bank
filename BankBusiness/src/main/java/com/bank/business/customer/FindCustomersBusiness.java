@@ -5,11 +5,13 @@ import com.bank.dao.factory.DaoFactory;
 import com.bank.data.entity.EContact;
 import com.bank.data.filter.EfContact;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 
 @Component
+@Scope(value = "prototype")
 public class FindCustomersBusiness {
     private ContactDao contactDao;
     private EContact customer;

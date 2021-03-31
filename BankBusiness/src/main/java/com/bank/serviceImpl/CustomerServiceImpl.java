@@ -1,6 +1,7 @@
 package com.bank.serviceImpl;
 
 import com.bank.business.customer.*;
+import com.bank.business.factory.BusinessFactory;
 import com.bank.data.entity.EContact;
 import com.bank.data.exception.EntityAlreadyExistsException;
 import com.bank.data.exception.EntityNotExistsException;
@@ -21,11 +22,11 @@ public class CustomerServiceImpl implements CustomerService {
     private UpdateCustomerBusiness updateCustomerBusiness;
 
     @Autowired
-    CustomerServiceImpl(CustomerBusinessFactory customerBusinessFactory) {
-        this.registerCustomerBusiness = customerBusinessFactory.getRegisterCustomerBusiness();
-        this.deleteCustomerBusiness = customerBusinessFactory.getDeleteCustomerBusiness();
-        this.findCustomersBusiness = customerBusinessFactory.getFindCustomersBusiness();
-        this.updateCustomerBusiness = customerBusinessFactory.getUpdateCustomerBusiness();
+    CustomerServiceImpl(BusinessFactory businessFactory) {
+        this.registerCustomerBusiness = businessFactory.getRegisterCustomerBusiness();
+        this.deleteCustomerBusiness = businessFactory.getDeleteCustomerBusiness();
+        this.findCustomersBusiness = businessFactory.getFindCustomersBusiness();
+        this.updateCustomerBusiness = businessFactory.getUpdateCustomerBusiness();
     }
 
     @Override

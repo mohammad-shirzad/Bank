@@ -1,21 +1,22 @@
 package com.bank.data.enums;
 
 public enum Entity {
-    Customer(1),
-    Card(2),
-    Transaction(3);
+    CONTACT("Contact"),
+    CARD("Card"),
+    TRANSACTION("Transaction"),
+    ADDRESS("Address");
 
-    private int value;
+    private String value;
 
-    public int getValue() {
+    public String getValue() {
         return value;
     }
 
-    Entity(int value) {
+    Entity(String value) {
         this.value = value;
     }
 
-    public static Entity fromValue(Integer c) {
+    public static Entity fromValue(String c) {
         if (c == null)
             return null;
         for (Entity ct : Entity.values()) {

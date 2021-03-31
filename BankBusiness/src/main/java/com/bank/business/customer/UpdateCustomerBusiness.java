@@ -1,14 +1,16 @@
 package com.bank.business.customer;
 
 import com.bank.dao.bean.ContactDao;
-import com.bank.data.entity.*;
 import com.bank.dao.factory.DaoFactory;
+import com.bank.data.entity.EContact;
+import com.bank.data.exception.EntityNotExistsException;
 import com.bank.data.filter.EfContact;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
-import com.bank.data.exception.*;
 
 import javax.persistence.EntityNotFoundException;
 import java.util.ArrayList;
@@ -16,13 +18,14 @@ import java.util.Calendar;
 import java.util.List;
 
 @Component
+@Scope(value = "prototype")
 public class UpdateCustomerBusiness {
     private final Logger LOGGER = LoggerFactory.getLogger(getClass());
     private ContactDao contactDao;
 
     @Autowired
-    public void setContactDao(DaoFactory daoFactory) {
-        this.contactDao = daoFactory.getContactDao();
+    public void setContactDao(DaoFactory contactDao) {
+        this.contactDao = DaoFactory.getContactDao();
     }
 
     public void execute(EContact customer) throws EntityNotExistsException {
@@ -40,7 +43,6 @@ public class UpdateCustomerBusiness {
     }
 
     private void doBusiness(EContact customer) {
-        customer.setLastModificationDate(Calendar.getInstance().getTime());
         EfContact efContact = new EfContact();
         efContact.setIdentityNo(customer.getIdentityNo());
         List<EContact> dbCustomers = contactDao.find(efContact);
