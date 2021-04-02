@@ -17,16 +17,9 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-@Component
-@Scope(value = "prototype")
 public class UpdateCustomerBusiness {
     private final Logger LOGGER = LoggerFactory.getLogger(getClass());
-    private ContactDao contactDao;
-
-    @Autowired
-    public void setContactDao(DaoFactory contactDao) {
-        this.contactDao = DaoFactory.getContactDao();
-    }
+    private ContactDao contactDao = DaoFactory.getInstance().getContactDao();
 
     public void execute(EContact customer) throws EntityNotExistsException {
         init();

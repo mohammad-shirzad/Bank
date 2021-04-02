@@ -13,17 +13,10 @@ import org.springframework.stereotype.Component;
 import java.util.Calendar;
 import java.util.List;
 
-@Component
-@Scope(value = "prototype")
 public class RegisterCustomerBusiness {
 
 
-    private ContactDao contactDao;
-
-    @Autowired
-    RegisterCustomerBusiness(DaoFactory daoFactory) {
-        this.contactDao = daoFactory.getContactDao();
-    }
+    private ContactDao contactDao = DaoFactory.getInstance().getContactDao();
 
     public void validate(EContact customer) throws EntityAlreadyExistsException {
         if (customer.getIdentityNo() == null && customer.getIdentityNo() == null)

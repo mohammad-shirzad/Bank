@@ -1,13 +1,14 @@
 package com.bank.serviceImpl;
 
-import com.bank.business.customer.*;
-import com.bank.business.factory.BusinessFactory;
+import com.bank.business.customer.DeleteCustomerBusiness;
+import com.bank.business.customer.FindCustomersBusiness;
+import com.bank.business.customer.RegisterCustomerBusiness;
+import com.bank.business.customer.UpdateCustomerBusiness;
 import com.bank.data.entity.EContact;
 import com.bank.data.exception.EntityAlreadyExistsException;
 import com.bank.data.exception.EntityNotExistsException;
 import com.bank.data.filter.EfContact;
 import com.bank.service.CustomerService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -21,32 +22,24 @@ public class CustomerServiceImpl implements CustomerService {
     private FindCustomersBusiness findCustomersBusiness;
     private UpdateCustomerBusiness updateCustomerBusiness;
 
-    @Autowired
-    CustomerServiceImpl(BusinessFactory businessFactory) {
-        this.registerCustomerBusiness = businessFactory.getRegisterCustomerBusiness();
-        this.deleteCustomerBusiness = businessFactory.getDeleteCustomerBusiness();
-        this.findCustomersBusiness = businessFactory.getFindCustomersBusiness();
-        this.updateCustomerBusiness = businessFactory.getUpdateCustomerBusiness();
-    }
-
     @Override
     public EContact saveCustomer(EContact customer) throws EntityAlreadyExistsException {
 
-        return registerCustomerBusiness.execute(customer);
+        return new RegisterCustomerBusiness().execute(customer);
     }
 
     @Override
     public void deleteCustomerById(String identityNo) throws EntityNotExistsException {
-        deleteCustomerBusiness.execute(identityNo);
+        new DeleteCustomerBusiness().execute(identityNo);
     }
 
     @Override
     public void updateCustomer(EContact customer) throws EntityNotExistsException {
-        updateCustomerBusiness.execute(customer);
+        new UpdateCustomerBusiness().execute(customer);
     }
 
     @Override
     public List<EContact> findCustomer(EfContact efContact) {
-        return findCustomersBusiness.execute(efContact);
+        return new FindCustomersBusiness().execute(efContact);
     }
 }

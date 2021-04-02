@@ -7,15 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-@Component
-@Scope(value = "prototype")
 public class GetCardFullDetailsBusiness {
-    private CardDao cardDao;
-
-    @Autowired
-    public GetCardFullDetailsBusiness(DaoFactory daoFactory) {
-        cardDao = daoFactory.getCardDao();
-    }
+    private CardDao cardDao = DaoFactory.getInstance().getCardDao();
 
     public EvCard execute(String pan) {
         return cardDao.getCardFullDetails(pan);

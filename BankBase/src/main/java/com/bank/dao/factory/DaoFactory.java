@@ -3,40 +3,37 @@ package com.bank.dao.factory;
 import com.bank.dao.bean.AddressDao;
 import com.bank.dao.bean.CardDao;
 import com.bank.dao.bean.ContactDao;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import com.bank.dao.impl.AddressDaoImpl;
+import com.bank.dao.impl.CardDaoImpl;
+import com.bank.dao.impl.ContactDaoImpl;
+import com.bank.dao.util.BeanUtil;
 
-@Component
-public class DaoFactory {
+public final class DaoFactory {
 
-    private static ContactDao contactDao;
-    private static AddressDao addressDao;
-    private static CardDao cardDao;
+    private static DaoFactory DAO_FACTORY;
 
-    @Autowired
-    private void setContactDao(ContactDao contactDao) {
-        this.contactDao = contactDao;
+    public ContactDao getContactDao() {
+        return BeanUtil.getBean(ContactDaoImpl.class);
     }
 
-    @Autowired
-    private void setAddressDao(AddressDao addressDao) {
-        this.addressDao = addressDao;
+    public AddressDao getAddressDao() {
+        return BeanUtil.getBean(AddressDaoImpl.class);
     }
 
-    @Autowired
-    private void setCardDao(CardDao cardDao) {
-        this.cardDao = cardDao;
+    public CardDao getCardDao() {
+        return BeanUtil.getBean(CardDaoImpl.class);
     }
 
-    public static ContactDao getContactDao() {
-        return contactDao;
+    public static DaoFactory getInstance() {
+        if (DAO_FACTORY == null) {
+            synchronized (DaoFactory.class) {
+                if (DAO_FACTORY == null)
+                    DAO_FACTORY = new DaoFactory();
+            }
+        }
+        return DAO_FACTORY;
     }
 
-    public static AddressDao getAddressDao() {
-        return addressDao;
-    }
-
-    public static CardDao getCardDao() {
-        return cardDao;
+    private DaoFactory() {
     }
 }

@@ -11,17 +11,10 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-@Component
-@Scope(value = "prototype")
 public class DeleteCustomerBusiness {
 
-    private ContactDao contactDao;
+    private ContactDao contactDao = DaoFactory.getInstance().getContactDao();
     private EContact dbCustomer;
-
-    @Autowired
-    DeleteCustomerBusiness(DaoFactory daoFactory) {
-        this.contactDao = daoFactory.getContactDao();
-    }
 
     public void init(String identityNo) {
         EfContact efContact = new EfContact();

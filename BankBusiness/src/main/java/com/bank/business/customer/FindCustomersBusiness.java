@@ -10,16 +10,10 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-@Component
-@Scope(value = "prototype")
-public class FindCustomersBusiness {
-    private ContactDao contactDao;
-    private EContact customer;
 
-    @Autowired
-    public void setContactDao(DaoFactory daoFactory) {
-        this.contactDao = daoFactory.getContactDao();
-    }
+public class FindCustomersBusiness {
+    private ContactDao contactDao = DaoFactory.getInstance().getContactDao();
+    private EContact customer;
 
     public List<EContact> execute(EfContact efContact) {
         return doBusiness(efContact);

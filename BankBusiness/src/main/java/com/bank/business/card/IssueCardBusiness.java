@@ -20,19 +20,11 @@ import org.springframework.stereotype.Component;
 import java.util.Calendar;
 import java.util.List;
 
-@Component
-@Scope(value = "prototype")
 public class IssueCardBusiness {
 
-    private CardDao cardDao;
-    private ContactDao contactDao;
+    private CardDao cardDao = DaoFactory.getInstance().getCardDao();
+    private ContactDao contactDao = DaoFactory.getInstance().getContactDao();
     private EContact customer;
-
-    @Autowired
-    IssueCardBusiness(DaoFactory daoFactory) {
-        this.cardDao = daoFactory.getCardDao();
-        this.contactDao = daoFactory.getContactDao();
-    }
 
     public void validate(ECard card) throws EntityNotExistsException, PaymentApplicationTypeNotSupportCardWithoutHolderException {
         EfContact efContact = new EfContact();

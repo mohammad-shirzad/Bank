@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 import javax.persistence.Query;
 import java.util.List;
 
-@Repository(value = "CustomerDao")
+@Repository(value = "ContactDao")
 public class ContactDaoImpl extends BaseGenericDaoImpl<EContact, String> implements ContactDao {
     private static final Logger LOGGER = LoggerFactory.getLogger(ContactDaoImpl.class);
 
