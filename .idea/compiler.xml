@@ -16,6 +16,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="Bank" target="8" />
       <module name="BankBusiness" target="8" />
       <module name="BankConfig" target="1.5" />
       <module name="BankDao" target="8" />
