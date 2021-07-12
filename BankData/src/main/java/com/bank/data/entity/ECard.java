@@ -14,7 +14,7 @@ import java.util.Date;
 public class ECard implements Serializable {
 
 
-    private String pan;
+    private String cardNo;
 
 
     private String paymentApplicationNumber;
@@ -58,6 +58,7 @@ public class ECard implements Serializable {
     }
 
     @Column(name = "EXPDT", nullable = false)
+    @Temporal(value = TemporalType.DATE)
     public Date getExpireDate() {
         return expireDate;
     }
@@ -91,13 +92,13 @@ public class ECard implements Serializable {
     }
 
     @Id
-    @Column(name = "PAN", nullable = false, length = 16)
-    public String getPan() {
-        return pan;
+    @Column(name = "CARDNO", nullable = false, length = 16)
+    public String getCardNo() {
+        return cardNo;
     }
 
-    public void setPan(String pan) {
-        this.pan = pan;
+    public void setCardNo(String pan) {
+        this.cardNo = pan;
     }
 
     @Column(name = "PMNTAPPNO", nullable = false)
@@ -109,23 +110,13 @@ public class ECard implements Serializable {
         this.paymentApplicationNumber = paymentApplicationNumber;
     }
 
-    @Transient
+    @Column(name = "PMNTAPPTYP")
     public PaymentApplicationType getPaymentApplicationType() {
         return paymentApplicationType;
     }
 
     public void setPaymentApplicationType(PaymentApplicationType paymentApplicationType) {
         this.paymentApplicationType = paymentApplicationType;
-    }
-
-    @Column(name = "PMNTAPPTYP", nullable = false)
-    @Access(value = AccessType.PROPERTY)
-    public int getPaymentApplicationTypeValue() {
-        return paymentApplicationType.getValue();
-    }
-
-    public void setPaymentApplicationTypeValue(Integer paymentApplicationType) {
-        this.paymentApplicationType = PaymentApplicationType.fromValue(paymentApplicationType);
     }
 
     @Column(name = "HLDRID")
@@ -143,7 +134,7 @@ public class ECard implements Serializable {
     }
 
     public void setCVV2(String CVV2) {
-        this.CVV2 = AesEncrDecrUtil.encrypt(CVV2);
+        this.CVV2 = CVV2;
     }
 
     @Column(name = "PIN1", nullable = false)
@@ -152,7 +143,7 @@ public class ECard implements Serializable {
     }
 
     public void setPin1(String pin1) {
-        this.pin1 = AesEncrDecrUtil.encrypt(pin1);
+        this.pin1 = pin1;
     }
 
     @Column(name = "PIN2")

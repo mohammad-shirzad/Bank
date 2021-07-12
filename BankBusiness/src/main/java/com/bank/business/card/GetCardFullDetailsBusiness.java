@@ -1,16 +1,17 @@
 package com.bank.business.card;
 
 import com.bank.dao.bean.CardDao;
-import com.bank.dao.factory.DaoFactory;
 import com.bank.data.view.EvCard;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Component;
+
+import java.util.Collections;
 
 public class GetCardFullDetailsBusiness {
-    private CardDao cardDao = DaoFactory.getInstance().getCardDao();
+    private CardDao cardDao;
+    public GetCardFullDetailsBusiness(CardDao cardDao) {
+        this.cardDao = cardDao;
+    }
 
     public EvCard execute(String pan) {
-        return cardDao.getCardFullDetails(pan);
+        return cardDao.getByPan(pan);
     }
 }

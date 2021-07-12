@@ -1,14 +1,15 @@
 package com.bank.serviceImpl;
 
-import com.bank.business.customer.DeleteCustomerBusiness;
+import com.bank.business.customer.DeleteCustomer;
 import com.bank.business.customer.FindCustomersBusiness;
-import com.bank.business.customer.RegisterCustomerBusiness;
-import com.bank.business.customer.UpdateCustomerBusiness;
+import com.bank.business.customer.RegisterCustomer;
+import com.bank.business.customer.UpdateCustomer;
 import com.bank.data.entity.EContact;
 import com.bank.data.exception.EntityAlreadyExistsException;
 import com.bank.data.exception.EntityNotExistsException;
 import com.bank.data.filter.EfContact;
 import com.bank.service.CustomerService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,29 +18,46 @@ import java.util.List;
 public class CustomerServiceImpl implements CustomerService {
 
 
-    private RegisterCustomerBusiness registerCustomerBusiness;
-    private DeleteCustomerBusiness deleteCustomerBusiness;
+    private RegisterCustomer registerCustomer;
+    private DeleteCustomer deleteCustomer;
     private FindCustomersBusiness findCustomersBusiness;
-    private UpdateCustomerBusiness updateCustomerBusiness;
+    private UpdateCustomer updateCustomer;
+
+    @Autowired
+    public void setRegisterCustomer(RegisterCustomer registerCustomer) {
+        this.registerCustomer = registerCustomer;
+    }
+    @Autowired
+    public void setDeleteCustomer(DeleteCustomer deleteCustomer) {
+        this.deleteCustomer = deleteCustomer;
+    }
+    @Autowired
+    public void setFindCustomersBusiness(FindCustomersBusiness findCustomersBusiness) {
+        this.findCustomersBusiness = findCustomersBusiness;
+    }
+    @Autowired
+    public void setUpdateCustomer(UpdateCustomer updateCustomer) {
+        this.updateCustomer = updateCustomer;
+    }
 
     @Override
-    public EContact saveCustomer(EContact customer) throws EntityAlreadyExistsException {
+    public long saveCustomer(EContact customer) throws EntityAlreadyExistsException {
 
-        return new RegisterCustomerBusiness().execute(customer);
+        return registerCustomer.execute(customer);
     }
 
     @Override
     public void deleteCustomerById(String identityNo) throws EntityNotExistsException {
-        new DeleteCustomerBusiness().execute(identityNo);
+        deleteCustomer.execute(identityNo);
     }
 
     @Override
     public void updateCustomer(EContact customer) throws EntityNotExistsException {
-        new UpdateCustomerBusiness().execute(customer);
+        updateCustomer.execute(customer);
     }
 
     @Override
     public List<EContact> findCustomer(EfContact efContact) {
-        return new FindCustomersBusiness().execute(efContact);
+        return findCustomersBusiness.execute(efContact);
     }
 }

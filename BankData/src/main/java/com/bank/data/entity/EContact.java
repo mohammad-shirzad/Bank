@@ -10,11 +10,6 @@ import java.util.List;
 
 @Table(name = "CNTC")
 @Entity
-@NamedQueries({
-        @NamedQuery(name = "customer.findCustomer",
-                query = "select c from EContact c where " +
-                        "(:customerNo is null or c.customerNo = :customerNo) and " +
-                        "(:holderId is null or c.id = :holderId)")})
 public class EContact implements Serializable {
 
     private long id;
@@ -92,15 +87,6 @@ public class EContact implements Serializable {
     }
 
     @Column(name = "CUSTTYP")
-    public Character getCustomerTypeValue() {
-        return customerType.getValue();
-    }
-
-    public void setCustomerTypeValue(Character customerTypeValue) {
-        this.customerType = CustomerType.fromValue(customerTypeValue);
-    }
-
-    @Transient
     public CustomerType getCustomerType() {
         return customerType;
     }
@@ -118,22 +104,13 @@ public class EContact implements Serializable {
         this.customerNo = customerNo;
     }
 
-    @Transient
+    @Column(name = "IDNTTYP")
     public IdentityType getIdentityType() {
         return identityType;
     }
 
     public void setIdentityType(IdentityType identityType) {
         this.identityType = identityType;
-    }
-
-    @Column(name = "IDNTTYP")
-    public Character getIdentityTypeValue() {
-        return identityType.getValue();
-    }
-
-    public void setIdentityTypeValue(Character identityTypeValue) {
-        this.identityType = IdentityType.fromValue(identityTypeValue);
     }
 
     @Column(name = "DOB")

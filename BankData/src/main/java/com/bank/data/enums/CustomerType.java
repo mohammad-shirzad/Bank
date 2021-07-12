@@ -2,28 +2,18 @@ package com.bank.data.enums;
 
 public enum CustomerType {
 
-    Real('R'),
-    Corporation('C'),
-    Transitive('T');
+    REAL('R'),
+    CORPORATION('C'),
+    TRANSITIVE('T');
 
-    private char value;
+    private Character value;
 
-    public char getValue() {
+    public Character getValue() {
         return value;
     }
 
-    CustomerType(char value) {
+    CustomerType(Character value) {
         this.value = value;
-    }
-
-    public static CustomerType fromValue(Character c) {
-        if (c == null)
-            return null;
-        for (CustomerType ct : CustomerType.values()) {
-            if (c.equals(ct.getValue()))
-                return ct;
-        }
-        throw new IllegalArgumentException();
     }
 
 }

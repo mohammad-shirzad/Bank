@@ -10,9 +10,9 @@
 
 
     <context:annotation-config/>
-    <context:component-scan base-package="com.bank.dao"/>
     <context:property-placeholder location="classpath:application.properties"/>
-    <jpa:repositories base-package="com.bank.dao.bean" entity-manager-factory-ref="emf"/>
+    <jpa:repositories base-package="com.bank.dao.bean"
+                      base-class="com.bank.dao.bean.ExtendedRepositoryImpl"/>
 
 
     <bean id="datasource" class="org.apache.commons.dbcp2.BasicDataSource">
@@ -26,7 +26,7 @@
 
     <bean id="persistenceProvider" class="org.hibernate.jpa.HibernatePersistenceProvider"/>
 
-    <bean id="emf" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+    <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
         <property name="dataSource" ref="datasource"/>
         <property name="jpaVendorAdapter" ref="vendorAdapter"/>
         <property name="packagesToScan" value="com.bank.data"/>

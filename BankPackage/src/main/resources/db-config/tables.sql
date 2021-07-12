@@ -47,7 +47,7 @@ create table BANK.bnk_address
 
 create table BANK.bnk_card
 (
-    pan        nvarchar2(16) primary key,
+    cardno     nvarchar2(16) primary key,
     pmntappno  nvarchar2(100) not null,
     pmntapptyp number(1)      not null,
     isudt      date           not null,

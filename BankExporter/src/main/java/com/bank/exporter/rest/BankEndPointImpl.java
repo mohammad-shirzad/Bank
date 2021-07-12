@@ -1,12 +1,23 @@
 package com.bank.exporter.rest;
 
+import com.bank.data.entity.ECard;
+import com.bank.data.entity.EContact;
 import com.bank.data.exception.EntityAlreadyExistsException;
 import com.bank.data.exception.EntityNotExistsException;
-import com.bank.data.exception.HolderException;
 import com.bank.data.exception.PaymentApplicationTypeNotSupportCardWithoutHolderException;
-import com.bank.facade.facade.BankFacade;
-import com.bank.facade.request.*;
-import com.bank.facade.response.*;
+import com.bank.data.filter.EfContact;
+import com.bank.data.view.EvCard;
+import com.bank.data.view.EvCardIssueDetailData;
+import com.bank.exporter.dto.view.CardViewDto;
+import com.bank.exporter.dto.view.CustomerViewDto;
+import com.bank.exporter.request.GetCardFullDetailsRequest;
+import com.bank.exporter.response.GetCardFullDetailsResponse;
+import com.bank.exporter.request.*;
+import com.bank.exporter.response.*;
+import com.bank.service.CardService;
+import com.bank.service.CustomerService;
+import com.common.utils.singleton.DozerMapper;
+import org.dozer.DozerBeanMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,43 +25,61 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.sql.SQLException;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 public class BankEndPointImpl implements BankEndPoint {
-    private BankFacade bankFacade;
+    private CustomerService customerService;
+    private CardService cardService;
+    private DozerBeanMapper mapper = DozerMapper.getDozerBeanMapper();
 
     @Autowired
-    public void setBankFacade(BankFacade bankFacade) {
-        this.bankFacade = bankFacade;
+    public void setCustomerService(CustomerService customerService) {
+        this.customerService = customerService;
+    }
+    @Autowired
+    public void setCardService(CardService cardService) {
+        this.cardService = cardService;
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/createCustomer")
     public CreateCustomerResponse createCustomer(@RequestBody CreateCustomerRequest request) throws EntityAlreadyExistsException, SQLException {
-        return bankFacade.createNewCustomer(request);
+        EContact contact = mapper.map(request, EContact.class);
+        long customerId = customerService.saveCustomer(contact);
+        return new CreateCustomerResponse(customerId);
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/deleteCustomer")
     public DeleteCustomerByIdResponse deleteCustomer(@RequestBody DeleteCustomerByIdentityRequest request) throws EntityNotExistsException, SQLException {
-        return bankFacade.deleteCustomerById(request);
+        customerService.deleteCustomerById(request.getIdentityNo());
+        return new DeleteCustomerByIdResponse();
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/findCustomers")
     public FindCustomerResponse findCustomers(@RequestBody FindCustomerRequest request) throws SQLException {
-        return bankFacade.findCustomer(request);
+        List<EContact> contacts = customerService.findCustomer(mapper.map(request.getCustomerFilterDto(), EfContact.class));
+        List<CustomerViewDto> customerViewDtos = contacts.stream().map(contact->mapper.map(contacts, CustomerViewDto.class)).collect(Collectors.toList());
+        return new FindCustomerResponse(customerViewDtos);
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "/updateCustomer")
+    @RequestMapping(method = RequestMethod.PATCH, value = "/updateCustomer")
     public UpdateCustomerResponse updateCustomer(@RequestBody UpdateCustomerRequest request) throws EntityNotExistsException, SQLException {
-        return bankFacade.updateCustomer(request);
+        EContact contact = mapper.map(request, EContact.class);
+        customerService.updateCustomer(contact);
+        return new UpdateCustomerResponse();
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/issueCard")
     public IssueCardResponse issueCard(@RequestBody IssueCardRequest request) throws EntityNotExistsException, PaymentApplicationTypeNotSupportCardWithoutHolderException {
-        return bankFacade.issueCard(request);
+        EvCardIssueDetailData evCardIssueDetailData = cardService.issueCard(mapper.map(request, ECard.class));
+        return mapper.map(evCardIssueDetailData, IssueCardResponse.class);
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/getCardFullDetails")
     public GetCardFullDetailsResponse getCardFullDetails(@RequestBody GetCardFullDetailsRequest request) {
-        return bankFacade.getCardFullDetails(request);
+        EvCard evCard = cardService.getCardFullDetails(request.getCardNo());
+        CardViewDto viewDto = mapper.map(evCard, CardViewDto.class);
+        return new GetCardFullDetailsResponse(viewDto);
     }
 }

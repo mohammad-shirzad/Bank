@@ -12,11 +12,11 @@ import java.util.List;
 @Transactional
 public interface CustomerService {
 
-    public EContact saveCustomer(EContact customer) throws EntityAlreadyExistsException;
+    long saveCustomer(EContact customer) throws EntityAlreadyExistsException;
 
-    public void deleteCustomerById(String identityNo) throws EntityNotExistsException;
+    void deleteCustomerById(String identityNo) throws EntityNotExistsException;
 
-    public void updateCustomer(EContact customer) throws EntityNotExistsException;
+    void updateCustomer(EContact customer) throws EntityNotExistsException;
 
-    public List<EContact> findCustomer(EfContact efContact);
+    List<EContact> findCustomer(EfContact efContact);
 }

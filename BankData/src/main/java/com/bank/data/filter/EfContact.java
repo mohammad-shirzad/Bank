@@ -1,27 +1,24 @@
 package com.bank.data.filter;
 
-import com.bank.data.enums.CustomerType;
-import com.bank.data.enums.IdentityType;
-
 public class EfContact {
-    private String IdentityNo;
-    private String CustomerNo;
+    private String identityNo;
+    private String customerNo;
     private Long holderId;
 
     public String getIdentityNo() {
-        return IdentityNo;
+        return identityNo;
     }
 
     public void setIdentityNo(String identityNo) {
-        IdentityNo = identityNo;
+        this.identityNo = identityNo;
     }
 
     public String getCustomerNo() {
-        return CustomerNo;
+        return customerNo;
     }
 
     public void setCustomerNo(String customerNo) {
-        CustomerNo = customerNo;
+        this.customerNo = customerNo;
     }
 
     public Long getHolderId() {

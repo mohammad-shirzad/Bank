@@ -9,6 +9,7 @@
     <version>1.0-SNAPSHOT</version>
 
     <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <org.hibernate>5.4.0.Final</org.hibernate>
         <logger.version>1.7.15</logger.version>
         <logback.version>1.2.3</logback.version>
@@ -16,24 +17,34 @@
         <javax.persistence>2.2</javax.persistence>
         <org.apache.commons>3.0</org.apache.commons>
         <org.springframework>5.1.9.RELEASE</org.springframework>
+        <java.version>11</java.version>
     </properties>
+    <dependencies>
+        <dependency>
+            <groupId>com.sun.org.apache.xml.internal</groupId>
+            <artifactId>resolver</artifactId>
+            <version>20050927</version>
+        </dependency>
+    </dependencies>
+
     <build>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
                 <configuration>
-                    <source>8</source>
-                    <target>8</target>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
                 </configuration>
             </plugin>
         </plugins>
     </build>
+
     <modules>
         <module>BankData</module>
         <module>BankBase</module>
         <module>BankBusiness</module>
-        <module>BankFacade</module>
         <module>BankExporter</module>
         <module>CommonUtils</module>
         <module>BankPackage</module>
