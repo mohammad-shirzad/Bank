@@ -16,7 +16,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <org.hibernate>5.4.0.Final</org.hibernate>
+        <org.hibernate>5.4.24.Final</org.hibernate>
         <logger.version>1.7.15</logger.version>
         <logback.version>1.2.3</logback.version>
         <org.aspectj>1.9.2</org.aspectj>
