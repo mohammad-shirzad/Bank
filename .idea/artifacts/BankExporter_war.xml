@@ -1,6 +1,6 @@
 <component name="ArtifactManager">
   <artifact type="war" name="BankExporter:war">
-    <output-path>$PROJECT_DIR$/BankExporter/target</output-path>
+    <output-path>$PROJECT_DIR$/com.bank.exporter/target</output-path>
     <properties id="maven-jee-properties">
       <options>
         <module>BankExporter</module>

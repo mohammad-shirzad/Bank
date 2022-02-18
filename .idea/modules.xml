@@ -3,13 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Bank.iml" filepath="$PROJECT_DIR$/Bank.iml" />
-      <module fileurl="file://$PROJECT_DIR$/BankBusiness/BankBusiness.iml" filepath="$PROJECT_DIR$/BankBusiness/BankBusiness.iml" />
-      <module fileurl="file://$PROJECT_DIR$/BankBase/BankDao.iml" filepath="$PROJECT_DIR$/BankBase/BankDao.iml" />
-      <module fileurl="file://$PROJECT_DIR$/BankData/BankData.iml" filepath="$PROJECT_DIR$/BankData/BankData.iml" />
-      <module fileurl="file://$PROJECT_DIR$/BankExporter/BankExporter.iml" filepath="$PROJECT_DIR$/BankExporter/BankExporter.iml" />
-      <module fileurl="file://$PROJECT_DIR$/BankFacade/BankFacade.iml" filepath="$PROJECT_DIR$/BankFacade/BankFacade.iml" />
-      <module fileurl="file://$PROJECT_DIR$/BankPackage/BankPackage.iml" filepath="$PROJECT_DIR$/BankPackage/BankPackage.iml" />
-      <module fileurl="file://$PROJECT_DIR$/CommonUtils/CommonUtils.iml" filepath="$PROJECT_DIR$/CommonUtils/CommonUtils.iml" />
       <module fileurl="file://$PROJECT_DIR$/Training.iml" filepath="$PROJECT_DIR$/Training.iml" />
     </modules>
   </component>

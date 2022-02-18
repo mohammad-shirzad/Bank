@@ -2,31 +2,41 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <annotationProcessing>
-      <profile name="Maven default annotation processors profile" enabled="true">
+      <profile name="Annotation profile for Bank" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="BankPackage" />
-        <module name="BankFacade" />
-        <module name="BankExporter" />
-        <module name="BankDao" />
-        <module name="BankData" />
-        <module name="CommonUtils" />
-        <module name="BankBusiness" />
+        <processorPath useClasspath="false">
+          <entry name="$MAVEN_REPOSITORY$/org/mapstruct/mapstruct-processor/1.4.2.Final/mapstruct-processor-1.4.2.Final.jar" />
+          <entry name="$MAVEN_REPOSITORY$/org/mapstruct/mapstruct/1.4.2.Final/mapstruct-1.4.2.Final.jar" />
+        </processorPath>
+        <module name="Bank" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="Bank" target="8" />
-      <module name="BankBusiness" target="8" />
+      <module name="Bank" target="11" />
+      <module name="bank-business" target="17" />
+      <module name="bank-config" target="11" />
+      <module name="bank-dao" target="17" />
+      <module name="bank-data" target="17" />
+      <module name="bank-exporter" target="17" />
+      <module name="bank-package" target="17" />
+      <module name="bank-util" target="11" />
       <module name="BankConfig" target="1.5" />
-      <module name="BankDao" target="8" />
-      <module name="BankData" target="8" />
-      <module name="BankExporter" target="8" />
       <module name="BankFacade" target="8" />
-      <module name="BankPackage" target="8" />
-      <module name="CommonUtils" target="8" />
       <module name="Test" target="8" />
       <module name="Training" target="8" />
     </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="Bank" options="-parameters" />
+      <module name="bank-business" options="-parameters" />
+      <module name="bank-config" options="-parameters" />
+      <module name="bank-dao" options="-parameters" />
+      <module name="bank-data" options="-parameters" />
+      <module name="bank-exporter" options="-parameters" />
+      <module name="bank-package" options="-parameters" />
+    </option>
   </component>
 </project>
