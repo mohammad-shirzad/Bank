@@ -1,12 +1,11 @@
 package com.bank.controller.soap;
 
-import com.bank.controller.response.CreateCustomerResponse;
+import com.bank.controller.request.*;
+import com.bank.controller.response.*;
 import com.bank.data.exception.EntityAlreadyExistsException;
 import com.bank.data.exception.EntityNotExistsException;
 import com.bank.data.exception.HolderException;
 import com.bank.data.exception.PaymentApplicationTypeNotSupportCardWithoutHolderException;
-import com.bank.controller.request.*;
-import com.bank.controller.response.*;
 
 import javax.jws.WebMethod;
 import javax.jws.WebParam;

@@ -4,7 +4,6 @@ import com.bank.controller.dto.view.CardViewDto;
 import com.bank.controller.dto.view.CustomerViewDto;
 import com.bank.controller.request.*;
 import com.bank.controller.response.*;
-import com.bank.util.DozerMapper;
 import com.bank.data.entity.ECard;
 import com.bank.data.entity.EContact;
 import com.bank.data.exception.EntityAlreadyExistsException;
@@ -15,18 +14,17 @@ import com.bank.data.view.EvCard;
 import com.bank.data.view.EvCardIssueDetailData;
 import com.bank.service.CardService;
 import com.bank.service.CustomerService;
+import com.bank.util.DozerMapper;
 import org.dozer.DozerBeanMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.sql.SQLException;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
+@RequestMapping("/bank")
 public class BankEndPointImpl implements BankEndPoint {
     private CustomerService customerService;
     private CardService cardService;

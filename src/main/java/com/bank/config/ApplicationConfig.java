@@ -11,7 +11,6 @@ import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
-import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 import javax.sql.DataSource;
 import java.io.FileInputStream;
@@ -25,7 +24,7 @@ import java.util.Set;
 @EnableAutoConfiguration
 @EnableTransactionManagement
 @EnableJpaRepositories(basePackages = "com.bank.dao.repository", entityManagerFactoryRef = "emf")
-@ComponentScan(basePackages = {"com.bank.business","com.bank.data"})
+@ComponentScan(basePackages = {"com.bank.business","com.bank.data","com.bank.service","com.bank.controller"})
 public class ApplicationConfig {
     private static String CONFIG_NAME = "application.properties";
     public static Map<String, Object> CONFIG_MAP = new HashMap<>();
@@ -65,6 +64,7 @@ public class ApplicationConfig {
         bean.setDataSource(getDataSource());
         bean.setJpaVendorAdapter(getVendorAdaptor());
         bean.setPersistenceProviderClass(HibernatePersistenceProvider.class);
+        bean.setJpaProperties(getHibernateProperties());
         bean.setPackagesToScan("com.bank.data");
         bean.afterPropertiesSet();
         return bean;
@@ -78,6 +78,7 @@ public class ApplicationConfig {
     public JpaTransactionManager jpaTransactionManager() {
         JpaTransactionManager transactionManager = new JpaTransactionManager();
         transactionManager.setEntityManagerFactory(getLocalContainerEntityManagerFactoryBean().getObject());
+        transactionManager.setJpaProperties(getHibernateProperties());
         return transactionManager;
     }
 
@@ -86,16 +87,9 @@ public class ApplicationConfig {
         hibernateProp.put("hibernate.dialect", CONFIG_MAP.get("hibernate.dialect"));
         hibernateProp.put("hibernate.show_sql", CONFIG_MAP.get("hibernate.show_sql"));
         hibernateProp.put("hibernate.current_session_context_class", "thread");
+        hibernateProp.put("spring.jpa.properties.hibernate.physical_naming_strategy", "com.bank.data.naming.TablePropertiesNaming");
         hibernateProp.put("hibernate.format_sql",
                 CONFIG_MAP.get("hibernate.format_sql"));
         return hibernateProp;
-    }
-
-    @Bean
-    public InternalResourceViewResolver getInternalResourceViewResolver(){
-        InternalResourceViewResolver resolver = new InternalResourceViewResolver();
-        resolver.setPrefix("/");
-        resolver.setSuffix(".jsp");
-        return resolver;
     }
 }

@@ -9,8 +9,8 @@ import com.bank.data.exception.EntityNotExistsException;
 import com.bank.data.exception.PaymentApplicationTypeNotSupportCardWithoutHolderException;
 import com.bank.data.filter.EfContact;
 import com.bank.data.view.EvCardIssueDetailData;
-import com.bank.util.parser.BankConfigProvider;
 import com.bank.util.DozerMapper;
+import com.bank.util.parser.BankConfigProvider;
 import org.springframework.stereotype.Component;
 
 import java.util.Calendar;
