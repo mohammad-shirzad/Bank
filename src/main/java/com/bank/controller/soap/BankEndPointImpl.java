@@ -14,7 +14,7 @@ import com.bank.data.view.EvCard;
 import com.bank.data.view.EvCardIssueDetailData;
 import com.bank.service.CardService;
 import com.bank.service.CustomerService;
-import com.bank.util.DozerMapper;
+import com.bank.util.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -28,6 +28,7 @@ public class BankEndPointImpl implements BankEndPoint {
 
     private CustomerService customerService;
     private CardService cardService;
+    private ObjectMapper mapper = ObjectMapper.INSTANCE;
 
     @Autowired
     public void setCustomerService(CustomerService customerService) {
@@ -40,7 +41,7 @@ public class BankEndPointImpl implements BankEndPoint {
 
     @Override
     public CreateCustomerResponse createCustomer(CreateCustomerRequest request) throws EntityAlreadyExistsException {
-        EContact contact = DozerMapper.getDozerBeanMapper().map(request, EContact.class);
+        EContact contact = mapper.toEContact(request);
         long customerId = customerService.saveCustomer(contact);
         return new CreateCustomerResponse(customerId);
     }
@@ -53,29 +54,29 @@ public class BankEndPointImpl implements BankEndPoint {
 
     @Override
     public FindCustomerResponse findCustomers(FindCustomerRequest request) {
-        List<EContact> contacts = customerService.findCustomer(DozerMapper.getDozerBeanMapper().map(request.getCustomerFilterDto(), EfContact.class));
-        List<CustomerViewDto> customerViewDtos = contacts.stream().map(contact->DozerMapper.getDozerBeanMapper().map(contacts, CustomerViewDto.class)).collect(Collectors.toList());
+        List<EContact> contacts = customerService.findCustomer(mapper.toEfContact(request.getCustomerFilterDto()));
+        List<CustomerViewDto> customerViewDtos = contacts.stream().map(contact -> mapper.toCustomerViewDto(contact)).collect(Collectors.toList());
         return new FindCustomerResponse(customerViewDtos);
 
     }
 
     @Override
     public UpdateCustomerResponse updateCustomer(UpdateCustomerRequest request) throws EntityNotExistsException {
-        EContact contact = DozerMapper.getDozerBeanMapper().map(request, EContact.class);
+        EContact contact = mapper.toEContact(request);
         customerService.updateCustomer(contact);
         return new UpdateCustomerResponse();
     }
 
     @Override
     public IssueCardResponse issueCard(IssueCardRequest request) throws EntityNotExistsException, PaymentApplicationTypeNotSupportCardWithoutHolderException {
-        EvCardIssueDetailData evCardIssueDetailData = cardService.issueCard(DozerMapper.getDozerBeanMapper().map(request, ECard.class));
-        return DozerMapper.getDozerBeanMapper().map(evCardIssueDetailData, IssueCardResponse.class);
+        EvCardIssueDetailData evCardIssueDetailData = cardService.issueCard(mapper.toECard(request));
+        return mapper.toIssueCardResponse(evCardIssueDetailData);
     }
 
     @Override
     public GetCardFullDetailsResponse getCardFullDetails(GetCardFullDetailsRequest request) {
-         EvCard evCard = cardService.getCardFullDetails(request.getCardNo());
-         CardViewDto viewDto = DozerMapper.getDozerBeanMapper().map(evCard, CardViewDto.class);
+        EvCard evCard = cardService.getCardFullDetails(request.getCardNo());
+        CardViewDto viewDto = mapper.toCardViewDto(evCard);
          return new GetCardFullDetailsResponse(viewDto);
     }
 }

@@ -87,6 +87,7 @@ public class EContact implements Serializable {
     }
 
     @Column(name = "CUSTTYP")
+    @Enumerated(value = EnumType.STRING)
     public CustomerType getCustomerType() {
         return customerType;
     }

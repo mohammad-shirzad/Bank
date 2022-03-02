@@ -1,8 +1,8 @@
 package com.bank.controller.request;
 
 import com.bank.controller.dto.entity.AddressDto;
-import com.bank.data.enums.CustomerType;
-import com.bank.data.enums.IdentityType;
+import com.bank.controller.dto.enumeration.CustomerTypeDto;
+import com.bank.controller.dto.enumeration.IdentityTypeDto;
 
 import java.util.Date;
 
@@ -13,11 +13,11 @@ public class CreateCustomerRequest extends ServiceRequest{
 
     private String lastName;
 
-    private String IdentityNo;
+    private String identityNo;
 
-    private CustomerType customerType;
+    private CustomerTypeDto customerType;
 
-    private IdentityType identityType;
+    private IdentityTypeDto identityType;
     private String customerNo;
     private Date dateOfBirth;
     private AddressDto address;
@@ -47,26 +47,26 @@ public class CreateCustomerRequest extends ServiceRequest{
     }
 
     public String getIdentityNo() {
-        return IdentityNo;
+        return identityNo;
     }
 
     public void setIdentityNo(String identityNo) {
-        IdentityNo = identityNo;
+        this.identityNo = identityNo;
     }
 
-    public CustomerType getCustomerType() {
+    public CustomerTypeDto getCustomerType() {
         return customerType;
     }
 
-    public void setCustomerType(CustomerType customerType) {
+    public void setCustomerType(CustomerTypeDto customerType) {
         this.customerType = customerType;
     }
 
-    public IdentityType getIdentityType() {
+    public IdentityTypeDto getIdentityType() {
         return identityType;
     }
 
-    public void setIdentityType(IdentityType identityType) {
+    public void setIdentityType(IdentityTypeDto identityType) {
         this.identityType = identityType;
     }
 
@@ -91,7 +91,7 @@ public class CreateCustomerRequest extends ServiceRequest{
         return "CreateCustomerRequest{" +
                 "firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", IdentityNo='" + IdentityNo + '\'' +
+                ", IdentityNo='" + identityNo + '\'' +
                 ", customerType=" + customerType +
                 ", identityType=" + identityType +
                 ", customerNo='" + customerNo + '\'' +

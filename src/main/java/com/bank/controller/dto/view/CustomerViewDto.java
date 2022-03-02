@@ -1,8 +1,8 @@
 package com.bank.controller.dto.view;
 
-import com.bank.data.entity.EAddress;
-import com.bank.data.enums.CustomerType;
-import com.bank.data.enums.IdentityType;
+import com.bank.controller.dto.entity.AddressDto;
+import com.bank.controller.dto.enumeration.CustomerTypeDto;
+import com.bank.controller.dto.enumeration.IdentityTypeDto;
 
 import java.util.Date;
 
@@ -15,15 +15,15 @@ public class CustomerViewDto {
 
     private String identityNo;
 
-    private CustomerType customerType;
+    private CustomerTypeDto customerType;
 
     private String customerNo;
 
-    private IdentityType identityType;
+    private IdentityTypeDto identityType;
 
     private Date dateOfBirth;
 
-    private EAddress address;
+    private AddressDto address;
 
     public Long getHolderId() {
         return holderId;
@@ -57,28 +57,12 @@ public class CustomerViewDto {
         this.identityNo = identityNo;
     }
 
-    public CustomerType getCustomerType() {
-        return customerType;
-    }
-
-    public void setCustomerType(CustomerType customerType) {
-        this.customerType = customerType;
-    }
-
     public String getCustomerNo() {
         return customerNo;
     }
 
     public void setCustomerNo(String customerNo) {
         this.customerNo = customerNo;
-    }
-
-    public IdentityType getIdentityType() {
-        return identityType;
-    }
-
-    public void setIdentityType(IdentityType identityType) {
-        this.identityType = identityType;
     }
 
     public Date getDateOfBirth() {
@@ -89,11 +73,27 @@ public class CustomerViewDto {
         this.dateOfBirth = dateOfBirth;
     }
 
-    public EAddress getAddress() {
+    public CustomerTypeDto getCustomerType() {
+        return customerType;
+    }
+
+    public void setCustomerType(CustomerTypeDto customerType) {
+        this.customerType = customerType;
+    }
+
+    public IdentityTypeDto getIdentityType() {
+        return identityType;
+    }
+
+    public void setIdentityType(IdentityTypeDto identityType) {
+        this.identityType = identityType;
+    }
+
+    public AddressDto getAddress() {
         return address;
     }
 
-    public void setAddress(EAddress address) {
+    public void setAddress(AddressDto address) {
         this.address = address;
     }
 }

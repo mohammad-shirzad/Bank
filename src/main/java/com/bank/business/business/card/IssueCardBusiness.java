@@ -9,7 +9,7 @@ import com.bank.data.exception.EntityNotExistsException;
 import com.bank.data.exception.PaymentApplicationTypeNotSupportCardWithoutHolderException;
 import com.bank.data.filter.EfContact;
 import com.bank.data.view.EvCardIssueDetailData;
-import com.bank.util.DozerMapper;
+import com.bank.util.ObjectMapper;
 import com.bank.util.parser.BankConfigProvider;
 import org.springframework.stereotype.Component;
 
@@ -22,6 +22,7 @@ public class IssueCardBusiness {
     private CardDao cardDao;
     private ContactDao contactDao;
     private EContact customer;
+    private ObjectMapper mapper = ObjectMapper.INSTANCE;
 
     public IssueCardBusiness(CardDao cardDao, ContactDao contactDao) {
         this.cardDao = cardDao;
@@ -53,7 +54,7 @@ public class IssueCardBusiness {
         currentDateTime.add(Calendar.MONTH, 6);
         card.setExpireDate(currentDateTime.getTime());
         card = cardDao.save(card);
-        return DozerMapper.getDozerBeanMapper().map(card, EvCardIssueDetailData.class);
+        return mapper.toEvCardIssueDetailData(card);
     }
 
     public EvCardIssueDetailData execute(ECard card) throws EntityNotExistsException, PaymentApplicationTypeNotSupportCardWithoutHolderException {
