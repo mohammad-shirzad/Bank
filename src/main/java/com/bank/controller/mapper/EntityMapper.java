@@ -57,7 +57,7 @@ public class EntityMapper {
             return null;
 
         ECard card = new ECard();
-        card.setOwnerCustomerNo(request.getOwnerCustomerNo());
+        card.setCustomerNo(request.getCustomerNo());
 
         return card;
     }
@@ -70,10 +70,10 @@ public class EntityMapper {
         response.setCarNo(card.getCardNo());
         response.setExpireDate(card.getExpireDate());
         response.setIssueDate(card.getIssueDate());
-        response.setOwnerCustomerNo(card.getOwnerCustomerNo());
+        response.setCustomerNo(card.getCustomerNo());
         response.setHolderId(String.valueOf(card.getHolderId()));
-        response.setPin1(card.getPin1());
-        response.setPin2(card.getPin2());
+        response.setPin1(card.getFirstPin());
+        response.setPin2(card.getSecondPin());
         response.setPaymentApplicationTypeDto(EnumMapper.toPaymentApplicationTypeDto(card.getPaymentApplicationType()));
         response.setFirstName(card.getCustomer().getFirstName());
         response.setLastName(card.getCustomer().getLastName());

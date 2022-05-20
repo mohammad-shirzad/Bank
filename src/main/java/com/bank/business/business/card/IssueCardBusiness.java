@@ -1,8 +1,8 @@
 package com.bank.business.business.card;
 
 import com.bank.business.business.utility.GeneratorUtil;
-import com.bank.dao.repository.CardDao;
-import com.bank.dao.repository.ContactDao;
+import com.bank.dao.CardDao;
+import com.bank.dao.ContactDao;
 import com.bank.data.entity.ECard;
 import com.bank.data.entity.EContact;
 import com.bank.data.exception.EntityNotExistsException;
@@ -31,7 +31,7 @@ public class IssueCardBusiness {
 
     public void validate(ECard card) throws EntityNotExistsException, PaymentApplicationTypeNotSupportCardWithoutHolderException {
         EfContact efContact = new EfContact();
-        efContact.setCustomerNo(card.getOwnerCustomerNo());
+        efContact.setCustomerNo(card.getCustomerNo());
         efContact.setHolderId(card.getHolderId());
         List<EContact> dbCustomers = contactDao.findByFilter(efContact);
         if (dbCustomers.isEmpty())
@@ -47,7 +47,7 @@ public class IssueCardBusiness {
         card.setCustomer(customer);
         card.setCardNo(GeneratorUtil.generateCardNo(BankConfigProvider.getInstance().getBankName()));
         card.setCVV2(GeneratorUtil.generateCVV2());
-        card.setPin1(GeneratorUtil.generatePin1());
+        card.setFirstPin(GeneratorUtil.generatePin1());
         card.setIssueDate(Calendar.getInstance().getTime());
         card.setPaymentApplicationType(card.getPaymentApplicationType());
         Calendar currentDateTime = Calendar.getInstance();

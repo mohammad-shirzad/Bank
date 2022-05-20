@@ -7,7 +7,7 @@ import java.util.Date;
 public class IssueCardResponse extends ServiceResponse{
     private String holderId;
     private String paymentApplicationNumber;
-    private String ownerCustomerNo;
+    private String CustomerNo;
     private PaymentApplicationTypeDto paymentApplicationTypeDto;
     private String carNo;
     private String pin1;
@@ -34,12 +34,12 @@ public class IssueCardResponse extends ServiceResponse{
         this.paymentApplicationNumber = paymentApplicationNumber;
     }
 
-    public String getOwnerCustomerNo() {
-        return ownerCustomerNo;
+    public String getCustomerNo() {
+        return CustomerNo;
     }
 
-    public void setOwnerCustomerNo(String ownerCustomerNo) {
-        this.ownerCustomerNo = ownerCustomerNo;
+    public void setCustomerNo(String CustomerNo) {
+        this.CustomerNo = CustomerNo;
     }
 
     public PaymentApplicationTypeDto getPaymentApplicationTypeDto() {
@@ -119,7 +119,7 @@ public class IssueCardResponse extends ServiceResponse{
         return "IssueCardResponse{" +
                 "holderId='" + holderId + '\'' +
                 ", paymentApplicationNumber='" + paymentApplicationNumber + '\'' +
-                ", ownerCustomerNo='" + ownerCustomerNo + '\'' +
+                ", CustomerNo='" + CustomerNo + '\'' +
                 ", paymentApplicationTypeDto=" + paymentApplicationTypeDto +
                 ", carNo='" + carNo + '\'' +
                 ", pin1='" + pin1 + '\'' +

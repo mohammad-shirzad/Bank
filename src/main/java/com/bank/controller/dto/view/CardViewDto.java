@@ -8,7 +8,7 @@ public class CardViewDto {
     private String ownerFirstName;
     private String ownerLastName;
     private String ownerIdentityNo;
-    private String ownerCustomerNo;
+    private String CustomerNo;
     private String cardNo;
     private String cvv2;
     private Date issueDate;
@@ -18,12 +18,12 @@ public class CardViewDto {
     private Long holderId;
 
 
-    public String getOwnerCustomerNo() {
-        return ownerCustomerNo;
+    public String getCustomerNo() {
+        return CustomerNo;
     }
 
-    public void setOwnerCustomerNo(String ownerCustomerNo) {
-        this.ownerCustomerNo = ownerCustomerNo;
+    public void setCustomerNo(String CustomerNo) {
+        this.CustomerNo = CustomerNo;
     }
 
     public String getOwnerFirstName() {
@@ -112,7 +112,7 @@ public class CardViewDto {
                 "ownerFirstName='" + ownerFirstName + '\'' +
                 ", ownerLastName='" + ownerLastName + '\'' +
                 ", ownerIdentityNo='" + ownerIdentityNo + '\'' +
-                ", ownerCustomerNo='" + ownerCustomerNo + '\'' +
+                ", CustomerNo='" + CustomerNo + '\'' +
                 ", cardNo='" + cardNo + '\'' +
                 ", cvv2='" + cvv2 + '\'' +
                 ", issueDate=" + issueDate +

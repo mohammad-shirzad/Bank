@@ -4,20 +4,20 @@ import com.bank.controller.dto.view.CardViewDto;
 import com.bank.controller.dto.view.CustomerViewDto;
 import com.bank.controller.request.*;
 import com.bank.controller.response.*;
-import com.bank.data.entity.ECard;
 import com.bank.data.entity.EContact;
 import com.bank.data.exception.EntityAlreadyExistsException;
 import com.bank.data.exception.EntityNotExistsException;
 import com.bank.data.exception.PaymentApplicationTypeNotSupportCardWithoutHolderException;
-import com.bank.data.filter.EfContact;
 import com.bank.data.view.EvCard;
 import com.bank.data.view.EvCardIssueDetailData;
 import com.bank.service.CardService;
 import com.bank.service.CustomerService;
 import com.bank.util.ObjectMapper;
-import org.dozer.DozerBeanMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -40,7 +40,7 @@ public class BankEndPointImpl implements BankEndPoint {
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/createCustomer")
-    public CreateCustomerResponse createCustomer(@RequestBody CreateCustomerRequest request) throws EntityAlreadyExistsException, SQLException {
+    public CreateCustomerResponse createCustomer(@RequestBody(required = false) CreateCustomerRequest request) throws EntityAlreadyExistsException, SQLException {
         EContact contact = mapper.toEContact(request);
         long customerId = customerService.saveCustomer(contact);
         return new CreateCustomerResponse(customerId);

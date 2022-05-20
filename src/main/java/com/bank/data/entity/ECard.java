@@ -4,7 +4,6 @@ import com.bank.data.enums.PaymentApplicationType;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.util.Date;
 
 @Table(name = "CARD")
@@ -25,18 +24,15 @@ public class ECard implements Serializable {
     private Long holderId;
 
 
-    private String ownerCustomerNo;
+    private String customerNo;
 
 
     private String CVV2;
 
 
-    private String pin1;
+    private String firstPin;
 
-    private String pin2;
-
-
-    private BigDecimal remaining;
+    private String secondPin;
 
 
     private Date issueDate;
@@ -46,6 +42,14 @@ public class ECard implements Serializable {
 
 
     private EContact customer;
+
+    public String getCustomerNo() {
+        return customerNo;
+    }
+
+    public void setCustomerNo(String customerNo) {
+        this.customerNo = customerNo;
+    }
 
     @Column(name = "ISUDT", nullable = false)
     public Date getIssueDate() {
@@ -66,28 +70,14 @@ public class ECard implements Serializable {
         this.expireDate = expireDate;
     }
 
-    @Column(name = "OWNCUSTNO")
-    public String getOwnerCustomerNo() {
-        return ownerCustomerNo;
-    }
-
-    public void setOwnerCustomerNo(String ownerCustomerNo) {
-        this.ownerCustomerNo = ownerCustomerNo;
-    }
-
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumns({@JoinColumn(name = "OWNCUSTNO", referencedColumnName = "CUSTNO", insertable = false, updatable = false),
-            @JoinColumn(name = "HLDRID", referencedColumnName = "ID", insertable = false, updatable = false)})
+    @JoinColumn(name = "HLDRID", referencedColumnName = "ID", insertable = false, updatable = false)
     public EContact getCustomer() {
         return customer;
     }
 
     public void setCustomer(EContact customer) {
         this.customer = customer;
-    }
-
-    public void setRemaining(BigDecimal remaining) {
-        this.remaining = remaining;
     }
 
     @Id
@@ -137,21 +127,21 @@ public class ECard implements Serializable {
     }
 
     @Column(name = "PIN1", nullable = false)
-    public String getPin1() {
-        return pin1;
+    public String getFirstPin() {
+        return firstPin;
     }
 
-    public void setPin1(String pin1) {
-        this.pin1 = pin1;
+    public void setFirstPin(String pin1) {
+        this.firstPin = pin1;
     }
 
     @Column(name = "PIN2")
-    public String getPin2() {
-        return pin2;
+    public String getSecondPin() {
+        return secondPin;
     }
 
-    public void setPin2(String pin2) {
-        this.pin2 = pin2;
+    public void setSecondPin(String pin2) {
+        this.secondPin = pin2;
     }
 
 }

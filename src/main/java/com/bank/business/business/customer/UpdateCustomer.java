@@ -1,6 +1,6 @@
 package com.bank.business.business.customer;
 
-import com.bank.dao.repository.ContactDao;
+import com.bank.dao.ContactDao;
 import com.bank.data.entity.EContact;
 import com.bank.data.exception.EntityNotExistsException;
 import com.bank.data.filter.EfContact;

@@ -7,7 +7,7 @@ import java.util.Date;
 public class EvCardIssueDetailData {
     private String holderId;
     private String paymentApplicationNumber;
-    private String ownerCustomerNo;
+    private String CustomerNo;
     private PaymentApplicationType paymentApplicationType;
     private String cardNo;
     private String pin1;
@@ -34,12 +34,12 @@ public class EvCardIssueDetailData {
         this.paymentApplicationNumber = paymentApplicationNumber;
     }
 
-    public String getOwnerCustomerNo() {
-        return ownerCustomerNo;
+    public String getCustomerNo() {
+        return CustomerNo;
     }
 
-    public void setOwnerCustomerNo(String ownerCustomerNo) {
-        this.ownerCustomerNo = ownerCustomerNo;
+    public void setCustomerNo(String CustomerNo) {
+        this.CustomerNo = CustomerNo;
     }
 
     public PaymentApplicationType getPaymentApplicationType() {

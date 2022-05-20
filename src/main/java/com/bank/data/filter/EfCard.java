@@ -4,7 +4,7 @@ import com.bank.data.enums.PaymentApplicationType;
 
 public class EfCard {
     private String holderId;
-    private String ownerCustomerNo;
+    private String CustomerNo;
     private PaymentApplicationType paymentApplicationType;
     private EfDateRange issueDate;
     private EfDateRange expireDate;
@@ -17,12 +17,12 @@ public class EfCard {
         this.holderId = holderId;
     }
 
-    public String getOwnerCustomerNo() {
-        return ownerCustomerNo;
+    public String getCustomerNo() {
+        return CustomerNo;
     }
 
-    public void setOwnerCustomerNo(String ownerCustomerNo) {
-        this.ownerCustomerNo = ownerCustomerNo;
+    public void setCustomerNo(String CustomerNo) {
+        this.CustomerNo = CustomerNo;
     }
 
     public PaymentApplicationType getPaymentApplicationType() {

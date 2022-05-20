@@ -1,4 +1,4 @@
-package com.bank.dao.repository;
+package com.bank.dao;
 
 import com.bank.data.entity.EContact;
 import com.bank.data.filter.EfContact;

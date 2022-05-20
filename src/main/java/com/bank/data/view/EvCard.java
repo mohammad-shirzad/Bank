@@ -8,7 +8,7 @@ public class EvCard {
     private String ownerFirstName;
     private String ownerLastName;
     private String ownerIdentityNo;
-    private String ownerCustomerNo;
+    private String customerNo;
     private String cardNo;
     private String cvv2;
     private Date issueDate;
@@ -18,11 +18,11 @@ public class EvCard {
     private Long holderId;
 
 
-    public EvCard(String ownerFirstName, String ownerLastName, String ownerIdentityNo, String cardNo, String cvv2, Date issueDate, Date expireDate, PaymentApplicationType paymentApplicationType, String paymentApplicationNumber, Long holderId, String ownerCustomerNo) {
+    public EvCard(String ownerFirstName, String ownerLastName, String ownerIdentityNo, String cardNo, String cvv2, Date issueDate, Date expireDate, PaymentApplicationType paymentApplicationType, String paymentApplicationNumber, Long holderId, String customerNo) {
         this.ownerFirstName = ownerFirstName;
         this.ownerLastName = ownerLastName;
         this.ownerIdentityNo = ownerIdentityNo;
-        this.ownerCustomerNo = ownerCustomerNo;
+        this.customerNo = customerNo;
         this.cardNo = cardNo;
         this.cvv2 = cvv2;
         this.issueDate = issueDate;
@@ -33,12 +33,12 @@ public class EvCard {
     }
 
 
-    public String getOwnerCustomerNo() {
-        return ownerCustomerNo;
+    public String getCustomerNo() {
+        return customerNo;
     }
 
-    public void setOwnerCustomerNo(String ownerCustomerNo) {
-        this.ownerCustomerNo = ownerCustomerNo;
+    public void setCustomerNo(String CustomerNo) {
+        this.customerNo = CustomerNo;
     }
 
     public String getOwnerFirstName() {

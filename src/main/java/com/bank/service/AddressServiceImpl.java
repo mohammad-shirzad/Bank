@@ -1,6 +1,6 @@
 package com.bank.service;
 
-import com.bank.dao.repository.AddressDao;
+import com.bank.dao.AddressDao;
 import com.bank.data.entity.EAddress;
 
 //@Service(value = "AddressService")

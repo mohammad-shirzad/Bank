@@ -1,4 +1,4 @@
-package com.bank.dao.repository;
+package com.bank.dao;
 
 import com.bank.data.entity.ECard;
 import com.bank.data.filter.EfCard;
@@ -10,10 +10,10 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface CardDao extends JpaRepository<ECard, String> {
-    @Query("select new com.bank.data.view.EvCard(cc.firstName, cc.lastName, cc.identityNo, c.cardNo,c.CVV2, c.issueDate, c.expireDate, c.paymentApplicationType, c.paymentApplicationNumber, c.holderId, c.ownerCustomerNo)" +
+    @Query("select new com.bank.data.view.EvCard(cc.firstName, cc.lastName, cc.identityNo, c.cardNo,c.CVV2, c.issueDate, c.expireDate, c.paymentApplicationType, c.paymentApplicationNumber, c.holderId, c.customerNo)" +
             "from ECard c left join  c.customer cc " +
             "where (cc.id is null or cc.id=:#{#filter.holderId}) and " +
-            "(c.ownerCustomerNo is null or c.ownerCustomerNo=:#{#filter.ownerCustomerNo}) and " +
+            "(c.customerNo is null or c.customerNo=:#{#filter.CustomerNo}) and " +
             "(c.paymentApplicationType is null or c.paymentApplicationType=:#{#filter.paymentApplicationType}) and " +
             "(c.issueDate is null or c.issueDate=:#{#filter.issueDate}) and " +
             "(c.expireDate is null or c.expireDate=:#{#filter.expireDate})")

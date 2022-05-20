@@ -1,6 +1,6 @@
 package com.bank.business.business.card;
 
-import com.bank.dao.repository.CardDao;
+import com.bank.dao.CardDao;
 import com.bank.data.view.EvCard;
 import org.springframework.stereotype.Component;
 

@@ -23,8 +23,8 @@ import java.util.Set;
 @Configuration
 @EnableAutoConfiguration
 @EnableTransactionManagement
-@EnableJpaRepositories(basePackages = "com.bank.dao.repository", entityManagerFactoryRef = "emf")
-@ComponentScan(basePackages = {"com.bank.business","com.bank.data","com.bank.service","com.bank.controller"})
+@EnableJpaRepositories(basePackages = "com.bank.dao", entityManagerFactoryRef = "emf")
+@ComponentScan(basePackages = {"com.bank.business", "com.bank.data", "com.bank.service", "com.bank.controller"})
 public class ApplicationConfig {
     private static String CONFIG_NAME = "application.properties";
     public static Map<String, Object> CONFIG_MAP = new HashMap<>();
@@ -87,9 +87,7 @@ public class ApplicationConfig {
         hibernateProp.put("hibernate.dialect", CONFIG_MAP.get("hibernate.dialect"));
         hibernateProp.put("hibernate.show_sql", CONFIG_MAP.get("hibernate.show_sql"));
         hibernateProp.put("hibernate.current_session_context_class", "thread");
-        hibernateProp.put("spring.jpa.properties.hibernate.physical_naming_strategy", "com.bank.data.naming.TablePropertiesNaming");
-        hibernateProp.put("hibernate.format_sql",
-                CONFIG_MAP.get("hibernate.format_sql"));
+        hibernateProp.put("hibernate.format_sql", CONFIG_MAP.get("hibernate.format_sql"));
         return hibernateProp;
     }
 }

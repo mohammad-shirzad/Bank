@@ -8,18 +8,8 @@ create sequence BANK.seq_address
     increment by 1
     minvalue 1
     nomaxvalue;
-create sequence BANK.seq_event
-    start with 1
-    increment by 1
-    minvalue 1
-    nomaxvalue;
-create sequence BANK.seq_eventdata
-    start with 1
-    increment by 1
-    minvalue 1
-    nomaxvalue;
 
-create table BANK.bnk_cntc
+create table BANK.cntc
 (
     id        number primary key,
     idntno    nvarchar2(100) unique,
@@ -30,10 +20,10 @@ create table BANK.bnk_cntc
     frstnam   nvarchar2(100) not null,
     lstnam    nvarchar2(100) not null,
     addressid number,
-    constraint fk_address foreign key (addressid) references bnk_address (id)
+    constraint fk_address foreign key (addressid) references address (id)
 );
 
-create table BANK.bnk_address
+create table BANK.address
 (
     id      number primary key,
     cntry   nvarchar2(100) not null,
@@ -45,7 +35,7 @@ create table BANK.bnk_address
     postcod nvarchar2(100) not null
 );
 
-create table BANK.bnk_card
+create table BANK.card
 (
     cardno     nvarchar2(16) primary key,
     pmntappno  nvarchar2(100) not null,
@@ -56,27 +46,6 @@ create table BANK.bnk_card
     pin1       nvarchar2(100) not null,
     pin2       nvarchar2(100),
     hldrid     number,
-    owncustno  nvarchar2(100) not null,
-    foreign key (hldrid) references BANK.bnk_cntc (id),
-    foreign key (owncustno) references BANK.bnk_cntc (custno)
-);
-
-create table BANK.bnk_event
-(
-    id        number primary key,
-    userip    nvarchar2(100),
-    oprtncode number,
-    username  nvarchar2(100)
-);
-
-create table BANK.bnk_eventdata
-(
-    id       number primary key,
-    entity   nvarchar2(50),
-    action   nvarchar2(10),
-    oldvals  nvarchar2(500),
-    newvals  nvarchar2(500),
-    eventdat date,
-    eventid  number,
-    foreign key (eventid) references BANK.bnk_event (id)
+    custno     nvarchar2(100) not null,
+    foreign key (hldrid) references BANK.cntc (id)
 );

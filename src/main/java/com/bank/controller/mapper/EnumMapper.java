@@ -15,10 +15,10 @@ public class EnumMapper {
         switch (customerTypeDto) {
             case REAL:
                 return CustomerType.REAL;
-            case TRANSITIVE:
-                return CustomerType.TRANSITIVE;
             case CORPORATION:
                 return CustomerType.CORPORATION;
+            case TRANSITIVE:
+                return CustomerType.TRANSITIVE;
             default:
                 throw new IllegalArgumentException();
         }
@@ -31,10 +31,10 @@ public class EnumMapper {
         switch (customerType) {
             case REAL:
                 return CustomerTypeDto.REAL;
-            case TRANSITIVE:
-                return CustomerTypeDto.TRANSITIVE;
             case CORPORATION:
                 return CustomerTypeDto.CORPORATION;
+            case TRANSITIVE:
+                return CustomerTypeDto.TRANSITIVE;
             default:
                 throw new IllegalArgumentException();
         }
