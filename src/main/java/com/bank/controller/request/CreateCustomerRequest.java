@@ -6,7 +6,7 @@ import com.bank.controller.dto.enumeration.IdentityTypeDto;
 
 import java.util.Date;
 
-public class CreateCustomerRequest extends ServiceRequest{
+public class CreateCustomerRequest extends ServiceRequest {
 
 
     private String firstName;
