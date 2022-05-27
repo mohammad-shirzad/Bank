@@ -8,9 +8,23 @@ import java.io.IOException;
 import java.util.Properties;
 
 public class ConfigReader {
+    private static ConfigReader CONFIG_READER = null;
     private static final String CONFIG_PATH;
     private static Properties configFile;
     private static final Logger LOGGER = LoggerFactory.getLogger(ConfigReader.class);
+
+    private ConfigReader() {
+    }
+
+    public static ConfigReader getInstance() {
+        if (CONFIG_READER != null)
+            return CONFIG_READER;
+        synchronized (ConfigReader.class) {
+            if (CONFIG_READER != null)
+                return CONFIG_READER;
+            return new ConfigReader();
+        }
+    }
 
     static {
         CONFIG_PATH = System.getenv("BANK_CONFIG");
@@ -26,7 +40,7 @@ public class ConfigReader {
         }
     }
 
-    public static Properties getConfigFile() {
+    public Properties getConfigFile() {
         return configFile;
     }
 }

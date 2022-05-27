@@ -23,7 +23,7 @@ public interface BankEndPoint {
     @RequestMapping(method = RequestMethod.POST, value = "/findCustomers")
     FindCustomerResponse findCustomers(@RequestBody FindCustomerRequest request) throws SQLException;
 
-    @RequestMapping(method = RequestMethod.POST, value = "/updateCustomer")
+    @RequestMapping(method = RequestMethod.PATCH, value = "/updateCustomer")
     UpdateCustomerResponse updateCustomer(@RequestBody UpdateCustomerRequest request) throws EntityNotExistsException, SQLException;
 
     @RequestMapping(method = RequestMethod.POST, value = "/issueCard")

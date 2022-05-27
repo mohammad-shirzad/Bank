@@ -15,6 +15,7 @@ import com.bank.service.CustomerService;
 import com.bank.util.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.sql.SQLException;
@@ -22,6 +23,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
+@RequestMapping(value = "/bank")
 public class BankEndPointImpl implements BankEndPoint {
     private CustomerService customerService;
     private CardService cardService;

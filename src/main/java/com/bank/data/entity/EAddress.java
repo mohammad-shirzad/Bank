@@ -39,8 +39,7 @@ public class EAddress implements Serializable {
     }
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_address")
-    @SequenceGenerator(name = "seq_address", sequenceName = "seq_address", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public long getId() {
         return id;
     }

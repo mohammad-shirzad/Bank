@@ -43,6 +43,7 @@ public class ECard implements Serializable {
 
     private EContact customer;
 
+    @Column(name = "custno")
     public String getCustomerNo() {
         return customerNo;
     }

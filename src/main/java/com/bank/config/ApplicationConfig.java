@@ -74,7 +74,7 @@ public class ApplicationConfig {
         return new HibernateJpaVendorAdapter();
     }
 
-    @Bean
+    @Bean(name = "transactionManager")
     public JpaTransactionManager jpaTransactionManager() {
         JpaTransactionManager transactionManager = new JpaTransactionManager();
         transactionManager.setEntityManagerFactory(getLocalContainerEntityManagerFactoryBean().getObject());

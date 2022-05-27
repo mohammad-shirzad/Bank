@@ -4,7 +4,7 @@ import com.bank.controller.dto.enumeration.PaymentApplicationTypeDto;
 
 public class IssueCardRequest extends ServiceRequest{
     private String paymentApplicationNumber;
-    private String CustomerNo;
+    private String customerNo;
     private PaymentApplicationTypeDto paymentApplicationType;
     private Long holderId;
 
@@ -17,11 +17,11 @@ public class IssueCardRequest extends ServiceRequest{
     }
 
     public String getCustomerNo() {
-        return CustomerNo;
+        return customerNo;
     }
 
     public void setCustomerNo(String CustomerNo) {
-        this.CustomerNo = CustomerNo;
+        this.customerNo = CustomerNo;
     }
 
     public PaymentApplicationTypeDto getPaymentApplicationType() {
@@ -44,7 +44,7 @@ public class IssueCardRequest extends ServiceRequest{
     public String toString() {
         return "IssueCardRequest{" +
                 "paymentApplicationNumber='" + paymentApplicationNumber + '\'' +
-                ", CustomerNo='" + CustomerNo + '\'' +
+                ", CustomerNo='" + customerNo + '\'' +
                 ", paymentApplicationType=" + paymentApplicationType +
                 ", holderId=" + holderId +
                 "} " + super.toString();

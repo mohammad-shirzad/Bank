@@ -39,8 +39,7 @@ public class EContact implements Serializable {
     private List<ECard> cards;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_cntc")
-    @SequenceGenerator(name = "seq_cntc", sequenceName = "seq_cntc", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public long getId() {
         return id;
     }
@@ -87,7 +86,6 @@ public class EContact implements Serializable {
     }
 
     @Column(name = "CUSTTYP")
-    @Enumerated(value = EnumType.STRING)
     public CustomerType getCustomerType() {
         return customerType;
     }
@@ -124,7 +122,7 @@ public class EContact implements Serializable {
     }
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "ADDRESSID", referencedColumnName = "ID")
+    @JoinColumn(name = "ADDRESSID")
     public EAddress getAddress() {
         return address;
     }

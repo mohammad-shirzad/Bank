@@ -9,7 +9,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.EntityNotFoundException;
-import java.util.ArrayList;
 import java.util.List;
 
 @Component
@@ -38,17 +37,13 @@ public class UpdateCustomer {
     private void doBusiness(EContact customer) {
         EfContact efContact = new EfContact();
         efContact.setIdentityNo(customer.getIdentityNo());
-        List<EContact> dbCustomers = contactDao.findByFilter(efContact);
-        if (!dbCustomers.isEmpty()) {
-            EContact eContact = dbCustomers.get(0);
-            customer.setDateOfBirth(eContact.getDateOfBirth());
-            customer.setCustomerNo(eContact.getCustomerNo());
-            customer.getAddress().setId(dbCustomers.get(0).getAddress().getId());
-            if (customer.getCards() == null)
-                customer.setCards(new ArrayList<>());
-            else
-                customer.setCards(eContact.getCards());
-            contactDao.save(customer);
+        List<EContact> dbContacts = contactDao.findByFilter(efContact);
+        if (!dbContacts.isEmpty()) {
+            EContact dbContact = dbContacts.get(0);
+            dbContact.setFirstName(customer.getFirstName());
+            dbContact.setLastName(customer.getLastName());
+            dbContact.setCustomerNo(customer.getCustomerNo());
+            contactDao.save(dbContact);
         } else {
             throw new EntityNotFoundException("Customer with identityNo " + customer.getIdentityNo() + " does not exist");
         }
