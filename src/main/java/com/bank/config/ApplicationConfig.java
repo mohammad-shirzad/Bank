@@ -24,7 +24,7 @@ import java.util.Set;
 @EnableAutoConfiguration
 @EnableTransactionManagement
 @EnableJpaRepositories(basePackages = "com.bank.dao", entityManagerFactoryRef = "emf")
-@ComponentScan(basePackages = {"com.bank.business", "com.bank.data", "com.bank.service", "com.bank.controller.rest"})
+@ComponentScan(basePackages = {"com.bank.business", "com.bank.service", "com.bank.controller.rest"})
 public class ApplicationConfig {
     private static String CONFIG_NAME = "application.properties";
     public static Map<String, Object> CONFIG_MAP = new HashMap<>();

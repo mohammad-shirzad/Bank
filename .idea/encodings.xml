@@ -13,6 +13,8 @@
     <file url="file://$PROJECT_DIR$/bank-package/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/bank-util/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/bank-util/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/card-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/card-service/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/resources" charset="UTF-8" />
   </component>

@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AjcSettings">
+    <option name="ajcPath" value="$MAVEN_REPOSITORY$/org/aspectj/aspectjtools/1.9.7/aspectjtools-1.9.7.jar" />
+    <option name="cmdLineParams" value="-Xlint:ignore -showWeaveInfo" />
+    <option name="delegateToJavac" value="true" />
+  </component>
   <component name="CompilerConfiguration">
     <annotationProcessing>
       <profile default="true" name="Default" enabled="true" />
@@ -14,9 +19,8 @@
         <module name="Bank" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
+    <bytecodeTargetLevel target="11">
       <module name="Bank" target="11" />
-      <module name="Training" target="8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">

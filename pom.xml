@@ -18,7 +18,7 @@
         <org.hibernate>5.4.0.Final</org.hibernate>
         <logger.version>1.7.15</logger.version>
         <logback.version>1.2.3</logback.version>
-        <org.aspectj>1.9.2</org.aspectj>
+        <org.aspectj>1.9.9.1</org.aspectj>
         <javax.persistence>2.2</javax.persistence>
         <org.apache.commons>3.0</org.apache.commons>
         <org.springframework>5.1.9.RELEASE</org.springframework>
@@ -144,6 +144,18 @@
             <artifactId>mysql-connector-java</artifactId>
             <version>8.0.29</version>
         </dependency>
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjrt</artifactId>
+            <version>${org.aspectj}</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.aspectj/aspectjweaver -->
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjweaver</artifactId>
+            <version>${org.aspectj}</version>
+            <scope>runtime</scope>
+        </dependency>
     </dependencies>
 
     <build>
@@ -164,6 +176,48 @@
                     </annotationProcessorPaths>
                 </configuration>
             </plugin>
+            <!--            <plugin>-->
+            <!--                <groupId>org.codehaus.mojo</groupId>-->
+            <!--                <artifactId>aspectj-maven-plugin</artifactId>-->
+            <!--                <version>1.14.0</version>-->
+            <!--                <dependencies>-->
+            <!--                    <dependency>-->
+            <!--                        <groupId>org.aspectj</groupId>-->
+            <!--                        <artifactId>aspectjtools</artifactId>-->
+            <!--                        <version>1.5.4</version>-->
+            <!--                    </dependency>-->
+            <!--                </dependencies>-->
+            <!--                <configuration>-->
+
+            <!--                    <complianceLevel>${java.version}</complianceLevel>-->
+            <!--                    <source>${java.version}</source>-->
+            <!--                    <target>${java.version}</target>-->
+            <!--                    <showWeaveInfo>true</showWeaveInfo>-->
+            <!--                    <verbose>true</verbose>-->
+            <!--                    <Xlint>ignore</Xlint>-->
+            <!--                    <encoding>UTF-8</encoding>-->
+            <!--&lt;!&ndash;                    <excludes>&ndash;&gt;-->
+            <!--&lt;!&ndash;                        <exclude>**/*.java</exclude>&ndash;&gt;-->
+            <!--&lt;!&ndash;                    </excludes>&ndash;&gt;-->
+            <!--                    <forceAjcCompile>true</forceAjcCompile>-->
+            <!--                    <sources />-->
+            <!--                </configuration>-->
+            <!--                <executions>-->
+            <!--                    <execution>-->
+            <!--                        <phase>process-classes</phase>-->
+            <!--                        <goals>-->
+            <!--                            &lt;!&ndash; use this goal to weave all your main classes &ndash;&gt;-->
+            <!--                            <goal>compile</goal>-->
+            <!--                        </goals>-->
+            <!--                        <configuration>-->
+            <!--                            <weaveDirectories>-->
+            <!--                                <weaveDirectory>${project.build.directory}/classes</weaveDirectory>-->
+            <!--                            </weaveDirectories>-->
+
+            <!--                        </configuration>-->
+            <!--                    </execution>-->
+            <!--                </executions>-->
+            <!--            </plugin>-->
         </plugins>
     </build>
 </project>
