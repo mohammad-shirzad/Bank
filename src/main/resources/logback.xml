@@ -9,11 +9,7 @@
     </appender>
 
     <appender name="RollingFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>${DIR}\\Bank.log</file>
-        <encoder>
-            <pattern>%-5level %d [%thread] %-50logger{15} - %msg%n</pattern>
-        </encoder>
-
+        <file>${DIR}\\bank.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
             <fileNamePattern>Bank-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
             <maxFileSize>1MB</maxFileSize>
@@ -21,6 +17,9 @@
             <totalSizeCap>10MB</totalSizeCap>
             <cleanHistoryOnStart>false</cleanHistoryOnStart>
         </rollingPolicy>
+        <encoder>
+            <pattern>%-5level %d [%thread] %-50logger{15} - %msg%n</pattern>
+        </encoder>
     </appender>
 
     <root level="info">
