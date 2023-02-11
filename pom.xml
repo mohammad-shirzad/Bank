@@ -5,7 +5,16 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.bank</groupId>
     <artifactId>bank</artifactId>
+    <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
+    <modules>
+        <module>bank-api</module>
+        <module>bank-gateway</module>
+        <module>bank-api</module>
+        <module>bank-application</module>
+        <module>bank-domain</module>
+        <module>bank-provider</module>
+    </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
@@ -15,14 +24,14 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <org.hibernate>5.4.0.Final</org.hibernate>
+        <org.hibernate>5.6.11.Final</org.hibernate>
         <logger.version>1.7.15</logger.version>
         <logback.version>1.2.3</logback.version>
         <org.aspectj>1.9.9.1</org.aspectj>
         <javax.persistence>2.2</javax.persistence>
         <org.apache.commons>3.0</org.apache.commons>
         <org.springframework>5.1.9.RELEASE</org.springframework>
-        <java.version>11</java.version>
+        <java.version>17</java.version>
     </properties>
     <dependencies>
         <dependency>
@@ -123,7 +132,7 @@
         <dependency>
             <groupId>org.mapstruct</groupId>
             <artifactId>mapstruct</artifactId>
-            <version>1.4.2.Final</version>
+            <version>1.5.2.Final</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/net.sf.dozer/dozer -->
         <dependency>
@@ -135,14 +144,13 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.18.22</version>
+            <version>1.18.24</version>
             <scope>provided</scope>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <version>8.0.29</version>
+            <version>8.0.30</version>
         </dependency>
         <dependency>
             <groupId>org.aspectj</groupId>
@@ -176,48 +184,6 @@
                     </annotationProcessorPaths>
                 </configuration>
             </plugin>
-            <!--            <plugin>-->
-            <!--                <groupId>org.codehaus.mojo</groupId>-->
-            <!--                <artifactId>aspectj-maven-plugin</artifactId>-->
-            <!--                <version>1.14.0</version>-->
-            <!--                <dependencies>-->
-            <!--                    <dependency>-->
-            <!--                        <groupId>org.aspectj</groupId>-->
-            <!--                        <artifactId>aspectjtools</artifactId>-->
-            <!--                        <version>1.5.4</version>-->
-            <!--                    </dependency>-->
-            <!--                </dependencies>-->
-            <!--                <configuration>-->
-
-            <!--                    <complianceLevel>${java.version}</complianceLevel>-->
-            <!--                    <source>${java.version}</source>-->
-            <!--                    <target>${java.version}</target>-->
-            <!--                    <showWeaveInfo>true</showWeaveInfo>-->
-            <!--                    <verbose>true</verbose>-->
-            <!--                    <Xlint>ignore</Xlint>-->
-            <!--                    <encoding>UTF-8</encoding>-->
-            <!--&lt;!&ndash;                    <excludes>&ndash;&gt;-->
-            <!--&lt;!&ndash;                        <exclude>**/*.java</exclude>&ndash;&gt;-->
-            <!--&lt;!&ndash;                    </excludes>&ndash;&gt;-->
-            <!--                    <forceAjcCompile>true</forceAjcCompile>-->
-            <!--                    <sources />-->
-            <!--                </configuration>-->
-            <!--                <executions>-->
-            <!--                    <execution>-->
-            <!--                        <phase>process-classes</phase>-->
-            <!--                        <goals>-->
-            <!--                            &lt;!&ndash; use this goal to weave all your main classes &ndash;&gt;-->
-            <!--                            <goal>compile</goal>-->
-            <!--                        </goals>-->
-            <!--                        <configuration>-->
-            <!--                            <weaveDirectories>-->
-            <!--                                <weaveDirectory>${project.build.directory}/classes</weaveDirectory>-->
-            <!--                            </weaveDirectories>-->
-
-            <!--                        </configuration>-->
-            <!--                    </execution>-->
-            <!--                </executions>-->
-            <!--            </plugin>-->
         </plugins>
     </build>
 </project>

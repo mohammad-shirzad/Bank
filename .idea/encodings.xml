@@ -1,16 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/bank-api/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/bank-application/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/bank-business/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/bank-business/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/bank-dao/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/bank-dao/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/bank-data/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/bank-domain/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/bank-exporter" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/bank-exporter/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/bank-exporter/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/bank-gateway/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/bank-package/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/bank-package/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/bank-provider/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/bank-util/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/bank-util/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/card-service/src/main/java" charset="UTF-8" />
