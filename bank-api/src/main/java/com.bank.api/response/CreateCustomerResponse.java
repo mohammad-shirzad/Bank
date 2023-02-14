@@ -1,7 +1,7 @@
-package com.bank.controller.response;
+package com.bank.api.response;
 
 
-public class CreateCustomerResponse extends ServiceResponse{
+public class CreateCustomerResponse extends ServiceResponse {
     private long id;
 
     public long getId() {

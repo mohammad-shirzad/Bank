@@ -1,8 +1,8 @@
 package com.bank.domain.business.customer;
 
-import com.bank.dao.ContactDao;
-import com.bank.domain.data.filter.EfContact;
 import com.bank.domain.data.entity.EContact;
+import com.bank.domain.data.filter.EfContact;
+import com.bank.domain.providerapi.ContactDao;
 import org.springframework.stereotype.Component;
 
 import java.util.List;

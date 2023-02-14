@@ -1,18 +1,10 @@
 package com.bank.gateway;
 
-import com.bank.controller.dto.view.CardViewDto;
-import com.bank.controller.dto.view.CustomerViewDto;
-import com.bank.controller.request.*;
-import com.bank.controller.response.*;
-import com.bank.domain.data.entity.EContact;
-import com.bank.domain.data.exception.EntityAlreadyExistsException;
-import com.bank.domain.data.exception.EntityNotExistsException;
-import com.bank.domain.data.exception.PaymentApplicationTypeNotSupportCardWithoutHolderException;
-import com.bank.domain.data.view.EvCard;
-import com.bank.domain.data.view.EvCardIssueDetailData;
-import com.bank.service.CardService;
-import com.bank.service.CustomerService;
-import com.bank.util.ObjectMapper;
+import com.bank.api.dto.view.CardViewDto;
+import com.bank.api.endpoint.BankEndPointRest;
+import com.bank.api.request.*;
+import com.bank.api.response.*;
+import com.bank.gateway.util.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -52,7 +44,7 @@ public class BankEndPointRestController implements BankEndPointRest {
 
     public FindCustomerResponse findCustomers(@RequestBody FindCustomerRequest request) {
         List<EContact> contacts = customerService.findCustomer(mapper.toEfContact(request.getCustomerFilterDto()));
-        List<CustomerViewDto> customerViewDtos = contacts.stream().map(contact -> mapper.toCustomerViewDto(contact)).collect(Collectors.toList());
+        List<com.bank.controller.dto.view.CustomerViewDto> customerViewDtos = contacts.stream().map(contact -> mapper.toCustomerViewDto(contact)).collect(Collectors.toList());
         return new FindCustomerResponse(customerViewDtos);
     }
 

@@ -1,4 +1,4 @@
-package com.bank.controller.request;
+package com.bank.api.request;
 
 import com.bank.controller.dto.filter.CustomerFilterDto;
 

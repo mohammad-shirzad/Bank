@@ -1,8 +1,8 @@
 package com.bank.domain.business.serviceimpl;
 
-import com.bank.dao.AddressDao;
 import com.bank.domain.business.service.AddressService;
 import com.bank.domain.data.entity.EAddress;
+import com.bank.domain.providerapi.AddressDao;
 
 //@Service(value = "AddressService")
 public class AddressServiceImpl implements AddressService {

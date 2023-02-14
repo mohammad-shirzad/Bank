@@ -1,4 +1,4 @@
-package com.bank.controller.request;
+package com.bank.api.request;
 
 public class GetCardFullDetailsRequest extends ServiceRequest{
     private String cardNo;

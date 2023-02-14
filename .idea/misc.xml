@@ -25,7 +25,6 @@
       <set>
         <option value="$PROJECT_DIR$/BankConfig/pom.xml" />
         <option value="$PROJECT_DIR$/BankFacade/pom.xml" />
-        <option value="$PROJECT_DIR$/bank-api/pom.xml" />
         <option value="$PROJECT_DIR$/bank-config/pom.xml" />
         <option value="$PROJECT_DIR$/bank-data/pom.xml" />
         <option value="$PROJECT_DIR$/customer-service/pom.xml" />

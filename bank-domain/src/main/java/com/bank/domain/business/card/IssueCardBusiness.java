@@ -1,20 +1,15 @@
 package com.bank.domain.business.card;
 
-import com.bank.business.business.utility.GeneratorUtil;
-import com.bank.dao.CardDao;
-import com.bank.dao.ContactDao;
+import com.bank.domain.business.utility.GeneratorUtil;
+import com.bank.domain.business.utility.ObjectMapper;
 import com.bank.domain.data.entity.ECard;
 import com.bank.domain.data.entity.EContact;
 import com.bank.domain.data.exception.EntityNotExistsException;
 import com.bank.domain.data.exception.PaymentApplicationTypeNotSupportCardWithoutHolderException;
 import com.bank.domain.data.filter.EfContact;
 import com.bank.domain.data.view.EvCardIssueDetailData;
-import com.bank.domain.data.exception.EntityNotExistsException;
-import com.bank.domain.data.exception.PaymentApplicationTypeNotSupportCardWithoutHolderException;
-import com.bank.domain.data.filter.EfContact;
-import com.bank.domain.data.view.EvCardIssueDetailData;
-import com.bank.util.ObjectMapper;
-import com.bank.util.parser.BankConfigProvider;
+import com.bank.domain.providerapi.CardDao;
+import com.bank.domain.providerapi.ContactDao;
 import org.springframework.stereotype.Component;
 
 import java.util.Calendar;
@@ -23,10 +18,10 @@ import java.util.List;
 @Component
 public class IssueCardBusiness {
 
-    private CardDao cardDao;
-    private ContactDao contactDao;
+    private final CardDao cardDao;
+    private final ContactDao contactDao;
     private EContact customer;
-    private ObjectMapper mapper = ObjectMapper.INSTANCE;
+    private final ObjectMapper mapper = ObjectMapper.INSTANCE;
 
     public IssueCardBusiness(CardDao cardDao, ContactDao contactDao) {
         this.cardDao = cardDao;
@@ -49,7 +44,7 @@ public class IssueCardBusiness {
 
     public EvCardIssueDetailData doBusiness(ECard card) {
         card.setCustomer(customer);
-        card.setCardNo(GeneratorUtil.generateCardNo(BankConfigProvider.getInstance().getBankName()));
+        card.setCardNo(GeneratorUtil.generateCardNo("saman"));
         card.setCVV2(GeneratorUtil.generateCVV2());
         card.setFirstPin(GeneratorUtil.generatePin1());
         card.setIssueDate(Calendar.getInstance().getTime());

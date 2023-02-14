@@ -1,8 +1,7 @@
 package com.bank.domain.business.card;
 
-import com.bank.dao.CardDao;
 import com.bank.domain.data.view.EvCard;
-import com.bank.domain.data.view.EvCard;
+import com.bank.domain.providerapi.CardDao;
 import org.springframework.stereotype.Component;
 
 @Component

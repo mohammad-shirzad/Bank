@@ -1,4 +1,4 @@
-package com.bank.controller.response;
+package com.bank.api.response;
 
 import com.bank.controller.dto.enumeration.PaymentApplicationTypeDto;
 

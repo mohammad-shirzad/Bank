@@ -1,4 +1,4 @@
-package com.bank.controller.request;
+package com.bank.api.request;
 
 public class DeleteCustomerByIdentityRequest extends ServiceRequest{
     private String identityNo;

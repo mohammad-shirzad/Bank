@@ -28,7 +28,6 @@
         <dependency>
             <groupId>com.bank</groupId>
             <artifactId>bank-gateway</artifactId>
-            <version>1.0-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>com.bank</groupId>

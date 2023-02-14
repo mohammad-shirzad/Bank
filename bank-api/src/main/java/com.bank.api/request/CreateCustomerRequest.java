@@ -1,4 +1,4 @@
-package com.bank.controller.request;
+package com.bank.api.request;
 
 import com.bank.controller.dto.entity.AddressDto;
 import com.bank.controller.dto.enumeration.CustomerTypeDto;

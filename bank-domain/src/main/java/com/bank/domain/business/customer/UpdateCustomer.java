@@ -1,11 +1,9 @@
 package com.bank.domain.business.customer;
 
-import com.bank.dao.ContactDao;
 import com.bank.domain.data.entity.EContact;
 import com.bank.domain.data.exception.EntityNotExistsException;
 import com.bank.domain.data.filter.EfContact;
-import com.bank.domain.data.exception.EntityNotExistsException;
-import com.bank.domain.data.filter.EfContact;
+import com.bank.domain.providerapi.ContactDao;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;

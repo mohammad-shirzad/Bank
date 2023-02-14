@@ -1,4 +1,4 @@
-package com.bank.controller.response;
+package com.bank.api.response;
 
 import java.io.Serializable;
 

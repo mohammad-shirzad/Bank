@@ -1,7 +1,5 @@
 package com.bank.gateway.util.parser;
 
-import com.bank.config.ApplicationConfig;
-
 public class BankConfigProvider {
     private static BankConfigProvider bankConfigProvider = null;
 
@@ -16,6 +14,6 @@ public class BankConfigProvider {
     }
 
     public String getBankName() {
-        return (String) ApplicationConfig.CONFIG_MAP.get("bank.name");
+        return "saman";
     }
 }

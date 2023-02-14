@@ -1,9 +1,9 @@
 package com.bank.domain.business.serviceimpl;
 
-import com.bank.business.business.customer.DeleteCustomer;
-import com.bank.business.business.customer.FindCustomersBusiness;
-import com.bank.business.business.customer.RegisterCustomer;
-import com.bank.business.business.customer.UpdateCustomer;
+import com.bank.domain.business.customer.DeleteCustomer;
+import com.bank.domain.business.customer.FindCustomersBusiness;
+import com.bank.domain.business.customer.RegisterCustomer;
+import com.bank.domain.business.customer.UpdateCustomer;
 import com.bank.domain.business.service.CustomerService;
 import com.bank.domain.data.entity.EContact;
 import com.bank.domain.data.exception.EntityAlreadyExistsException;

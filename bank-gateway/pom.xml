@@ -21,6 +21,10 @@
             <groupId>com.bank</groupId>
             <artifactId>bank-api</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.bank</groupId>
+            <artifactId>bank-domain</artifactId>
+        </dependency>
     </dependencies>
 
 </project>
