@@ -1,4 +1,4 @@
-package com.bank.controller.dto.filter;
+package com.bank.api.dto.filter;
 
 public class CustomerFilterDto {
     private String identityNo;

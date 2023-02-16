@@ -11,8 +11,7 @@
       <profile name="Annotation profile for Bank" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
-        <outputRelativeToContentRoot value="true" />
-        <processorPath useClasspath="false">
+        <processorPath>
           <entry name="$MAVEN_REPOSITORY$/org/mapstruct/mapstruct-processor/1.4.2.Final/mapstruct-processor-1.4.2.Final.jar" />
           <entry name="$MAVEN_REPOSITORY$/org/mapstruct/mapstruct/1.4.2.Final/mapstruct-1.4.2.Final.jar" />
         </processorPath>
@@ -24,17 +23,17 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="11">
-      <module name="Bank" target="17" />
-      <module name="bank-api" target="17" />
+      <module name="Bank" target="11" />
+      <module name="bank-api" target="11" />
       <module name="bank-application" target="11" />
       <module name="bank-domain" target="11" />
-      <module name="bank-gateway" target="17" />
+      <module name="bank-gateway" target="11" />
       <module name="bank-provider" target="11" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="Bank" options="" />
+      <module name="Bank" options="-parameters" />
       <module name="bank-api" options="-parameters" />
       <module name="bank-application" options="-parameters" />
       <module name="bank-domain" options="-parameters" />

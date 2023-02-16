@@ -20,6 +20,10 @@
         <version>2.7.0</version>
     </parent>
     <name>Bank</name>
+    <scm>
+        <connection>https://github.com/mohammad-shirzad/Bank.git</connection>
+        <developerConnection>https://github.com/mohammad-shirzad/Bank.git</developerConnection>
+    </scm>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -30,10 +34,35 @@
         <javax.persistence>2.2</javax.persistence>
         <org.apache.commons>3.0</org.apache.commons>
         <org.springframework>5.1.9.RELEASE</org.springframework>
-        <java.version>17</java.version>
+        <java.version>11</java.version>
     </properties>
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>com.bank</groupId>
+                <artifactId>bank-api</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.bank</groupId>
+                <artifactId>bank-domain</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.bank</groupId>
+                <artifactId>bank-provider</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.bank</groupId>
+                <artifactId>bank-application</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.bank</groupId>
+                <artifactId>bank-gateway</artifactId>
+                <version>${project.version}</version>
+            </dependency>
             <dependency>
                 <groupId>org.springdoc</groupId>
                 <artifactId>springdoc-openapi-ui</artifactId>
@@ -110,6 +139,26 @@
         </dependencies>
     </dependencyManagement>
     <dependencies>
+        <dependency>
+            <groupId>com.bank</groupId>
+            <artifactId>bank-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.bank</groupId>
+            <artifactId>bank-domain</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.bank</groupId>
+            <artifactId>bank-provider</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.bank</groupId>
+            <artifactId>bank-application</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.bank</groupId>
+            <artifactId>bank-gateway</artifactId>
+        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-logging</artifactId>
@@ -241,6 +290,10 @@
                             <groupId>org.mapstruct</groupId>
                             <artifactId>mapstruct-processor</artifactId>
                             <version>1.4.2.Final</version>
+                        </path>
+                        <path>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
                         </path>
                     </annotationProcessorPaths>
                 </configuration>

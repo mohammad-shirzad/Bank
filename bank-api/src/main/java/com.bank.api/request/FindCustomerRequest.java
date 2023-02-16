@@ -1,8 +1,9 @@
 package com.bank.api.request;
 
-import com.bank.controller.dto.filter.CustomerFilterDto;
 
-public class FindCustomerRequest extends ServiceRequest{
+import com.bank.api.dto.filter.CustomerFilterDto;
+
+public class FindCustomerRequest extends ServiceRequest {
     private CustomerFilterDto customerFilterDto;
 
     public CustomerFilterDto getCustomerFilterDto() {

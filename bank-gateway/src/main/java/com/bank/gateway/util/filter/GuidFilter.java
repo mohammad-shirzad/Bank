@@ -1,6 +1,6 @@
-package com.bank.controller.filter;
+package com.bank.gateway.util.filter;
 
-import com.bank.util.DiagnosticKeyUtils;
+import com.bank.gateway.util.DiagnosticKeyUtils;
 import org.slf4j.MDC;
 
 import javax.servlet.*;

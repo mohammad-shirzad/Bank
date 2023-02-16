@@ -13,11 +13,11 @@ import org.springframework.context.annotation.Configuration;
 public class ServiceAspects {
     private static final Logger LOGGER = LoggerFactory.getLogger(ServiceAspects.class);
 
-    @Pointcut("execution(public * com.bank.service.*.* (..))")
+    @Pointcut("execution(public * com.bank.domain.business.service.*.* (..))")
     public void serviceIO() {
     }
 
-    @Pointcut("execution(public void com.bank.service.*.* (..))")
+    @Pointcut("execution(public void com.bank.domain.business.service.*.* (..))")
     public void excluded() {
     }
 
