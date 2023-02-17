@@ -1,4 +1,4 @@
-package com.bank.api.config;
+package com.bank.application.config;
 
 import org.hibernate.jpa.HibernatePersistenceProvider;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;

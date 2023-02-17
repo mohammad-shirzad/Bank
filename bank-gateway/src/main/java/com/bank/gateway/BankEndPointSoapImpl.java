@@ -66,7 +66,7 @@ public class BankEndPointSoapImpl implements BankEndPointSoap {
     @Override
     public FindCustomerResponse findCustomers(FindCustomerRequest request) {
         List<EContact> contacts = customerService.findCustomer(mapper.toEfContact(request.getCustomerFilterDto()));
-        List<com.bank.controller.dto.view.CustomerViewDto> customerViewDtos = contacts.stream().map(contact -> mapper.toCustomerViewDto(contact)).collect(Collectors.toList());
+        List<com.bank.api.dto.view.CustomerViewDto> customerViewDtos = contacts.stream().map(contact -> mapper.toCustomerViewDto(contact)).collect(Collectors.toList());
         return new FindCustomerResponse(customerViewDtos);
 
     }

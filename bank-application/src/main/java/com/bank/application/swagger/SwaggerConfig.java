@@ -1,4 +1,4 @@
-package com.bank.api.swagger;
+package com.bank.application.swagger;
 
 import io.swagger.v3.oas.models.ExternalDocumentation;
 import io.swagger.v3.oas.models.OpenAPI;

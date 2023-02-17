@@ -1,6 +1,6 @@
 package com.bank.api.response;
 
-import com.bank.controller.dto.view.CustomerViewDto;
+import com.bank.api.dto.view.CustomerViewDto;
 
 import java.util.List;
 

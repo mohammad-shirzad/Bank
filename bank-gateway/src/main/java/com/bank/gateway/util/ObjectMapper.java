@@ -26,7 +26,7 @@ public interface ObjectMapper {
 
     EfContact toEfContact(CustomerFilterDto customerFilterDto);
 
-    com.bank.controller.dto.view.CustomerViewDto toCustomerViewDto(EContact eContact);
+    com.bank.api.dto.view.CustomerViewDto toCustomerViewDto(EContact eContact);
 
     EContact toEContact(UpdateCustomerRequest request);
 
