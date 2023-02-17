@@ -11,9 +11,20 @@
       <profile name="Annotation profile for Bank" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
-        <processorPath>
-          <entry name="$MAVEN_REPOSITORY$/org/mapstruct/mapstruct-processor/1.4.2.Final/mapstruct-processor-1.4.2.Final.jar" />
-          <entry name="$MAVEN_REPOSITORY$/org/mapstruct/mapstruct/1.4.2.Final/mapstruct-1.4.2.Final.jar" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="$MAVEN_REPOSITORY$/org/mapstruct/mapstruct-processor/1.5.3.Final/mapstruct-processor-1.5.3.Final.jar" />
+          <entry name="$MAVEN_REPOSITORY$/org/mapstruct/mapstruct/1.5.3.Final/mapstruct-1.5.3.Final.jar" />
+          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.24/lombok-1.18.24.jar" />
+          <entry name="$MAVEN_REPOSITORY$/org/hibernate/hibernate-jpamodelgen/5.6.9.Final/hibernate-jpamodelgen-5.6.9.Final.jar" />
+          <entry name="$MAVEN_REPOSITORY$/org/jboss/logging/jboss-logging/3.4.3.Final/jboss-logging-3.4.3.Final.jar" />
+          <entry name="$MAVEN_REPOSITORY$/javax/xml/bind/jaxb-api/2.3.1/jaxb-api-2.3.1.jar" />
+          <entry name="$MAVEN_REPOSITORY$/javax/activation/javax.activation-api/1.2.0/javax.activation-api-1.2.0.jar" />
+          <entry name="$MAVEN_REPOSITORY$/org/glassfish/jaxb/jaxb-runtime/2.3.1/jaxb-runtime-2.3.1.jar" />
+          <entry name="$MAVEN_REPOSITORY$/org/glassfish/jaxb/txw2/2.3.1/txw2-2.3.1.jar" />
+          <entry name="$MAVEN_REPOSITORY$/com/sun/istack/istack-commons-runtime/3.0.7/istack-commons-runtime-3.0.7.jar" />
+          <entry name="$MAVEN_REPOSITORY$/org/jvnet/staxex/stax-ex/1.8/stax-ex-1.8.jar" />
+          <entry name="$MAVEN_REPOSITORY$/com/sun/xml/fastinfoset/FastInfoset/1.2.15/FastInfoset-1.2.15.jar" />
         </processorPath>
         <module name="bank-provider" />
         <module name="bank-gateway" />
@@ -23,17 +34,17 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="11">
-      <module name="Bank" target="11" />
-      <module name="bank-api" target="11" />
-      <module name="bank-application" target="11" />
-      <module name="bank-domain" target="11" />
-      <module name="bank-gateway" target="11" />
-      <module name="bank-provider" target="11" />
+      <module name="Bank" target="17" />
+      <module name="bank-api" target="17" />
+      <module name="bank-application" target="17" />
+      <module name="bank-domain" target="17" />
+      <module name="bank-gateway" target="17" />
+      <module name="bank-provider" target="17" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="Bank" options="-parameters" />
+      <module name="Bank" options="" />
       <module name="bank-api" options="-parameters" />
       <module name="bank-application" options="-parameters" />
       <module name="bank-domain" options="-parameters" />

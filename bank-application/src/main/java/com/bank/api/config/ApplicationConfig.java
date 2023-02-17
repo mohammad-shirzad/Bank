@@ -21,7 +21,7 @@ import java.util.Properties;
 @EnableAutoConfiguration
 @EnableTransactionManagement
 @EnableJpaRepositories(basePackages = "com.bank.domain.providerapi", entityManagerFactoryRef = "emf")
-@ComponentScan(basePackages = {"com.bank.domain.business", "com.bank.domain.service", "com.bank.controller.rest"})
+@ComponentScan(basePackages = {"com.bank"})
 public class ApplicationConfig {
     private static String CONFIG_NAME = "application.properties";
     public static Map<String, Object> CONFIG_MAP = new HashMap<>();

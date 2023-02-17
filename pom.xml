@@ -2,6 +2,12 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
          http://maven.apache.org/maven-v4_0_0.xsd">
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.7.0</version>
+    </parent>
+
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.bank</groupId>
     <artifactId>bank</artifactId>
@@ -14,11 +20,7 @@
         <module>bank-domain</module>
         <module>bank-provider</module>
     </modules>
-    <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.7.0</version>
-    </parent>
+
     <name>Bank</name>
     <scm>
         <connection>https://github.com/mohammad-shirzad/Bank.git</connection>
@@ -26,15 +28,18 @@
     </scm>
 
     <properties>
+        <java.version>17</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <org.springframework>5.3.20</org.springframework>
         <org.hibernate>5.6.11.Final</org.hibernate>
         <logger.version>1.7.15</logger.version>
         <logback.version>1.2.3</logback.version>
         <org.aspectj>1.9.9.1</org.aspectj>
         <javax.persistence>2.2</javax.persistence>
         <org.apache.commons>3.0</org.apache.commons>
-        <org.springframework>5.1.9.RELEASE</org.springframework>
-        <java.version>11</java.version>
+        <maven-compiler-plugin.version>3.10.1</maven-compiler-plugin.version>
+        <docker.registry>x</docker.registry>
+        <helm.skip>true</helm.skip>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -139,26 +144,6 @@
         </dependencies>
     </dependencyManagement>
     <dependencies>
-        <dependency>
-            <groupId>com.bank</groupId>
-            <artifactId>bank-api</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.bank</groupId>
-            <artifactId>bank-domain</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.bank</groupId>
-            <artifactId>bank-provider</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.bank</groupId>
-            <artifactId>bank-application</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.bank</groupId>
-            <artifactId>bank-gateway</artifactId>
-        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-logging</artifactId>
@@ -281,23 +266,168 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.8.0</version>
+                <version>${maven-compiler-plugin.version}</version>
                 <configuration>
-                    <source>${java.version}</source>
-                    <target>${java.version}</target>
                     <annotationProcessorPaths>
                         <path>
                             <groupId>org.mapstruct</groupId>
                             <artifactId>mapstruct-processor</artifactId>
-                            <version>1.4.2.Final</version>
+                            <version>1.5.3.Final</version>
                         </path>
                         <path>
                             <groupId>org.projectlombok</groupId>
                             <artifactId>lombok</artifactId>
+                            <version>${lombok.version}</version>
                         </path>
+                        <annotationProcessorPath>
+                            <groupId>org.hibernate</groupId>
+                            <artifactId>hibernate-jpamodelgen</artifactId>
+                            <version>${hibernate.version}</version>
+                        </annotationProcessorPath>
                     </annotationProcessorPaths>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${maven-surefire-plugin.version}</version>
+                <configuration>
+                    <includes>
+                        <include>*UT.java</include>
+                        <include>*Test.java</include>
+                    </includes>
+                </configuration>
+            </plugin>
         </plugins>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>io.fabric8</groupId>
+                    <artifactId>docker-maven-plugin</artifactId>
+                    <version>0.37.0</version>
+                    <executions>
+                        <execution>
+                            <id>push</id>
+                            <phase>package</phase>
+                            <goals>
+                                <goal>build</goal>
+                                <goal>push</goal>
+                                <goal>remove</goal>
+                            </goals>
+                            <configuration>
+                                <images>
+                                    <image>
+                                        <name>
+                                            ${docker.registry}/docker/${project.groupId}/${project.artifactId}:${project.version}
+                                        </name>
+                                    </image>
+                                </images>
+                            </configuration>
+                        </execution>
+                        <execution>
+                            <id>save</id>
+                            <phase>package</phase>
+                            <goals>
+                                <goal>build</goal>
+                                <goal>save</goal>
+                                <goal>remove</goal>
+                            </goals>
+                            <configuration>
+                                <images>
+                                    <image>
+                                        <name>
+                                            novinrepo:8082/docker/${project.groupId}/${project.artifactId}:${project.version}
+                                        </name>
+                                    </image>
+                                </images>
+                                <saveFile>
+                                    ${project.build.directory}/${project.artifactId}-${project.version}-docker.tar.gz
+                                </saveFile>
+                            </configuration>
+                        </execution>
+                    </executions>
+                </plugin>
+
+
+                <plugin>
+                    <groupId>io.kokuwa.maven</groupId>
+                    <artifactId>helm-maven-plugin</artifactId>
+                    <version>6.3.0</version>
+                    <configuration>
+                        <chartDirectory>${project.basedir}/target/helm-chart/</chartDirectory>
+                        <chartVersion>${project.version}</chartVersion>
+                        <uploadRepoStable>
+                            <name>dockerregistry-stable</name>
+                            <url>${docker.registry}/helm</url>
+                        </uploadRepoStable>
+                        <uploadRepoSnapshot>
+                            <name>dockerregistry-snapshot</name>
+                            <url>${docker.registry}/helm</url>
+                        </uploadRepoSnapshot>
+                        <useLocalHelmBinary>true</useLocalHelmBinary>
+                        <skip>${helm.skip}</skip>
+                        <helmVersion>3.8.1</helmVersion>
+                    </configuration>
+                    <executions>
+                        <execution>
+                            <id>push-helm</id>
+                            <phase>package</phase>
+                            <goals>
+                                <goal>package</goal>
+                                <goal>push</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+
+                <plugin>
+                    <groupId>com.tosan.plugin</groupId>
+                    <artifactId>oras-maven-plugin</artifactId>
+                    <version>0.0.3</version>
+                    <executions>
+                        <execution>
+                            <id>push-doc</id>
+                            <phase>package</phase>
+                            <goals>
+                                <goal>push</goal>
+                            </goals>
+                            <configuration>
+                                <artifacts>
+                                    <artifactId>bank-doc</artifactId>
+                                </artifacts>
+                                <workingDirectory>${project.build.directory}</workingDirectory>
+                                <uploadName>bank</uploadName>
+                                <uploadVersion>${project.version}</uploadVersion>
+                                <stableRepository>
+                                    <name>dockerregistry-stable</name>
+                                    <url>${docker.registry}/doc</url>
+                                </stableRepository>
+                                <skip>${helm.skip}</skip>
+                            </configuration>
+                        </execution>
+                        <execution>
+                            <id>push-config</id>
+                            <phase>package</phase>
+                            <goals>
+                                <goal>push</goal>
+                            </goals>
+                            <configuration>
+                                <artifacts>
+                                    <artifactId>config</artifactId>
+                                </artifacts>
+                                <workingDirectory>${project.basedir}/src/main/resources/config</workingDirectory>
+                                <uploadName>bank</uploadName>
+                                <uploadVersion>${project.version}</uploadVersion>
+                                <stableRepository>
+                                    <name>dockerregistry-stable</name>
+                                    <url>${docker.registry}/config</url>
+                                </stableRepository>
+                                <skip>${helm.skip}</skip>
+                            </configuration>
+                        </execution>
+                    </executions>
+                </plugin>
+            </plugins>
+        </pluginManagement>
     </build>
 </project>
